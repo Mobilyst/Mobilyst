@@ -1,16 +1,47 @@
-# mobilyst
+# Takım İsmi
 
-A new Flutter project.
+Mobilyst
 
-## Getting Started
+# Ürün İle İlgili Bilgiler
 
-This project is a starting point for a Flutter application.
+## Takim Elemanları
+* Derya Telli: Developer/Scrum Master
+* Özge Nur Çalış: Developer
+* Emel Acar: Developer
+* Oktay Tultar: Developer/Product Owner
+* Hakan Ayaz: Developer
 
-A few resources to get you started if this is your first Flutter project:
+## Ürün İsim
+Yemek Kılavuzu
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Ürün Açıklaması
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+## Ürün Özellikleri
+
+
+## Hedef Kitle
+
+
+## Juriye Not 
+
+---
+
+
+## Sprint 1
+* Sprint içinde tamamlanması tahmin edilen puan: 100 Puan
+
+* Puan tamamlama mantığı: Toplamda proje boyunca tamamlanması gereken 340 puanlık backlog bulunmaktadır. 3 sprint'e bölündüğünde ilk sprint'in en azından 100 ile başlaması gerektiğine karar verildi.
+
+* Daily Scrum:
+* Sprint board update: Sprint board screenshotları:
+
+* Ürün Durumu: Ekran görüntüleri:
+
+* Sprint Review:
+
+* Sprint Retrospective:
+
+---
+
