@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:mobilyst/girisPage.dart';
+import 'package:mobilyst/hesabim/girisPage.dart';
 import 'package:mobilyst/haritaPage.dart';
 import 'package:mobilyst/homePage.dart';
 import 'package:mobilyst/kategoriPage.dart';

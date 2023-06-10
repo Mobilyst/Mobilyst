@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: NavigationBarPage(),
+      theme: ThemeData(accentColor: Colors.black), // tab bar cizgisinin rengi
     );
   }
 }
