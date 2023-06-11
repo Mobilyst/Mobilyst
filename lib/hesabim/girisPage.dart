@@ -2,8 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:mobilyst/hesabim/tabs/firstSignIn.dart';
 import 'package:mobilyst/hesabim/tabs/secondSignUp.dart';
 
-class GirisPage extends StatelessWidget {
+class GirisPage extends StatefulWidget {
   const GirisPage({super.key});
+
+  @override
+  State<GirisPage> createState() => _GirisPageState();
+}
+
+class _GirisPageState extends State<GirisPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+    // _tabController.addListener(() {
+    //   setState(() {});
+    // });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,19 +34,20 @@ class GirisPage extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'Hesabım',
+          title: Text(
+            'Hesabım ', //${_tabController.index + 1}
             textAlign: TextAlign.center,
           ),
           centerTitle: true,
           backgroundColor: Colors.black12,
         ),
-        body: Column(children: const [
+        body: Column(children: [
           //hata olursa buraya bak const ekledin
           TabBar(
+              controller: _tabController,
               labelColor: Colors.black, //secili olan tabin rengi
               unselectedLabelColor: Colors.grey, // secili olmayan tabin rengi
-              tabs: [
+              tabs: const [
                 Tab(
                   text: 'Giriş Yap',
                 ),
@@ -32,12 +56,12 @@ class GirisPage extends StatelessWidget {
                 ),
               ]),
           Expanded(
-            child: TabBarView(children: [
+            child: TabBarView(controller: _tabController, children: [
               //sign in
-              SignInPage(),
+              SignInPage(tabController: _tabController),
 
               //sign up
-              SignUpPage(),
+              SignUpPage(tabController: _tabController),
             ]),
           )
         ]),
