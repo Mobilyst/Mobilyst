@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobilyst/hesabim/tabs/firstSignIn.dart';
 import 'package:mobilyst/hesabim/tabs/secondSignUp.dart';
+import 'package:mobilyst/navigationBar.dart';
 
 class GirisPage extends StatefulWidget {
   const GirisPage({super.key});
@@ -17,9 +19,6 @@ class _GirisPageState extends State<GirisPage>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    // _tabController.addListener(() {
-    //   setState(() {});
-    // });
   }
 
   @override

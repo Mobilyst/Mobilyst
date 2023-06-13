@@ -1,12 +1,51 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:mobilyst/hesabim/hesabimPage.dart';
 import 'package:mobilyst/hesabim/tabs/button/girisButton.dart';
 import 'package:mobilyst/hesabim/tabs/secondSignUp.dart';
 import 'package:mobilyst/hesabim/tabs/sifreUnuttumPage.dart';
-import 'package:mobilyst/hesabim/textfield/testField.dart';
+import 'package:mobilyst/hesabim/tabs/textfield/testField.dart';
+import 'package:mobilyst/homePage.dart';
+import 'package:mobilyst/navigationBar.dart';
+import '../girisPage.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
   final TabController? tabController;
   const SignInPage({Key? key, this.tabController}) : super(key: key);
+
+  @override
+  State<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+  // text duzenleme kontrolleri
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  //giris kulanici method
+  Future<void> signUserIn() async {
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+      email: emailController.text,
+      password: passwordController.text,
+    )
+        .then((userCredential) {
+      // Oturum açma başarılı olduğunda yönlendirme işlemini gerçekleştir
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HesabimPage()),
+      );
+    }).catchError((error) {
+      // Oturum açma işlemi başarısız olduğunda hata mesajı göster
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: Text('Hata'),
+                content: Text('Oturum açma işlemi başarısız.'),
+              ));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +77,12 @@ class SignInPage extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            //ad textfield
-            const MyTextField(
+            //email textfield
+            MyTextField(
+              controller: emailController,
               hintText: 'Lütfen e-posta adresi giriniz',
               obscureText: false,
-              controller: null, // ??
+              // ??
             ),
 
             const SizedBox(
@@ -70,8 +110,8 @@ class SignInPage extends StatelessWidget {
               height: 10,
             ),
             //sifre textfield
-            const MyTextField(
-              controller: null, //??
+            MyTextField(
+              controller: passwordController, //??
               hintText: 'Lütfen parola giriniz',
               obscureText: true, // gizliyor yazilan seyleri
             ),
@@ -105,9 +145,9 @@ class SignInPage extends StatelessWidget {
             ),
 
             //kayit olma button
-            const MyButton(
-              text: 'Giriş Yap',
-              onTap: null, //??
+            MyButton(
+              onTap: signUserIn,
+              text: 'Giriş Yap', //??
             ),
 
             const SizedBox(
@@ -128,7 +168,7 @@ class SignInPage extends StatelessWidget {
                 GestureDetector(
                   //birseyleri butona cevirmeye yariyor
                   onTap: () {
-                    tabController
+                    widget.tabController
                         ?.animateTo(1); // Tab bar'da ikinci sekmeye geçiş yap
                   }, //??
                   child: const Text(

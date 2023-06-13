@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobilyst/hesabim/tabs/button/girisButton.dart';
-import 'package:mobilyst/hesabim/textfield/testField.dart';
+import 'package:mobilyst/hesabim/tabs/textfield/testField.dart';
 
 class SignUpPage extends StatelessWidget {
   final TabController? tabController;
