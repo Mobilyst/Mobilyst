@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobilyst/kategoriler_ekrani/cesitlerEkrani.dart';
-import 'package:mobilyst/verilerRepository.dart';
-import 'package:mobilyst/yemekKategori.dart';
+import 'package:mobilyst/kategoriler_ekrani/verilerRepository.dart';
+import 'package:mobilyst/kategoriler_ekrani/yemekKategori.dart';
 
 void main() {
   runApp(const MyApp());

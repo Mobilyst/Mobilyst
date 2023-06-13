@@ -1,5 +1,5 @@
 
-import 'package:mobilyst/yemekKategori.dart';
+import 'package:mobilyst/kategoriler_ekrani/yemekKategori.dart';
 
 class VerilerRepository {
   List<YemekKategorisi> kategoriler = [

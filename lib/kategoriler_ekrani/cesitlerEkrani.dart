@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobilyst/verilerRepository.dart';
-import 'package:mobilyst/yemekKategori.dart';
+import 'package:mobilyst/kategoriler_ekrani/verilerRepository.dart';
+import 'package:mobilyst/kategoriler_ekrani/yemekKategori.dart';
 
 
 class CesitlerEkrani extends StatefulWidget {
