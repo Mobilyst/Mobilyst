@@ -1,6 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mobilyst/hesabim/girisPage.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:mobilyst/Hesabim/FavoriListelerimPage.dart';
+import 'package:mobilyst/Hesabim/HesapBilgileri/hesapBilgilerimPage.dart';
+import 'package:mobilyst/Hesabim/fiyatAlarmlarimPage.dart';
 
 class HesabimPage extends StatelessWidget {
   const HesabimPage({Key? key}) : super(key: key);
@@ -8,8 +13,110 @@ class HesabimPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('giris sayfasina geri don'),
+      appBar: AppBar(
+        title: const Text(
+          'Hesabım ', //${_tabController.index + 1}
+          textAlign: TextAlign.center,
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.black12,
+      ),
+      body: SafeArea(
+        child: ListView(children: [
+          SizedBox(
+            height: 30,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Icon(
+                  Icons.account_circle_sharp,
+                  size: 100,
+                  color: Colors.grey,
+                ),
+                Text('E-posta Yazılıcak'),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 50,
+          ),
+          ListTile(
+            title: Text('Fiyat Alarmlarım'),
+            trailing: Icon(Icons.arrow_forward_ios),
+            leading: Icon(Icons.notifications_outlined),
+            contentPadding: EdgeInsets.all(10),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FiyatAlarmPage()),
+              );
+            },
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 19),
+            child: Divider(
+              height: 5,
+              thickness: 1,
+              color: Colors.grey.shade300,
+            ),
+          ),
+          ListTile(
+            title: Text('Favori Listelerim'),
+            trailing: Icon(Icons.arrow_forward_ios),
+            leading: Icon(Icons.favorite_border),
+            contentPadding: EdgeInsets.all(10),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FavoriListPage()),
+              );
+            },
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 19),
+            child: Divider(
+              height: 5,
+              thickness: 1,
+              color: Colors.grey.shade300,
+            ),
+          ),
+          ListTile(
+            title: Text('Hesap Bilgilerim'),
+            trailing: Icon(Icons.arrow_forward_ios),
+            leading: Icon(Icons.account_circle_outlined),
+            contentPadding: EdgeInsets.all(10),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HesapBilgileriPage()),
+              );
+            },
+          ),
+          SizedBox(
+            height: 180,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GestureDetector(
+                  onTap: null, //?? cıkıs yaptıgında sıgn ın sayfasına donmelı
+                  child: const Text(
+                    ' Çıkış Yap',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ]),
       ),
     );
   }

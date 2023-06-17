@@ -39,6 +39,7 @@ dependencies:
   line_icons: ^2.0.1
   firebase_core: ^2.13.1
   firebase_auth: ^4.6.2
+  fluttericon: ^2.0.0
 
 dev_dependencies:
   flutter_test:

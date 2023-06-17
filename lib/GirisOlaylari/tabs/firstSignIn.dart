@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mobilyst/hesabim/hesabimPage.dart';
-import 'package:mobilyst/hesabim/tabs/button/girisButton.dart';
-import 'package:mobilyst/hesabim/tabs/secondSignUp.dart';
-import 'package:mobilyst/hesabim/tabs/sifreUnuttumPage.dart';
-import 'package:mobilyst/hesabim/tabs/textfield/testField.dart';
+import 'package:mobilyst/Hesabim/hesabimPage.dart';
+import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
+import 'package:mobilyst/GirisOlaylari/tabs/secondSignUp.dart';
+import 'package:mobilyst/GirisOlaylari/tabs/sifreUnuttumPage.dart';
+import 'package:mobilyst/GirisOlaylari/tabs/textfield/testField.dart';
 import 'package:mobilyst/homePage.dart';
 import 'package:mobilyst/navigationBar.dart';
 import '../girisPage.dart';
@@ -32,7 +32,7 @@ class _SignInPageState extends State<SignInPage> {
     )
         .then((userCredential) {
       // Oturum açma başarılı olduğunda yönlendirme işlemini gerçekleştir
-      Navigator.pushReplacement(
+      Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => HesabimPage()),
       );

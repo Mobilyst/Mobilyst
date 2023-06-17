@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobilyst/hesabim/tabs/button/girisButton.dart';
-import 'package:mobilyst/hesabim/tabs/textfield/testField.dart';
+import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
+import 'package:mobilyst/GirisOlaylari/tabs/textfield/testField.dart';
 
 class SignUpPage extends StatelessWidget {
   final TabController? tabController;
@@ -15,38 +15,6 @@ class SignUpPage extends StatelessWidget {
           child: SingleChildScrollView(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: 25), // Başlangıçtan sağa boşluk ekleyin
-                    child: Text(
-                      'Kullanıcı Adı',
-                      style: TextStyle(
-                        fontSize: 15, // Metin boyutunu 18 olarak ayarlar
-                        fontWeight: FontWeight.normal, // Metni kalınlaştırır
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(
-                height: 10,
-              ),
-
-              //Kullanici name
-              const MyTextField(
-                controller: null, //??
-                hintText: 'Lütfen kullanıcı adı giriniz',
-                obscureText: false,
-              ),
-
-              const SizedBox(
-                height: 5,
-              ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: const [
