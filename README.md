@@ -26,15 +26,15 @@ Yemek Kılavuzu
 
 
 ## Ürün Açıklaması
-Yemek Kılavuzu, Online yemek uygulamalarındaki yemeklerin türlerine göre fiyatlarının sıralanmasını sağlar. Bu uygulama bir çok öğrenciye ve ekonomik sıkıntılar çeken insanlara fiyat bakımından yardımcı olacak ve birbirlerinin yemekler hakkındaki yorumlarını görmelerini sağlayacaktır. Uygulamanın diğer güzel bir özelliği ise telefonunda olmayan online uygulamanın yemek kampanlarını görebilecek ve ilgili online uygulamya yönlendiricek olmasıdır. Bu durum kampanlayaları takip eden ve ekonomik sıkıntılar çeken insanlara çok yardım edecektir. Kullanıcılar giriş yapmadan bu özellikleri kullanabilicek, eğer favori ve fiyat alarmlarını eklemek istiyorlarsa giriş yapacaklar. 
+Yemek Kılavuzu, Online yemek uygulamalarındaki yemeklerin türlerine göre fiyatlarının sıralanmasını sağlar. Bu uygulama bir çok öğrenciye ve ekonomik sıkıntılar çeken insanlara fiyat bakımından yardımcı olacak , uygun yemek ararken fazladan zaman ayırmasına gerek kalmayacak  ve birbirlerinin yemekler hakkındaki yorumlarını görmelerini sağlayacaktır. Uygulamanın diğer güzel bir özelliği ise kullanıcının telefonunda olmayan online uygulamaların yemek kampanyalarını görebilecek ve ilgili online uygulamaya yönlendirecek olmasıdır. Bu durum kampanyaları takip eden ve ekonomik sıkıntılar çeken insanlara çok yardımcı olacaktır. Kullanıcılar giriş yapmadan da bu özellikleri kullanabilecek, ek olarak eğer favori yemeklerini eklemek ve fiyatı düşen ürünlerden haberdar olmak istiyorlarsa kullanıcıların uygulamaya giriş yapmaları gerekmektedir.
 
 
 
 ## Ürün Özellikleri
-* Kullanıcılar online yemek uygulamalarındaki yemeklerin kıyaslanması görebilecekler ve ilgili online uygulamaya iletilecekler
-* Kullanıcılar giriş yapmadan kıyaslamaları görebilecek fakat giriş yapmadan favori yemeklerini ekleyemeyecek yada fiyat alarmlarını kullanamayacaklar.
-* Diğer kullanıcıların yorumlarını görebilecek ve fiyatlar ucuz olan yiyeceklerden şüphe etmeyecekler.
-* Kullanıcıların edinmdi online yemek uygulamarındaki kampanyaları görebilecek ve ilgili online uygulamaya iletilicekler.
+* Kullanıcılar online yemek uygulamalarındaki yemeklerin kıyaslanmasını görebilecekler ve ilgili online uygulamaya iletileceklerdir.
+* Kullanıcılar giriş yapmadan kıyaslamaları görebilecek fakat giriş yapmadan favori yemeklerini ekleyemeyecek yada fiyat alarmlarını kullanamayacaklardır.
+* Kullanıcılar diğer kullanıcıların yorumlarını ve değerlendirmelerini görebileceklerdir.
+* Kullanıcıların edinmediği online yemek uygulamalarındaki kampanyaları görebilecek ve ilgili online uygulamaya iletilecekler.
 
 
 ## Hedef Kitle
@@ -42,6 +42,7 @@ Yemek Kılavuzu, Online yemek uygulamalarındaki yemeklerin türlerine göre fiy
 * Ekonomik durumu iyi olmayan insanlar
 * Kampanyaları takip edenler
 * Online yemek uygulamaları
+* Zamandan tasarruf etmek isteyenler
 
 
 
@@ -51,7 +52,7 @@ Yemek Kılavuzu, Online yemek uygulamalarındaki yemeklerin türlerine göre fiy
 
 
 ## Sprint 1
-* Sprint Notları: User story etiketi mavi ve tast etiketi mor olarak karar verilmiştir. User Story'ler product backlog'ların içine yazılmıştır.
+* Sprint Notları: User story etiketi mavi ve task etiketi mor olarak karar verilmiştir. User Story'ler product backlog'ların içine yazılmıştır.
   
 * Sprint içinde tamamlanması tahmin edilen puan: 100 Puan
 
@@ -80,10 +81,10 @@ https://github.com/Mobilyst/mobilyst/assets/135759215/7a5495bd-441e-4bda-9571-7e
 
 ![image](https://github.com/Mobilyst/mobilyst/assets/135759215/82401e86-9b4e-4662-9a22-fa0c67371829)
 
-* Sprint Review: Uygulamanın temel sayfaları tasarlanmış,giriş ekranına firebase bağlanmış ve uygulamanın eksikleri belirlenmiştir.
+* Sprint Review: Uygulamanın temel sayfaları tasarlanmış, giriş ekranına firebase bağlanmış ve uygulamanın eksikleri belirlenmiştir.
   
 * Sprint Retrospective:
-    * Daily toplantılarının hergün discordan yapılmasına karar verilmiştir.
+    * Daily toplantılarının her gün discord üzerinden yapılmasına karar verilmiştir.
     * Takım üyelerinin gelecek sprintlerde aktif olması gerektiğine vurgu yapılmıştır.
 
 ---
