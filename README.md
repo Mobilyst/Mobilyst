@@ -1,4 +1,4 @@
-# Takım İsmi
+## Takım İsmi
 Mobilyst
 
 # Ürün İle İlgili Bilgiler
@@ -26,17 +26,22 @@ Yemek Kılavuzu
 
 
 ## Ürün Açıklaması
+Yemek Kılavuzu, Online yemek uygulamalarındaki yemeklerin türlerine göre fiyatlarının sıralanmasını sağlar. Bu uygulama bir çok öğrenciye ve ekonomik sıkıntılar çeken insanlara fiyat bakımından yardımcı olacak ve birbirlerinin yemekler hakkındaki yorumlarını görmelerini sağlayacaktır. Uygulamanın diğer güzel bir özelliği ise telefonunda olmayan online uygulamanın yemek kampanlarını görebilecek ve ilgili online uygulamya yönlendiricek olmasıdır. Bu durum kampanlayaları takip eden ve ekonomik sıkıntılar çeken insanlara çok yardım edecektir. Kullanıcılar giriş yapmadan bu özellikleri kullanabilicek, eğer favori ve fiyat alarmlarını eklemek istiyorlarsa giriş yapacaklar. 
 
 
 
 ## Ürün Özellikleri
+* Kullanıcılar online yemek uygulamalarındaki yemeklerin kıyaslanması görebilecekler ve ilgili online uygulamaya iletilecekler
+* Kullanıcılar giriş yapmadan kıyaslamaları görebilecek fakat giriş yapmadan favori yemeklerini ekleyemeyecek yada fiyat alarmlarını kullanamayacaklar.
+* Diğer kullanıcıların yorumlarını görebilecek ve fiyatlar ucuz olan yiyeceklerden şüphe etmeyecekler.
+* Kullanıcıların edinmdi online yemek uygulamarındaki kampanyaları görebilecek ve ilgili online uygulamaya iletilicekler.
 
 
 ## Hedef Kitle
 * Öğrenciler
 * Ekonomik durumu iyi olmayan insanlar
-* Kapmanyaları takip edenler
-* Online yemek mağazaları ve uygulamaları
+* Kampanyaları takip edenler
+* Online yemek uygulamaları
 
 
 
@@ -46,19 +51,30 @@ Yemek Kılavuzu
 
 
 ## Sprint 1
+* Sprint Notları: User story etiketi mavi ve tast etiketi mor olarak karar verilmiştir. User Story'ler product backlog'ların içine yazılmıştır.
+  
 * Sprint içinde tamamlanması tahmin edilen puan: 100 Puan
 
 * Puan tamamlama mantığı: Toplamda proje boyunca tamamlanması gereken 340 puanlık backlog bulunmaktadır. 3 sprint'e bölündüğünde ilk sprint'in en azından 100 ile başlaması gerektiğine karar verildi.
 
 * Daily Scrum: Daily Scrum toplantıları sınav haftasından dolayı  takım arkadaşlarımın kararları ile trello üzerinden gerçekleştirilmiştir.
 * Sprint board update:
-![Ekran görüntüsü 2023-06-18 201218](https://github.com/Mobilyst/mobilyst/assets/135759215/1fa67e41-f6c6-4a2c-bd50-8542e3373a1e)
+![image](https://github.com/Mobilyst/mobilyst/assets/135759215/3540f0d8-be8b-4f04-acaa-6de4171ac518)
+
  
  
 
 * Ürün Durumu:
  
-[![]](https://github.com/Mobilyst/mobilyst/assets/135759215/0238662e-c2c4-4ade-9800-46624ae67ed3)
+
+
+https://github.com/Mobilyst/mobilyst/assets/135759215/11baf190-b30a-416f-b5b9-45020f99db27
+
+
+
+https://github.com/Mobilyst/mobilyst/assets/135759215/7a5495bd-441e-4bda-9571-7eb8455df108
+
+
 
 ![image](https://github.com/Mobilyst/mobilyst/assets/135759215/7c4caf95-8447-47e0-a9df-2b93d6952479)
 
