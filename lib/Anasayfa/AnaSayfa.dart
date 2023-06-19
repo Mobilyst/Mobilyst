@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobilyst/Anasayfa/DetayliBilgiSayfasi.dart';
 
-class AnaSayfa extends StatefulWidget {
+import 'KampanyaRepository.dart';
+
+class AnaSayfa extends ConsumerWidget {
   const AnaSayfa({super.key});
 
-  @override
-  State<AnaSayfa> createState() => _AnaSayfa();
-}
 
-class _AnaSayfa extends State<AnaSayfa> {
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final TextEditingController searchController = TextEditingController();
     var ScreenHeight = MediaQuery.of(context).size.height;
+    var kampanyaRepository=ref.watch(kampanyaProvider);
+
     return Scaffold(
         appBar: AppBar(
           title: const Text("Ana Sayfa"),
@@ -226,19 +229,25 @@ class _AnaSayfa extends State<AnaSayfa> {
                             children: [
                               const SizedBox(height: 6),
                               Ink.image(
-                                image: const NetworkImage(
-                                    'https://www.arbys.com.tr/cmsfiles/campaigns/2-li-beef-n-kampanyasi.jpg?v=95'),
+                                image: NetworkImage(
+                                    "${kampanyaRepository.urunler[0].urunFotoAddress}"),
                                 height: 150,
                                 width: 150,
                                 fit: BoxFit.cover,
                               ),
                               const SizedBox(height: 10),
-                              const Text(
-                                "2'li Beef'n Cheddar Menü",
+                               Text(
+                                kampanyaRepository.urunler[0].urunAdi,
                                 style: TextStyle(color: Colors.black),
                               ),
                               TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => const DetayliBilgiSayfasi(id: 0),
+                                      ),
+                                    );
+                                  },
                                   child: Text("Detaylı bilgi için tıklayınız"))
                             ],
                           ),
@@ -256,27 +265,41 @@ class _AnaSayfa extends State<AnaSayfa> {
                             children: [
                               const SizedBox(height: 6),
                               Ink.image(
-                                image: const NetworkImage(
-                                    'https://www.popeyes.com.tr/cmsfiles/campaigns/takimina-kazandirmanin-en-lezzetli-yolu-popeyes-taraftar-menusu.jpg?v=143'),
+                                image: NetworkImage(
+                                    "${kampanyaRepository.urunler[1].urunFotoAddress}"),
                                 height: 150,
                                 width: 150,
                                 fit: BoxFit.cover,
                               ),
                               const SizedBox(height: 10),
-                              const Text(
-                                'Taraftar Menü',
+                               Text(
+                                kampanyaRepository.urunler[1].urunAdi,
                                 style: TextStyle(color: Colors.black),
                               ),
                               TextButton(
-                                  onPressed: () {},
-                                  child: Text("Detaylı bilgi için tıklayınız"))
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => const DetayliBilgiSayfasi(id: 1),
+                                      ),
+                                    );
+                                  },
+                                  child: Text("Detaylı bilgi için tıklayınız."))
                             ],
                           ),
                         ),
                       ),
                       const SizedBox(width: 15),
-                    ])),
-              ]),
-        ));
+                    ]
+                    )
+                ),
+              ]
+          ),
+        )
+    );
   }
+
+
+
+
 }
