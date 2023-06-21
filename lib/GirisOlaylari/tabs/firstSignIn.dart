@@ -25,25 +25,90 @@ class _SignInPageState extends State<SignInPage> {
 
   //giris kulanici method
   Future<void> signUserIn() async {
+    // yukleniyor
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(
       email: emailController.text,
       password: passwordController.text,
     )
         .then((userCredential) {
+      // yukleniyordan cikis
+      Navigator.pop(context);
       // Oturum açma başarılı olduğunda yönlendirme işlemini gerçekleştir
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => HesabimPage()),
       );
     }).catchError((error) {
-      // Oturum açma işlemi başarısız olduğunda hata mesajı göster
+      // yukleniyordan cikis
+      Navigator.pop(context);
+
+      // Hata durumuna göre mesaj göster
+      String errorMessage = 'Bir hata oluştu.';
+
+      if (error is FirebaseAuthException) {
+        switch (error.code) {
+          case 'wrong-password':
+            errorMessage = 'Yanlış şifre.';
+            break;
+          case 'user-not-found':
+            errorMessage = 'E-posta yanlış.';
+            break;
+          case 'invalid-email':
+            errorMessage = 'Geçersiz e-posta formatı.';
+            break;
+          case 'user-not-found':
+            errorMessage = 'Kullanıcı bulunamadı.';
+            break;
+          case 'user-disabled':
+            errorMessage = 'Kullanıcı hesabı devre dışı bırakıldı.';
+            break;
+          case 'too-many-requests':
+            errorMessage =
+                'Çok fazla istek yapıldı. Lütfen daha sonra tekrar deneyin.';
+            break;
+          case 'operation-not-allowed':
+            errorMessage = 'Bu işlem izin verilmiyor.';
+            break;
+          // Diğer hata durumlarına göre gerekirse eklemeler yapabilirsiniz.
+        }
+      }
+
       showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-                title: Text('Hata'),
-                content: Text('Oturum açma işlemi başarısız.'),
-              ));
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(
+            'Hata',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          content: Text(errorMessage),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                // İletişim kutusunu kapat
+              },
+              child: Text(
+                "Tamam",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
     });
   }
 
@@ -127,7 +192,13 @@ class _SignInPageState extends State<SignInPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   GestureDetector(
-                    onTap: null, //??
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return MyForgetPasswordPage();
+                        },
+                      ));
+                    }, //??
                     child: const Text(
                       'Şifremi Unuttum',
                       style: TextStyle(

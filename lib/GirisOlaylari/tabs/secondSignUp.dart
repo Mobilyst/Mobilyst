@@ -1,11 +1,139 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/textfield/testField.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   final TabController? tabController;
 
   const SignUpPage({Key? key, this.tabController}) : super(key: key);
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  //giris kulanici method
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  Future<void> signUserUp() async {
+    // Yukleniyor
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    if (passwordController.text == confirmPasswordController.text) {
+      try {
+        // Firebase kullanıcı oluşturma işlemi
+        UserCredential userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+        emailController.clear();
+        passwordController.clear();
+        confirmPasswordController.clear();
+        // Yukleniyordan çıkış
+        Navigator.pop(context);
+
+        // Tabbar'a geçiş yap
+        widget.tabController?.animateTo(0);
+      } catch (error) {
+        // Yukleniyordan çıkış
+        Navigator.pop(context);
+
+        // Hata durumuna göre mesaj göster
+        String errorMessage = 'Bilinmeyen bir hata oluştu.';
+
+        if (error is FirebaseAuthException) {
+          switch (error.code) {
+            case 'email-already-in-use':
+              errorMessage = 'Bu e-posta adresi zaten kullanımda.';
+              break;
+            case 'invalid-email':
+              errorMessage = 'Geçersiz e-posta formatı.';
+              break;
+            case 'weak-password':
+              errorMessage = 'Şifre çok zayıf. Daha güçlü bir şifre deneyin.';
+              break;
+            case 'user-not-found':
+            case 'wrong-password':
+              errorMessage = 'E-posta veya şifre boş bırakılamaz.';
+              break;
+          }
+        }
+
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(
+              'Hata',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            content: Text(errorMessage),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  setState(() {});
+                },
+                child: Text(
+                  "Tamam",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      }
+    } else {
+      // Yukleniyordan çıkış
+      Navigator.pop(context);
+      // Şifreler uyuşmuyor diye hata mesajı göster
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              'Hata',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            content: Text(
+              "Şifreler aynı değil, lütfen kontrol ediniz.",
+              textAlign: TextAlign.center,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  setState(() {});
+                },
+                child: Text(
+                  "Tamam",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +165,8 @@ class SignUpPage extends StatelessWidget {
               ),
 
               // email textfield
-              const MyTextField(
-                controller: null, //??
+              MyTextField(
+                controller: emailController, //??
                 hintText: 'Lütfen e-posta adresinizi giriniz',
                 obscureText: false,
               ),
@@ -68,8 +196,8 @@ class SignUpPage extends StatelessWidget {
                 height: 10,
               ),
               //sifre textfield
-              const MyTextField(
-                controller: null, //??
+              MyTextField(
+                controller: passwordController, //??
                 hintText: 'Lütfen parola giriniz',
                 obscureText: true, // gizliyor yazilan seyleri
               ),
@@ -99,8 +227,8 @@ class SignUpPage extends StatelessWidget {
                 height: 10,
               ),
               // sifre onaylama
-              const MyTextField(
-                controller: null, //??
+              MyTextField(
+                controller: confirmPasswordController, //??
                 hintText: 'Lütfen parolanızı tekrar giriniz',
                 obscureText: true, // gizliyor yazilan seyleri
               ),
@@ -111,7 +239,7 @@ class SignUpPage extends StatelessWidget {
 
               //kayit olma button
               MyButton(
-                onTap: null, //??
+                onTap: signUserUp, //??
                 text: 'Kayıt Ol',
               ),
               const SizedBox(
@@ -136,7 +264,7 @@ class SignUpPage extends StatelessWidget {
                   GestureDetector(
                     //birseyleri butona cevirmeye yariyor
                     onTap: () {
-                      tabController
+                      widget.tabController
                           ?.animateTo(0); // Tab bar'da ikinci sekmeye geçiş yap
                     }, //??
                     child: const Text(

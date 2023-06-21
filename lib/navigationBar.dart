@@ -27,8 +27,8 @@ class _NavigationBarPageState extends State<NavigationBarPage> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    // HomePage(),
-    HesabimPage(), // inceleme icin buraya yazildi
+    HomePage(),
+    //HesabimPage(), // inceleme icin buraya yazildi
     KategoriPage(),
     HaritaPage(),
     GirisPage(),

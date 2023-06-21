@@ -3,12 +3,41 @@ import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:mobilyst/GirisOlaylari/girisPage.dart';
 import 'package:mobilyst/Hesabim/FavoriListelerimPage.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/hesapBilgilerimPage.dart';
 import 'package:mobilyst/Hesabim/fiyatAlarmlarimPage.dart';
 
-class HesabimPage extends StatelessWidget {
+class HesabimPage extends StatefulWidget {
   const HesabimPage({Key? key}) : super(key: key);
+
+  @override
+  State<HesabimPage> createState() => _HesabimPageState();
+}
+
+class _HesabimPageState extends State<HesabimPage> {
+// giris yapan kullanici emaili
+  final user = FirebaseAuth.instance.currentUser!;
+
+// kullanici cikis yapma methodu
+  @override
+  Future<void> signUserOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => GirisPage()),
+      );
+    } catch (error) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Hata'),
+          content: Text('Çıkış işlemi başarısız.'),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +65,7 @@ class HesabimPage extends StatelessWidget {
                   size: 100,
                   color: Colors.grey,
                 ),
-                Text('E-posta Yazılıcak'),
+                Text(user.email!),
               ],
             ),
           ),
@@ -104,7 +133,8 @@ class HesabimPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 GestureDetector(
-                  onTap: null, //?? cıkıs yaptıgında sıgn ın sayfasına donmelı
+                  onTap:
+                      signUserOut, //?? cıkıs yaptıgında sıgn ın sayfasına donmelı
                   child: const Text(
                     ' Çıkış Yap',
                     style: TextStyle(
