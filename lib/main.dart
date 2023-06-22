@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobilyst/kategorilerSayfasi.dart';
+import 'package:mobilyst/karsilastirma_ekrani/yemekkarsilastirmaekrani.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const YemekKategorileriSayfasi(),
+      home: FoodComparisonScreen(),
+      //YemekKategorileriSayfasi(),
     );
   }
 }
