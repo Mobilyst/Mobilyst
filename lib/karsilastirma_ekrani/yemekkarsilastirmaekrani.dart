@@ -47,7 +47,7 @@ class _FoodComparisonScreenState extends State<FoodComparisonScreen> {
                     children: [
                       IconButton(
                         onPressed: () {},
-                        icon: const Icon(Icons.add_alarm),
+                        icon: const Icon(Icons.notifications_outlined),
                       ),
                       IconButton(
                         onPressed: () {
