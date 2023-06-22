@@ -29,6 +29,46 @@ class _SignUpPageState extends State<SignUpPage> {
       },
     );
 
+    if (emailController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        confirmPasswordController.text.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              'Hata',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            content: Text(
+              'Lütfen tüm alanları doldurun.',
+              textAlign: TextAlign.center,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  // yukleniyordan cikis
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  "Tamam",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+    // yukleniyordan cikis
+    Navigator.pop(context);
+
     if (passwordController.text == confirmPasswordController.text) {
       try {
         // Firebase kullanıcı oluşturma işlemi
@@ -62,10 +102,6 @@ class _SignUpPageState extends State<SignUpPage> {
               break;
             case 'weak-password':
               errorMessage = 'Şifre çok zayıf. Daha güçlü bir şifre deneyin.';
-              break;
-            case 'user-not-found':
-            case 'wrong-password':
-              errorMessage = 'E-posta veya şifre boş bırakılamaz.';
               break;
           }
         }

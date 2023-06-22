@@ -35,6 +35,42 @@ class _SignInPageState extends State<SignInPage> {
       },
     );
 
+    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              'Hata',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            content: Text(
+              'Lütfen tüm alanları doldurun.',
+              textAlign: TextAlign.center,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  // yukleniyordan cikis
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  "Tamam",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(
       email: emailController.text,

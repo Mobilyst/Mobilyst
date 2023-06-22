@@ -24,6 +24,40 @@ class _MyForgetPasswordPageState extends State<MyForgetPasswordPage> {
 
   Future<void> passwordReset() async {
     String email = emailController.text;
+    if (email.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              'Hata',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            content: Text(
+              'Lütfen tüm alanları doldurun.',
+              textAlign: TextAlign.center,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  "Tamam",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+
     await FirebaseAuth.instance
         .sendPasswordResetEmail(
       email: emailController.text,

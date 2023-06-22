@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
+import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/citySecimPage.dart';
+import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/tarihSecimPage.dart';
 
-import '../../GirisOlaylari/tabs/textfield/testField.dart';
+import '../../../GirisOlaylari/tabs/textfield/testField.dart';
 
 class KullaniciBilgileriPage extends StatefulWidget {
   const KullaniciBilgileriPage({super.key});
@@ -43,7 +45,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -63,7 +65,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
               ),
 
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
 
               //sifre textfield
@@ -74,7 +76,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
               ),
 
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
 
               Row(
@@ -95,7 +97,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
               ),
 
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               //sifre textfield
               MyTextField(
@@ -104,7 +106,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
                 obscureText: true, // gizliyor yazilan seyleri
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
 
               Row(
@@ -125,7 +127,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
               ),
 
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
 
               //sifre textfield
@@ -136,7 +138,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
               ),
 
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
 
               Row(
@@ -157,53 +159,48 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
               ),
 
               const SizedBox(
-                height: 2,
+                height: 5,
               ),
 
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Radio(
-                    value: 'Erkek',
-                    groupValue: cinsiyet, //??
-                    onChanged: (value) {
-                      setState(() {
-                        cinsiyet = value.toString();
-                      });
-                    },
-                  ),
-                  const SizedBox(
-                    width: 0.01,
-                  ),
-                  const Text('Erkek'),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Radio(
-                    value: 'Kadın',
-                    groupValue: cinsiyet, //??
-                    onChanged: (value) {
-                      setState(() {
-                        cinsiyet = value.toString();
-                      });
-                    }, //??
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  const SizedBox(
-                    width: 0.01,
-                  ),
-                  const Text('Kadın'),
-                  const SizedBox(
-                    width: 10,
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: DropdownButtonFormField<String>(
+                        value: cinsiyet,
+                        onChanged: (String? value) {
+                          setState(() {
+                            cinsiyet = value;
+                          });
+                        },
+                        items: [
+                          DropdownMenuItem<String>(
+                            value: 'Erkek',
+                            child: const Text('Erkek'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Kadın',
+                            child: const Text('Kadın'),
+                          ),
+                        ],
+                        decoration: InputDecoration(
+                          hintText: 'Cinsiyet seçiniz',
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey.shade900),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey.shade900),
+                          ),
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          hintStyle: TextStyle(color: Colors.grey[500]),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
-
               const SizedBox(
                 height: 10,
               ),
@@ -225,14 +222,16 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
               ),
 
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
 
               //sifre textfield
-              MyTextField(
-                controller: null, //??
-                hintText: 'Doğum tarihinizi giriniz',
-                obscureText: true, // gizliyor yazilan seyleri
+              Row(
+                children: [
+                  Expanded(
+                    child: TarihSelectPage(),
+                  ),
+                ],
               ),
 
               const SizedBox(
@@ -256,14 +255,16 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
               ),
 
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
 
               //burası degısecek ??
-              MyTextField(
-                controller: null, //??
-                hintText: 'İl giriniz',
-                obscureText: true, // gizliyor yazilan seyleri
+              Row(
+                children: [
+                  Expanded(
+                    child: CitySelectPage(),
+                  ),
+                ],
               ),
 
               const SizedBox(
@@ -287,7 +288,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
               ),
 
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
 
               //burası degısecek ??
@@ -296,6 +297,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
                 child: Container(
                   child: TextField(
                     decoration: InputDecoration(
+                      hintText: 'Adresinizi giriniz',
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey.shade900),
                       ),
@@ -304,6 +306,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
                       ),
                       fillColor: Colors.grey.shade200,
                       filled: true,
+                      hintStyle: TextStyle(color: Colors.grey[500]),
                     ),
                   ),
                 ),
@@ -318,7 +321,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
               ),
 
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
 
               Padding(

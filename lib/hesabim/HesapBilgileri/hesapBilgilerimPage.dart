@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileriPage.dart';
+import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/kullaniciBilgileriPage.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/sifreDegisikligiPage.dart';
 
 class HesapBilgileriPage extends StatelessWidget {
