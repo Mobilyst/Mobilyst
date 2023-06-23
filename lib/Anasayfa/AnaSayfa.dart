@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobilyst/Anasayfa/DetayliBilgiSayfasi.dart';
+import 'package:mobilyst/Anasayfa/KampanyalarSayfasi.dart';
 
 import 'KampanyaRepository.dart';
 
@@ -207,11 +208,24 @@ class AnaSayfa extends ConsumerWidget {
                     ])),
                 const SizedBox(height: 20),
                 Row(
-                  children: const [
-                    SizedBox(width: 5),
-                    Icon(Icons.card_giftcard),
-                    SizedBox(width: 5),
-                    Text("Öne çıkan kampanyalar", textAlign: TextAlign.start),
+                  children:  [
+                    const SizedBox(width: 5),
+                    const Icon(Icons.card_giftcard),
+                    const SizedBox(width: 5),
+                    const Text("Öne çıkan kampanyalar", textAlign: TextAlign.start),
+                    const SizedBox(width: 140),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const KampanyalarSayfasi(),
+                            ),
+                          );
+                        },
+                        style: TextButton.styleFrom(
+                          primary: Colors.black, // Text Color
+                        ),
+                        child: const Text("Tümü"))
                   ],
                 ),
                 SingleChildScrollView(
