@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class TarihSelectPage extends StatefulWidget {
-  const TarihSelectPage({super.key});
+  final Function(DateTime)? onDateSelected;
+  const TarihSelectPage({Key? key, this.onDateSelected}) : super(key: key);
 
   @override
   State<TarihSelectPage> createState() => _TarihSelectPageState();
@@ -10,22 +11,38 @@ class TarihSelectPage extends StatefulWidget {
 
 class _TarihSelectPageState extends State<TarihSelectPage> {
   final _createDateController = TextEditingController();
+  late DateTime _dateTime;
 
-  DateTime _dateTime = DateTime.now();
+  @override
+  void initState() {
+    super.initState();
+    _dateTime = DateTime.now();
+  }
 
-  _selectedCreateDate(BuildContext context) async {
-    var _pickedDate = await showDatePicker(
-        context: context,
-        initialDate: _dateTime,
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2100));
-    if (_pickedDate != null) {
+  Future<void> _selectedCreateDate(BuildContext context) async {
+    var pickedDate = await showDatePicker(
+      context: context,
+      initialDate: _dateTime,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (pickedDate != null) {
       setState(() {
-        _dateTime = _pickedDate;
+        _dateTime = pickedDate;
         _createDateController.text =
-            DateFormat('dd-MM-yyyy').format(_pickedDate);
+            DateFormat('dd-MM-yyyy').format(pickedDate);
       });
+      // Seçilen tarihi üst widget'a iletmek için onDateSelected fonksiyonunu çağırın
+      if (widget.onDateSelected != null) {
+        widget.onDateSelected!(pickedDate);
+      }
     }
+  }
+
+  @override
+  void dispose() {
+    _createDateController.dispose();
+    super.dispose();
   }
 
   @override

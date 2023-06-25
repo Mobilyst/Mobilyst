@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CitySelectPage extends StatefulWidget {
+  final Function(String) onChange;
+
+  CitySelectPage({required this.onChange});
   @override
   _CitySelectPageState createState() => _CitySelectPageState();
 }
 
 class _CitySelectPageState extends State<CitySelectPage> {
-  late String? selectedCity = null;
+  String? selectedCity;
 
   List<String> cities = [
     'Adana',
@@ -98,10 +101,11 @@ class _CitySelectPageState extends State<CitySelectPage> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0),
         child: DropdownButtonFormField<String>(
-          value: selectedCity ?? null,
+          value: selectedCity,
           onChanged: (String? value) {
             setState(() {
               selectedCity = value;
+              widget.onChange(selectedCity!);
             });
           },
           items: cities.map<DropdownMenuItem<String>>((String city) {

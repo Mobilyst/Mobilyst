@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/citySecimPage.dart';
+import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/kullaniciB.dart';
+import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/kullaniciBilgileriRepositort.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/tarihSecimPage.dart';
 
 import '../../../GirisOlaylari/tabs/textfield/testField.dart';
@@ -13,20 +16,104 @@ class KullaniciBilgileriPage extends StatefulWidget {
 }
 
 class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
-  String? cinsiyet;
+  String? _selectedCinsiyet;
+  DateTime? _selectedDateTime;
+  String? _selectedIl;
   bool _isExpanded = false;
-  TextEditingController _textEditingController = TextEditingController();
+  TextEditingController textEditingController = TextEditingController();
+  TextEditingController adiController = TextEditingController();
+  TextEditingController soyadiController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController adresController = TextEditingController();
+  final KullaniciBilgileriService kullaniciBilgileriService =
+      KullaniciBilgileriService();
+
+  String _hideEmail(String email) {
+    if (email.isNotEmpty) {
+      List<String> parts = email.split('@');
+      String hiddenEmail = parts[0].substring(0, 2);
+      hiddenEmail += '****@';
+      hiddenEmail += parts[1];
+      return hiddenEmail;
+    }
+    return '';
+  }
 
   @override
   void dispose() {
-    _textEditingController.dispose();
+    textEditingController.dispose();
     super.dispose();
+  }
+
+  Future<void> fetchUserData() async {
+    try {
+      String email = FirebaseAuth.instance.currentUser?.email ?? '';
+      emailController.text = _hideEmail(email);
+      KullaniciBilgileriService kullaniciBilgileriService =
+          KullaniciBilgileriService();
+      KullaniciBilgileri? kullaniciBilgileri =
+          await kullaniciBilgileriService.getUserData();
+
+      if (kullaniciBilgileri != null) {
+        setState(() {
+          adiController.text = kullaniciBilgileri.adi ?? '';
+          soyadiController.text = kullaniciBilgileri.soyadi ?? '';
+          _selectedCinsiyet = kullaniciBilgileri.cinsiyet;
+          _selectedDateTime = kullaniciBilgileri.tarih;
+          _selectedIl = kullaniciBilgileri.il;
+          adresController.text = kullaniciBilgileri.adres ?? '';
+        });
+      }
+    } catch (e) {
+      print('Hata oluştu: $e');
+      // Hata mesajını kullanıcıya göstermek için bir SnackBar veya AlertDialog gibi bir mekanizma kullanabilirsiniz.
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (FirebaseAuth.instance.currentUser != null) {
+      fetchUserData();
+    }
   }
 
   void _handleExpansionChanged(bool expanded) {
     setState(() {
       _isExpanded = expanded;
     });
+  }
+
+  Future<void> _onSaveButtonPressed() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+    // Kullanıcı verilerini al
+    String adi = adiController.text; // Adınızı burada alın
+    String soyadi = soyadiController.text;
+    String email = emailController.text;
+    String? cinsiyet = _selectedCinsiyet; // Soyadınızı burada alın
+    DateTime tarih = _selectedDateTime ?? DateTime.now(); // Tarihi burada alın
+    String? il = _selectedIl; // İli burada alın
+    String adres = adresController.text; // Adresi burada alın
+
+    // Verileri Firebase Firestore'a ekleyin
+    KullaniciBilgileriService kullaniciBilgileriService =
+        KullaniciBilgileriService();
+    await kullaniciBilgileriService.addStatus(
+        adi, soyadi, email, cinsiyet!, tarih, il!, adres);
+
+    await fetchUserData();
+
+    // Verileri ekledikten sonra yapılacak işlemler (örneğin yönlendirme)
+
+    // yukleniyordan cikis
+    Navigator.pop(context);
   }
 
   @override
@@ -70,9 +157,9 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
 
               //sifre textfield
               MyTextField(
-                controller: null, //??
+                controller: adiController, //??
                 hintText: 'Adınızı giriniz',
-                obscureText: true, // gizliyor yazilan seyleri
+                obscureText: false, // gizliyor yazilan seyleri
               ),
 
               const SizedBox(
@@ -101,9 +188,9 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
               ),
               //sifre textfield
               MyTextField(
-                controller: null, //??
+                controller: soyadiController, //??
                 hintText: 'Soyadınızı giriniz',
-                obscureText: true, // gizliyor yazilan seyleri
+                obscureText: false, // gizliyor yazilan seyleri
               ),
               const SizedBox(
                 height: 10,
@@ -132,9 +219,9 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
 
               //sifre textfield
               MyTextField(
-                controller: null, //??
+                controller: emailController, //??
                 hintText: 'E-postanızı giriniz',
-                obscureText: true, // gizliyor yazilan seyleri
+                obscureText: false, // gizliyor yazilan seyleri
               ),
 
               const SizedBox(
@@ -168,10 +255,10 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
                       child: DropdownButtonFormField<String>(
-                        value: cinsiyet,
+                        value: _selectedCinsiyet,
                         onChanged: (String? value) {
                           setState(() {
-                            cinsiyet = value;
+                            _selectedCinsiyet = value;
                           });
                         },
                         items: [
@@ -229,7 +316,13 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
               Row(
                 children: [
                   Expanded(
-                    child: TarihSelectPage(),
+                    child: TarihSelectPage(
+                      onDateSelected: (selectedDate) {
+                        setState(() {
+                          _selectedDateTime = selectedDate;
+                        });
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -262,7 +355,13 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
               Row(
                 children: [
                   Expanded(
-                    child: CitySelectPage(),
+                    child: CitySelectPage(
+                      onChange: (selectedCity) {
+                        setState(() {
+                          _selectedIl = selectedCity;
+                        });
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -296,6 +395,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
                   child: TextField(
+                    controller: adresController,
                     decoration: InputDecoration(
                       hintText: 'Adresinizi giriniz',
                       focusedBorder: UnderlineInputBorder(
@@ -316,7 +416,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
               ),
 
               MyButton(
-                onTap: null, //??
+                onTap: _onSaveButtonPressed,
                 text: ' Değişiklikleri Kaydet', //??
               ),
 
@@ -333,7 +433,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
                       onTap:
                           null, //?? cıkıs yaptıgında sıgn ın sayfasına donmelı
                       child: const Text(
-                        ' Çıkış Yap',
+                        ' Hesabımı Sil',
                         style: TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,
