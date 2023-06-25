@@ -42,6 +42,9 @@ dependencies:
   fluttericon: ^2.0.0
   intl: ^0.18.1
   cloud_firestore: ^4.8.1
+  flutter_riverpod: ^2.3.6
+  font_awesome_flutter: ^10.4.0
+
 
 
 dev_dependencies:
