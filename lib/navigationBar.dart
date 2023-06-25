@@ -2,11 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:mobilyst/Anasayfa/AnaSayfa.dart';
 import 'package:mobilyst/GirisOlaylari/girisPage.dart';
 import 'package:mobilyst/haritaPage.dart';
 import 'package:mobilyst/homePage.dart';
 import 'package:mobilyst/kategoriPage.dart';
 import 'package:mobilyst/Hesabim/hesabimPage.dart';
+
+import 'oktay/kategoriler_ekrani/kategorilerSayfasi.dart';
 
 class NavigationBarPage extends StatefulWidget {
   const NavigationBarPage({Key? key}) : super(key: key);
@@ -27,9 +30,9 @@ class _NavigationBarPageState extends State<NavigationBarPage> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    HomePage(),
+    AnaSayfa(),
     //HesabimPage(), // inceleme icin buraya yazildi
-    KategoriPage(),
+    YemekKategorileriSayfasi(),
     HaritaPage(),
     GirisPage(),
   ];
