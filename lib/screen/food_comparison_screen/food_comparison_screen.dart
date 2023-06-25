@@ -23,44 +23,41 @@ class _FoodComparisonScreenState extends State<FoodComparisonScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 4,
-        backgroundColor: Colors.grey[300],
-        title: InkWell(
-          onTap: () {
-            setState(() {
-              isView = !isView;
-              print(isView);
-            });
-          },
-          child: InkWell(
-            onTap: () {
-              setState(() {
-                isView = !isView;
-                print(isView);
-              });
-            },
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Icon(
-                  Icons.format_list_bulleted,
-                  size: 40,
-                  color: Colors.black,
-                ),
-                Text(
-                  "Sırala",
-                  style: TextStyle(color: Colors.black, fontSize: 30),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
+            SizedBox(height: 50),
+            InkWell(
+              onTap: () {
+                setState(() {
+                  isView = !isView;
+                  print(isView);
+                });
+              },
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    isView = !isView;
+                    print(isView);
+                  });
+                },
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Icon(
+                      Icons.format_list_bulleted,
+                      size: 40,
+                      color: Colors.black,
+                    ),
+                    Text(
+                      "Sırala",
+                      style: TextStyle(color: Colors.black, fontSize: 30),
+                    )
+                  ],
+                ),
+              ),
+            ),
             for (int i = 0; i < 5; i++)
               isView == true
                   ? RadioListTile(
@@ -89,25 +86,48 @@ class _FoodComparisonScreenState extends State<FoodComparisonScreen> {
                 ),
                 itemCount: 15,
                 itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () {
-                      print("basıldı");
-                    }, //ilgili kartın detayına gidecek onTap
-                    child: Container(
-                      color: Colors.grey[300],
-                      child: Center(
-                          child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 15),
+                  return Stack(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          print("basıldı");
+                        }, //ilgili kartın detayına gidecek onTap
                         child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.blue,
-                              image: DecorationImage(
-                                  image: NetworkImage(imagePath),
-                                  fit: BoxFit.cover)),
+                          color: Colors.grey[300],
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 15),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  image: DecorationImage(
+                                      image: NetworkImage(imagePath),
+                                      fit: BoxFit.cover)),
+                            ),
+                          )),
                         ),
-                      )),
-                    ),
+                      ),
+                      Positioned(
+                        top: 16,
+                        right: 16,
+                        child: Container(
+                          width: 48,
+                          height: 48,
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            shape: BoxShape.circle,
+                          ),
+                          child: IconButton(
+                            icon: Icon(Icons.add_alert_outlined),
+                            color: Colors.white,
+                            onPressed: () {
+                              // Alarm butonuna tıklandığında yapılacak işlemler
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   );
                 },
               ),
