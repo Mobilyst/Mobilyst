@@ -83,9 +83,9 @@ class _YemekKategorileriSayfasiState extends State<YemekKategorileriSayfasi> {
       ),
       body: Column(
         children: [
-          const Row(
+           Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [
+            children: const [
               Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(

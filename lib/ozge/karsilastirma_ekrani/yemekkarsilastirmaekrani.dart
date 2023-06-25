@@ -82,8 +82,8 @@ class _FoodComparisonScreenState extends State<FoodComparisonScreen> {
                       borderRadius: BorderRadius.circular(8.0),
                       border: Border.all(width: 2.0),
                     ),
-                    child: const Column(
-                      children: [
+                    child:  Column(
+                      children: const [
                         Text(
                           'Firma A',
                           style: TextStyle(

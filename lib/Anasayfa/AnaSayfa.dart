@@ -23,6 +23,7 @@ class AnaSayfa extends ConsumerWidget {
               // Add padding around the search bar
               // Use a Material design search bar
               children: <Widget>[
+                const SizedBox(height: 6),
                 TextField(
                   controller: searchController,
                   decoration: InputDecoration(
@@ -44,7 +45,7 @@ class AnaSayfa extends ConsumerWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+
                 Row(
                   children: [
                     const SizedBox(width: 5),
@@ -204,7 +205,7 @@ class AnaSayfa extends ConsumerWidget {
                         ),
                       ),
                     ])),
-                const SizedBox(height: 20),
+
                 Row(
                   children: [
                     const SizedBox(width: 5),
@@ -243,7 +244,7 @@ class AnaSayfa extends ConsumerWidget {
                               const SizedBox(height: 6),
                               Ink.image(
                                 image: NetworkImage(
-                                    "${kampanyaRepository.urunler[0].urunFotoAddress}"),
+                                    kampanyaRepository.urunler[0].urunFotoAddress),
                                 height: 150,
                                 width: 150,
                                 fit: BoxFit.cover,
@@ -251,7 +252,7 @@ class AnaSayfa extends ConsumerWidget {
                               const SizedBox(height: 10),
                               Text(
                                 kampanyaRepository.urunler[0].urunAdi,
-                                style: TextStyle(color: Colors.black),
+                                style:const TextStyle(color: Colors.black),
                               ),
                               TextButton(
                                   onPressed: () {
@@ -304,9 +305,13 @@ class AnaSayfa extends ConsumerWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 15),
-                    ])),
-              ]),
-        ));
+
+                    ]
+                    )
+                ),
+              ]
+          ),
+        )
+    );
   }
 }
