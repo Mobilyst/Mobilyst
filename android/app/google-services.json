@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "961130669910",
+    "project_id": "mobilyst-135d1",
+    "storage_bucket": "mobilyst-135d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961130669910:android:1be0474d91ff76a8b698f7",
+        "android_client_info": {
+          "package_name": "com.example.mobilyst"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961130669910-027rt9fq858c5mpitpunhfg9u6u1dn4s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mobilyst",
+            "certificate_hash": "eafc0c56e9d535b5e6f6914d395f670327a20420"
+          }
+        },
+        {
+          "client_id": "961130669910-cschjqijke7ic581g1l197vdutprje2e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBI4PjyC7cYR3HNmwZiZ0K5PMJzIAq1A_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961130669910-cschjqijke7ic581g1l197vdutprje2e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "961130669910-oh6cehdfh1oodne0bn0bks7ek32p7p6v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.mobilyst"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
