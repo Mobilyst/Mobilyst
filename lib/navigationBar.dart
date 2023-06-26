@@ -5,8 +5,6 @@ import 'package:line_icons/line_icons.dart';
 import 'package:mobilyst/Anasayfa/AnaSayfa.dart';
 import 'package:mobilyst/GirisOlaylari/girisPage.dart';
 import 'package:mobilyst/haritaPage.dart';
-import 'package:mobilyst/homePage.dart';
-import 'package:mobilyst/kategoriPage.dart';
 import 'package:mobilyst/Hesabim/hesabimPage.dart';
 
 import 'oktay/kategoriler_ekrani/kategorilerSayfasi.dart';

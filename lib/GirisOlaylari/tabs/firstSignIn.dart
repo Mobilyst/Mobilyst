@@ -6,7 +6,6 @@ import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/secondSignUp.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/sifreUnuttumPage.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/textfield/testField.dart';
-import 'package:mobilyst/homePage.dart';
 import 'package:mobilyst/navigationBar.dart';
 import '../girisPage.dart';
 
