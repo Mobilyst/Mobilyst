@@ -1,119 +1,155 @@
 import 'package:flutter/material.dart';
+import 'package:mobilyst/screen/food_comparison_screen/food_bilgileri.dart';
 
-class FoodComparisonScreen extends StatefulWidget {
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
   @override
-  State<FoodComparisonScreen> createState() => _FoodComparisonScreenState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _FoodComparisonScreenState extends State<FoodComparisonScreen> {
-  bool isView = false;
-  bool isSelected = false;
-  int selectedIndex = -1;
-
-  String imagePath =
-      'https://www.wallpaperup.com/uploads/wallpapers/2018/08/26/1288779/ddf7bc5e8fb7d58f862ac9c7f08ad9d3-1400.jpg';
-  int selectedOption = 0;
-  List<String> titles = [
-    "En Popüler Ürünler",
-    "En Düşük Fiyat",
-    "En Yüksek Fiyat",
-    "Fiyatı Düşenler",
-    "En Yeni Ürünler"
+class _MyHomePageState extends State<MyHomePage> {
+  List<Yemek> meals = [
+    Yemek("Hamburger", 25.99, 4,
+        'https://cdn-icons-png.flaticon.com/128/706/706918.png', false),
+    Yemek("Pizza", 12.99, 2,
+        'https://cdn-icons-png.flaticon.com/128/6127/6127889.png', false),
+    Yemek("Adana Kebap", 8.99, 5,
+        'https://cdn-icons-png.flaticon.com/128/10614/10614469.png', false),
+    Yemek("Lahmacun", 19.99, 3,
+        'https://cdn-icons-png.flaticon.com/128/10614/10614469.png', false),
   ];
+
+  SiralamaSecenekleri selectedSortOption = SiralamaSecenekleri.Sirala;
+
+  void sortMeals() {
+    switch (selectedSortOption) {
+      case SiralamaSecenekleri.PriceDescending:
+        meals.sort((a, b) => b.price.compareTo(a.price));
+        break;
+      case SiralamaSecenekleri.PriceAscending:
+        meals.sort((a, b) => a.price.compareTo(b.price));
+        break;
+      case SiralamaSecenekleri.MostPopular:
+        meals.sort((a, b) => b.popularity.compareTo(a.popularity));
+        break;
+      case SiralamaSecenekleri.Popular:
+        // Sıralama işlemleri
+        break;
+      case SiralamaSecenekleri.NewArrivals:
+        // Sıralama işlemleri
+        break;
+      case SiralamaSecenekleri.Discounted:
+        // Sıralama işlemleri
+        break;
+      case SiralamaSecenekleri.Sirala:
+        // Sıralama işlemleri
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 4,
-        backgroundColor: Colors.grey[300],
-        title: InkWell(
-          onTap: () {
-            setState(() {
-              isView = !isView;
-              print(isView);
-            });
-          },
-          child: InkWell(
-            onTap: () {
-              setState(() {
-                isView = !isView;
-                print(isView);
-              });
-            },
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Icon(
-                  Icons.format_list_bulleted,
-                  size: 40,
-                  color: Colors.black,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                DropdownButton<SiralamaSecenekleri>(
+                  value: selectedSortOption,
+                  onChanged: (SiralamaSecenekleri? newValue) {
+                    if (newValue != null) {
+                      setState(() {
+                        selectedSortOption = newValue;
+                      });
+                    }
+                    sortMeals();
+                  },
+                  items: const [
+                    DropdownMenuItem(
+                      value: SiralamaSecenekleri.Sirala,
+                      child: Text("Önerilen Sıralama"),
+                    ),
+                    DropdownMenuItem(
+                      value: SiralamaSecenekleri.PriceDescending,
+                      child: Text("Fiyata Göre Azalan"),
+                    ),
+                    DropdownMenuItem(
+                      value: SiralamaSecenekleri.PriceAscending,
+                      child: Text("Fiyata Göre Artan"),
+                    ),
+                    DropdownMenuItem(
+                      value: SiralamaSecenekleri.MostPopular,
+                      child: Text("En Çok Değerlendirilen"),
+                    ),
+                    DropdownMenuItem(
+                      value: SiralamaSecenekleri.Popular,
+                      child: Text("Popüler Olan"),
+                    ),
+                    DropdownMenuItem(
+                      value: SiralamaSecenekleri.NewArrivals,
+                      child: Text("Yeni Ürünler"),
+                    ),
+                    DropdownMenuItem(
+                      value: SiralamaSecenekleri.Discounted,
+                      child: Text("İndirimli Ürünler"),
+                    ),
+                  ],
+                  icon: const Icon(Icons.sort_rounded),
                 ),
-                Text(
-                  "Sırala",
-                  style: TextStyle(color: Colors.black, fontSize: 30),
-                )
               ],
             ),
           ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            for (int i = 0; i < 5; i++)
-              isView == true
-                  ? RadioListTile(
-                      title: Text(titles[i]),
-                      value: i,
-                      groupValue: selectedOption,
-                      onChanged: (value) {
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 20.0,
+              crossAxisSpacing: 20.0,
+              childAspectRatio: 0.7, // Oranı ayarlayabilirsiniz
+            ),
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
                         setState(() {
-                          selectedOption = value as int;
+                          meals[index].isSelected = !meals[index].isSelected;
                         });
                       },
-                    )
-                  : const Center(),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 20.0,
-                  crossAxisSpacing: 20.0,
-                ),
-                itemCount: 15,
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () {
-                      print("basıldı");
-                    }, //ilgili kartın detayına gidecek onTap
-                    child: Container(
-                      color: Colors.grey[300],
-                      child: Center(
-                          child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 15),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.blue,
-                              image: DecorationImage(
-                                  image: NetworkImage(imagePath),
-                                  fit: BoxFit.cover)),
-                        ),
-                      )),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Icon(
+                            Icons.notifications,
+                            color: meals[index].isSelected
+                                ? Colors.red
+                                : Colors.green,
+                          ),
+                        ],
+                      ),
                     ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
+                    SizedBox(
+                      height: 150,
+                      width: 100,
+                      child: Image.network(meals[index].resimUrl),
+                    ),
+                    Text(meals[index].name),
+                    Text("Fiyat: ${meals[index].price.toStringAsFixed(2)}"),
+                    Text("Popülerlik: ${meals[index].popularity}"),
+                  ],
+                ),
+              );
+            },
+            itemCount: meals.length,
+          ),
+        ],
       ),
     );
   }
