@@ -80,9 +80,10 @@ class _SignInPageState extends State<SignInPage> {
       // yukleniyordan cikis
       Navigator.pop(context);
       // Oturum açma başarılı olduğunda yönlendirme işlemini gerçekleştir
+
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HesabimPage()),
+        MaterialPageRoute(builder: (context) => const HesabimPage()),
       );
     }).catchError((error) {
       // yukleniyordan cikis
