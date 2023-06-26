@@ -11,34 +11,35 @@ class TarihSelectPage extends StatefulWidget {
 
 class _TarihSelectPageState extends State<TarihSelectPage> {
   final _createDateController = TextEditingController();
-  late DateTime _dateTime;
+  late DateTime _selectedDateTime;
 
   @override
   void initState() {
     super.initState();
-    _dateTime = DateTime.now();
+    _selectedDateTime = DateTime.now();
   }
 
   Future<void> _selectedCreateDate(BuildContext context) async {
     var pickedDate = await showDatePicker(
       context: context,
-      initialDate: _dateTime,
+      initialDate: _selectedDateTime,
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
     );
     if (pickedDate != null) {
       setState(() {
-        _dateTime = pickedDate;
+        _selectedDateTime = pickedDate;
         _createDateController.text =
             DateFormat('dd-MM-yyyy').format(pickedDate);
       });
-      // Seçilen tarihi üst widget'a iletmek için onDateSelected fonksiyonunu çağırın
+      // Seçilen tarihi üst widgeta iletmek icin
       if (widget.onDateSelected != null) {
         widget.onDateSelected!(pickedDate);
       }
     }
   }
 
+/*
   @override
   void dispose() {
     _createDateController.dispose();
@@ -67,6 +68,7 @@ class _TarihSelectPageState extends State<TarihSelectPage> {
                     filled: true,
                     hintStyle: TextStyle(color: Colors.grey[500]),
                     prefixIcon: InkWell(
+                      
                       onTap: () {
                         _selectedCreateDate(context);
                       },
@@ -75,6 +77,43 @@ class _TarihSelectPageState extends State<TarihSelectPage> {
               ),
             ],
           )),
+    );
+  }
+}
+*/
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+        child: Column(
+          children: <Widget>[
+            TextField(
+              readOnly: true, //okunabilirgi actik
+              onTap: () {
+                _selectedCreateDate(context);
+              },
+              decoration: InputDecoration(
+                hintText: 'Tarih seçiniz',
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey.shade900),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey.shade900),
+                ),
+                fillColor: Colors.grey.shade200,
+                filled: true,
+                hintStyle: TextStyle(color: Colors.grey[500]),
+                prefixIcon: const Icon(Icons.calendar_today),
+              ),
+              controller: TextEditingController(
+                text: DateFormat('dd-MM-yyyy').format(_selectedDateTime),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

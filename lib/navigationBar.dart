@@ -7,6 +7,7 @@ import 'package:mobilyst/GirisOlaylari/girisPage.dart';
 import 'package:mobilyst/haritaPage.dart';
 import 'package:mobilyst/Hesabim/hesabimPage.dart';
 
+import 'food_comparison_screen/food_comparison_screen.dart';
 import 'oktay/kategoriler_ekrani/kategorilerSayfasi.dart';
 
 class NavigationBarPage extends StatefulWidget {

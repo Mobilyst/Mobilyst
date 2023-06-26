@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobilyst/Anasayfa/DetayliBilgiSayfasi.dart';
 import 'package:mobilyst/Anasayfa/KampanyalarSayfasi.dart';
 
+import '../food_comparison_screen/food_comparison_screen.dart';
 import 'KampanyaRepository.dart';
 
 class AnaSayfa extends ConsumerWidget {
@@ -45,7 +46,6 @@ class AnaSayfa extends ConsumerWidget {
                     ),
                   ),
                 ),
-
                 Row(
                   children: [
                     const SizedBox(width: 5),
@@ -54,7 +54,14 @@ class AnaSayfa extends ConsumerWidget {
                     const Text("Öğünleri kıyasla", textAlign: TextAlign.start),
                     const SizedBox(width: 190),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const YemekKiyasTumuPage()),
+                          );
+                        },
                         style: TextButton.styleFrom(
                           primary: Colors.black, // Text Color
                         ),
@@ -205,7 +212,6 @@ class AnaSayfa extends ConsumerWidget {
                         ),
                       ),
                     ])),
-
                 Row(
                   children: [
                     const SizedBox(width: 5),
@@ -243,8 +249,8 @@ class AnaSayfa extends ConsumerWidget {
                             children: [
                               const SizedBox(height: 6),
                               Ink.image(
-                                image: NetworkImage(
-                                    kampanyaRepository.urunler[0].urunFotoAddress),
+                                image: NetworkImage(kampanyaRepository
+                                    .urunler[0].urunFotoAddress),
                                 height: 150,
                                 width: 150,
                                 fit: BoxFit.cover,
@@ -252,7 +258,7 @@ class AnaSayfa extends ConsumerWidget {
                               const SizedBox(height: 10),
                               Text(
                                 kampanyaRepository.urunler[0].urunAdi,
-                                style:const TextStyle(color: Colors.black),
+                                style: const TextStyle(color: Colors.black),
                               ),
                               TextButton(
                                   onPressed: () {
@@ -305,13 +311,8 @@ class AnaSayfa extends ConsumerWidget {
                           ),
                         ),
                       ),
-
-                    ]
-                    )
-                ),
-              ]
-          ),
-        )
-    );
+                    ])),
+              ]),
+        ));
   }
 }

@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
-import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/citySecimPage.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/kullaniciB.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/kullaniciBilgileriRepositort.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/tarihSecimPage.dart';
@@ -66,7 +65,6 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
       }
     } catch (e) {
       print('Hata oluştu: $e');
-      // Hata mesajını kullanıcıya göstermek için bir SnackBar veya AlertDialog gibi bir mekanizma kullanabilirsiniz.
     }
   }
 
@@ -93,24 +91,33 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
         );
       },
     );
-    // Kullanıcı verilerini al
-    String adi = adiController.text; // Adınızı burada alın
+    // Kullanıcı verileri
+    String adi = adiController.text;
     String soyadi = soyadiController.text;
     String email = emailController.text;
-    String? cinsiyet = _selectedCinsiyet; // Soyadınızı burada alın
-    DateTime tarih = _selectedDateTime ?? DateTime.now(); // Tarihi burada alın
-    String? il = _selectedIl; // İli burada alın
-    String adres = adresController.text; // Adresi burada alın
+    String? cinsiyet = _selectedCinsiyet;
+    DateTime tarih = _selectedDateTime ?? DateTime.now();
+    String? il = _selectedIl;
+    String adres = adresController.text;
 
     // Verileri Firebase Firestore'a ekleyin
     KullaniciBilgileriService kullaniciBilgileriService =
         KullaniciBilgileriService();
+    KullaniciBilgileri? kullaniciBilgileri =
+        await kullaniciBilgileriService.getUserData();
+
     await kullaniciBilgileriService.addStatus(
-        adi, soyadi, email, cinsiyet!, tarih, il!, adres);
+        // ??????ekleme yapiliyor evet ama ayni yere düzenleme yapılmıyor buraya tekrar dön ?????
+        adi,
+        soyadi,
+        email,
+        cinsiyet!,
+        tarih,
+        il!,
+        adres);
 
+    // Kullanıcı yeni bir veri eklemek istediğinde
     await fetchUserData();
-
-    // Verileri ekledikten sonra yapılacak işlemler (örneğin yönlendirme)
 
     // yukleniyordan cikis
     Navigator.pop(context);
@@ -232,8 +239,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: const [
                   Padding(
-                    padding: EdgeInsets.only(
-                        left: 25), // Başlangıçtan sağa boşluk ekleyin
+                    padding: EdgeInsets.only(left: 25),
                     child: Text(
                       'Cinsiyet',
                       style: TextStyle(
@@ -355,12 +361,39 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
               Row(
                 children: [
                   Expanded(
-                    child: CitySelectPage(
-                      onChange: (selectedCity) {
-                        setState(() {
-                          _selectedIl = selectedCity;
-                        });
-                      },
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: DropdownButtonFormField<String>(
+                          value: _selectedIl,
+                          onChanged: (String? value) {
+                            setState(() {
+                              _selectedIl = value;
+                            });
+                          },
+                          items: cities
+                              .map<DropdownMenuItem<String>>((String city) {
+                            return DropdownMenuItem<String>(
+                              value: city,
+                              child: Text(city),
+                            );
+                          }).toList(),
+                          decoration: InputDecoration(
+                            hintText: 'İl seçiniz',
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey.shade900),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey.shade900),
+                            ),
+                            fillColor: Colors.grey.shade200,
+                            filled: true,
+                            hintStyle: TextStyle(color: Colors.grey[500]),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -451,3 +484,87 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
         ));
   }
 }
+
+List<String> cities = [
+  'Adana',
+  'Adıyaman',
+  'Afyonkarahisar',
+  'Ağrı',
+  'Aksaray',
+  'Amasya',
+  'Ankara',
+  'Antalya',
+  'Ardahan',
+  'Artvin',
+  'Aydın',
+  'Balıkesir',
+  'Bartın',
+  'Batman',
+  'Bayburt',
+  'Bilecik',
+  ' Bingöl',
+  'Bitlis',
+  'Bolu',
+  'Burdur',
+  'Bursa',
+  'Çanakkale',
+  'Çankırı',
+  'Çorum',
+  'Denizli',
+  'Diyarbakır',
+  'Düzce',
+  'Edirne',
+  'Elazığ',
+  'Erzincan',
+  'Erzurum',
+  'Eskişehir',
+  'Gaziantep',
+  'Giresun',
+  'Gümüşhane',
+  'Hakkâri',
+  'Hatay',
+  'Iğdır',
+  'Isparta',
+  'İstanbul',
+  'İzmir',
+  'Kahramanmaraş',
+  'Karabük',
+  'Karaman',
+  'Kars',
+  'Kastamonu',
+  'Kayseri',
+  'Kırıkkale',
+  'Kırklareli',
+  'Kırşehir',
+  'Kilis',
+  'Kocaeli',
+  'Konya',
+  'Kütahya',
+  'Malatya',
+  'Manisa',
+  'Mardin',
+  'Mersin',
+  'Muğla',
+  'Muş',
+  'Nevşehir',
+  'Niğde',
+  'Ordu',
+  'Osmaniye',
+  'Rize',
+  'Sakarya',
+  'Samsun',
+  'Siirt',
+  'Sinop',
+  'Sivas',
+  'Şanlıurfa',
+  'Şırnak',
+  'Tekirdağ',
+  'Tokat',
+  'Trabzon',
+  'Tunceli',
+  'Uşak',
+  'Van',
+  'Yalova',
+  'Yozgat',
+  'Zonguldak'
+];
