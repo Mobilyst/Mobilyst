@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobilyst/screen/food_comparison_screen/food_bilgileri.dart';
+import 'package:mobilyst/food_comparison_screen/food_bilgileri.dart';
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
