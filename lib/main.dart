@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:mobilyst/screens.onboarding/screen_one.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'screen/food_comparison_screen/food_comparison_screen.dart';
-
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  var initScreen = await preferences.getInt('initScreen');
+  await preferences.setInt('initScreen', 1);
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      title: 'eCommerce OnBoarding',
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: OnboardingScreenOne(),
     );
   }
 }
