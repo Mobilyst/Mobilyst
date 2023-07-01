@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mobilyst/screens.onboarding/screen_one.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences preferences = await SharedPreferences.getInstance();
-  var initScreen = await preferences.getInt('initScreen');
-  await preferences.setInt('initScreen', 1);
-  runApp(MyApp());
+import 'screen/food_comparison_screen/food_comparison_screen.dart';
+
+void main() {
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
