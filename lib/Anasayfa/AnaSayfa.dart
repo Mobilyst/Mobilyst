@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:mobilyst/Anasayfa/DetayliBilgiSayfasi.dart';
 import 'package:mobilyst/Anasayfa/KampanyalarSayfasi.dart';
 
+import '../NavBar/routes.dart';
 import '../food_comparison_screen/food_comparison_screen.dart';
 import 'KampanyaRepository.dart';
 
@@ -222,11 +225,7 @@ class AnaSayfa extends ConsumerWidget {
                     const SizedBox(width: 140),
                     TextButton(
                         onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const KampanyalarSayfasi(),
-                            ),
-                          );
+                          Get.toNamed(Routes.kampanyalar);
                         },
                         style: TextButton.styleFrom(
                           primary: Colors.black, // Text Color

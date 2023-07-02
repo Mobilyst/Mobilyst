@@ -6,7 +6,7 @@ import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/secondSignUp.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/sifreUnuttumPage.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/textfield/testField.dart';
-import 'package:mobilyst/navigationBar.dart';
+import 'package:mobilyst/NavBar/navigationBar.dart';
 import '../girisPage.dart';
 
 class SignInPage extends StatefulWidget {
