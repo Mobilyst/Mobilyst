@@ -135,6 +135,13 @@ https://github.com/Mobilyst/mobilyst/assets/135759215/ef605ec8-52a9-4319-a695-31
 
 
 
+https://github.com/Mobilyst/mobilyst/assets/135759215/842b64de-bef9-40a4-a0bc-c81ace6220e6
+
+
+
+
+
+
 
 * Sprint Review: Uygulamanın eksik sayfaları tasarlanmış, firebase veri gönderilmiş ve geri çekilmiştir. Eksik durumlar konuşulmuş ve çekilemeyen veriler için sahte veriler kullanmaya karar verilmiştir.
 
