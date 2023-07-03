@@ -89,3 +89,90 @@ https://github.com/Mobilyst/mobilyst/assets/135759215/7a5495bd-441e-4bda-9571-7e
 
 ---
 
+## Product Backlog URL
+[Mobilyst Team Trello Backlog Board](https://trello.com/invite/b/Sh9PuDYd/ATTI8af1d6ea1c2c7563f293d3b2dee2f80eA84B97E7/f1flutterteam)
+
+## Ürün Logo Tasarım Örnekleri
+[Mobilyst Team Canva Desing](https://www.canva.com/design/DAFmxPdVt-w/n-IAvEuc3fKtrDfXydl0dQ/edit?utm_content=DAFmxPdVt-w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+## Juriye Not 
+Navigation bar ile olan problemi çözemediğimizden dolayı on boarding ekranını yorum satırı yaptık. Kodu çalıştırmak isterseniz lütfen main darttan ( // home: OnboardingScreenOne(),) yorum satırını kaldırın. 
+
+---
+
+## Sprint 2
+* Sprint Notları: User story etiketi mavi ve task etiketi mor olarak karar verilmiştir. User Story'ler product backlog'ların içine yazılmıştır.
+* Sprint içinde tamamlanması tahmin edilen puan: 120 Puan
+* Daily Scrum: Daily Scrum toplantıları 2.sprintin ilk haftasında discord üzerinden ikinci haftası ise bayram olduğundan dolayı takım arkadaşlarımın kararları ile trello üzerinden gerçekleştirilmiştir.
+
+  
+*  Sprint board update:
+![image](https://github.com/Mobilyst/mobilyst/assets/135759215/a6542a5c-d403-4826-b244-79c6e19e9ca6)
+
+* Ürün Durumu:
+
+
+
+https://github.com/Mobilyst/mobilyst/assets/135759215/c1e1f9e8-7470-48ef-9e7a-7eef67f3f153
+
+
+
+
+
+
+https://github.com/Mobilyst/mobilyst/assets/135759215/29a0f7cf-3ede-4d47-af9b-2614084b5ee9
+
+
+
+
+
+https://github.com/Mobilyst/mobilyst/assets/135759215/ef605ec8-52a9-4319-a695-31729ecde84a
+
+
+
+
+
+
+
+
+https://github.com/Mobilyst/mobilyst/assets/135759215/842b64de-bef9-40a4-a0bc-c81ace6220e6
+
+
+
+
+
+
+
+* Sprint Review: Uygulamanın eksik sayfaları tasarlanmış, firebase veri gönderilmiş ve geri çekilmiştir. Eksik durumlar konuşulmuş ve çekilemeyen veriler için sahte veriler kullanmaya karar verilmiştir.
+
+
+* Sprint Retrospective
+    * Takım üyelerinin 3. sprint haftasında birlikte çalışılmasına karar verilmiştir.
+    * Takım üyelerinden biri hata aldığında ertelenmeyip anında takımca çözülmesi gerektiği vurgulanmıştır.
+    * Takım üyelerinin gelecek sprintlerde aktif olması gerektiğine vurgu yapılmıştır.
+
+---      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
