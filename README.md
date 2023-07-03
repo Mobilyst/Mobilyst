@@ -103,7 +103,9 @@ Navigation bar ile olan problemi çözemediğimizden dolayı on boarding ekranı
 ## Sprint 2
 * Sprint Notları: User story etiketi mavi ve task etiketi mor olarak karar verilmiştir. User Story'ler product backlog'ların içine yazılmıştır.
 * Sprint içinde tamamlanması tahmin edilen puan: 120 Puan
-* Daily Scrum: Daily Scrum toplantıları 2.sprintin ilk haftasında discord üzerinden ikinci haftası ise bayram olduğundan dolayı takım arkadaşlarımın kararları ile trello üzerinden gerçekleştirilmiştir.
+* Daily Scrum: Daily Scrum toplantıları 2.sprintin ilk haftasında discord üzerinden ikinci haftası ise bayram olduğundan dolayı takım arkadaşlarımın kararları ile trello ve whatsapp üzerinden gerçekleştirilmiştir.
+ [Mobilyst Team Daily](https://www.canva.com/design/DAFnlRrhsVs/tyCF0LOyIKMbFtoG_hmsTQ/edit?utm_content=DAFnlRrhsVs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+  
 
   
 *  Sprint board update:
