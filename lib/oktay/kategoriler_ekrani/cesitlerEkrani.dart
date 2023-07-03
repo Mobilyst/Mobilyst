@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/verilerRepository.dart';
 
 import 'package:mobilyst/oktay/kategoriler_ekrani/yemekKategori.dart';
-
+import 'package:mobilyst/oktay/yemek_ekrani/yemekEkrani.dart';
 
 class CesitlerEkrani extends StatefulWidget {
   const CesitlerEkrani({super.key, required this.kategori});
@@ -31,7 +31,7 @@ class _CesitlerEkraniState extends State<CesitlerEkrani> {
     newList.addAll(cesitler);
   }
 
-  void kategoriAra(String text){
+  void kategoriAra(String text) {
     if (text.isEmpty) {
       newList.clear();
       cesitler.forEach((element) {
@@ -62,9 +62,14 @@ class _CesitlerEkraniState extends State<CesitlerEkrani> {
         preferredSize: Size.fromHeight(60),
         child: AppBar(
           backgroundColor: Colors.white,
-          leading: IconButton(onPressed: () {
-            Navigator.pop(context);
-          }, icon: Icon(Icons.arrow_back_outlined,color: Colors.black,)),
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back_outlined,
+                color: Colors.black,
+              )),
           title: SizedBox(
             height: 60,
             child: Padding(
@@ -94,7 +99,10 @@ class _CesitlerEkraniState extends State<CesitlerEkrani> {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(widget.kategori.kategoriAdi+" Kategorisi",style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),),
+            child: Text(
+              widget.kategori.kategoriAdi + " Kategorisi",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
+            ),
           ),
           Expanded(
             child: ListView.builder(
@@ -102,9 +110,12 @@ class _CesitlerEkraniState extends State<CesitlerEkrani> {
                 return ListTile(
                   title: Text(newList[index].cesitAdi),
                   trailing: const Icon(Icons.arrow_forward_ios),
-
                   onTap: () {
-
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const MyYemekKategoriPage(),
+                      ),
+                    );
                   },
                 );
               },

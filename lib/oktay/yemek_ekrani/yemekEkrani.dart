@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:mobilyst/oktay/yemek_ekrani/yemekBilgileri.dart';
 
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class MyYemekKategoriPage extends StatefulWidget {
+  const MyYemekKategoriPage({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyYemekKategoriPageState createState() => _MyYemekKategoriPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyYemekKategoriPageState extends State<MyYemekKategoriPage> {
   TextEditingController editingController = TextEditingController();
   late List<Yemek> filterMeals;
   List<Yemek> meals = [

@@ -6,6 +6,8 @@ import 'package:mobilyst/Anasayfa/AnaSayfa.dart';
 import 'package:mobilyst/GirisOlaylari/girisPage.dart';
 import 'package:mobilyst/NavBar/navigationBar.dart';
 import 'package:mobilyst/NavBar/routes.dart';
+import 'package:mobilyst/screens.onboarding/screen_one.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Hesabim/hesabimPage.dart';
 import 'firebase_options.dart';
 import 'haritaPage.dart';
@@ -16,6 +18,10 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  var initScreen = await preferences.getInt('initScreen');
+  await preferences.setInt('initScreen', 1);
   runApp(ProviderScope(child: const MyApp()));
 }
 
@@ -28,7 +34,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.getnavbar(),
       getPages: Routes.routes,
-      //home: NavigationBarPage(),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: OnboardingScreenOne(),
     );
   }
 }

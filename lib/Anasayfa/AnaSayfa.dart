@@ -225,7 +225,11 @@ class AnaSayfa extends ConsumerWidget {
                     const SizedBox(width: 140),
                     TextButton(
                         onPressed: () {
-                          Get.toNamed(Routes.kampanyalar);
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const KampanyalarSayfasi(),
+                            ),
+                          );
                         },
                         style: TextButton.styleFrom(
                           primary: Colors.black, // Text Color
