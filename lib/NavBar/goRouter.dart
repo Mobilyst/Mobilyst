@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:mobilyst/Anasayfa/AnaSayfa.dart';
 import 'package:mobilyst/Anasayfa/KampanyalarSayfasi.dart';
 import 'package:mobilyst/GirisOlaylari/girisPage.dart';
+import 'package:mobilyst/GirisOlaylari/tabs/sifreUnuttumPage.dart';
+import 'package:mobilyst/Hesabim/HesapBilgileri/hesapBilgilerimPage.dart';
 import 'package:mobilyst/NavBar/navigationBar.dart';
 import 'package:mobilyst/food_comparison_screen/food_comparison_screen.dart';
 import 'package:mobilyst/haritaPage.dart';
@@ -84,8 +86,22 @@ final goRouter = GoRouter(
             GoRoute(
               path: '/hesabim',
               pageBuilder: (context, state) => const NoTransitionPage(
-                child: GirisPage(),
+                child: GirisPage(detailsPath: '/hesabim/sifre'),
               ),
+              routes: [
+                GoRoute(
+                  path: 'sifre',
+                  builder: (context, state) => MyForgetPasswordPage(),
+                ),
+                GoRoute(
+                  path: 'signin',
+                  builder: (context, state) => const HesabimPage(),
+                ),
+                GoRoute(
+                  path: 'hesapbilgi',
+                  builder: (context, state) => const HesapBilgileriPage(),
+                ),
+              ],
             ),
           ],
         ),

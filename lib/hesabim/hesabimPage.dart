@@ -24,9 +24,12 @@ class _HesabimPageState extends State<HesabimPage> {
   Future<void> signUserOut() async {
     try {
       await FirebaseAuth.instance.signOut();
-      Navigator.pushReplacement(
+      Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => GirisPage()),
+        MaterialPageRoute(
+            builder: (context) => GirisPage(
+                  detailsPath: '',
+                )),
       );
     } catch (error) {
       showDialog(

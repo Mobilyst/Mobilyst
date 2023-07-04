@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:mobilyst/GirisOlaylari/girisPage.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
@@ -81,10 +82,8 @@ class _MyForgetPasswordPageState extends State<MyForgetPasswordPage> {
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => GirisPage()),
-                  ); // İletişim kutusunu kapat
+                  Navigator.pop(context);
+                  context.go('/hesabim'); // İletişim kutusunu kapat
                 },
                 child: Text(
                   "Tamam",

@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/kullaniciB.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/kullaniciBilgileriRepositort.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/tarihSecimPage.dart';
+import 'package:mobilyst/hesabim/HesapBilgileri/hesapBilgilerimPage.dart';
 
 import '../../../GirisOlaylari/tabs/textfield/testField.dart';
 
@@ -27,6 +29,23 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
   final KullaniciBilgileriService kullaniciBilgileriService =
       KullaniciBilgileriService();
 
+  bool isLoading = false;
+
+  void showLoadingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      },
+    );
+  }
+
   String _hideEmail(String email) {
     if (email.isNotEmpty) {
       List<String> parts = email.split('@');
@@ -36,6 +55,40 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
       return hiddenEmail;
     }
     return '';
+  }
+
+  void _showSuccessDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Başarılı',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          content: Text(
+            'Değişiklik başarıyla kayıt edildi.',
+            textAlign: TextAlign.center,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                context.go('/hesabim/hesapbilgi');
+              },
+              child: Text(
+                'Tamam',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -83,14 +136,11 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
   }
 
   Future<void> _onSaveButtonPressed() async {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
+    // yukleniyor
+    setState(() {
+      isLoading = true;
+    });
+
     // Kullanıcı verileri
     String adi = adiController.text;
     String soyadi = soyadiController.text;
@@ -120,7 +170,11 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
     await fetchUserData();
 
     // yukleniyordan cikis
-    Navigator.pop(context);
+    setState(() {
+      isLoading = false;
+    });
+
+    _showSuccessDialog();
   }
 
   @override

@@ -12,6 +12,7 @@ import '../girisPage.dart';
 
 class SignInPage extends StatefulWidget {
   final TabController? tabController;
+
   const SignInPage({Key? key, this.tabController}) : super(key: key);
 
   @override
@@ -22,19 +23,29 @@ class _SignInPageState extends State<SignInPage> {
   // text duzenleme kontrolleri
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
- 
- 
-  //giris kulanici method
-  Future<void> signUserIn() async {
-    // yukleniyor
+  bool isLoading = false;
+
+  void showLoadingDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (context) {
-        return Center(
-          child: CircularProgressIndicator(),
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
         );
       },
     );
+  }
+
+  //giris kulanici method
+  Future<void> signUserIn() async {
+    // yukleniyor
+    setState(() {
+      isLoading = true;
+    });
 
     if (emailController.text.isEmpty || passwordController.text.isEmpty) {
       showDialog(
@@ -54,8 +65,10 @@ class _SignInPageState extends State<SignInPage> {
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
-                  // yukleniyordan cikis
+                  setState(() {
+                    isLoading = false;
+                  });
+
                   Navigator.pop(context);
                 },
                 child: Text(
@@ -78,13 +91,15 @@ class _SignInPageState extends State<SignInPage> {
       password: passwordController.text,
     )
         .then((userCredential) {
-      // yukleniyordan cikis
-      Navigator.pop(context);
+      setState(() {
+        isLoading = false;
+      });
       // Oturum açma başarılı olduğunda yönlendirme işlemini gerçekleştir
-      context.go('/hesabim/giris');
+      context.go('/hesabim/signin');
     }).catchError((error) {
-      // yukleniyordan cikis
-      Navigator.pop(context);
+      setState(() {
+        isLoading = false;
+      });
 
       // Hata durumuna göre mesaj göster
       String errorMessage = 'Bir hata oluştu.';
@@ -226,13 +241,13 @@ class _SignInPageState extends State<SignInPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(
+                    onTap: () => context.go('/hesabim/sifre'),
+                    /* Navigator.push(context, MaterialPageRoute(
                         builder: (context) {
                           return MyForgetPasswordPage();
                         },
-                      ));
-                    }, //??
+                      ));*/
+                    //??
                     child: const Text(
                       'Şifremi Unuttum',
                       style: TextStyle(

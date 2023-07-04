@@ -55,7 +55,7 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
         selectedIndex: selectedIndex,
         destinations: const [
           NavigationDestination(label: 'Ana Sayfa', icon: Icon(Icons.home)),
-          NavigationDestination(label: 'Kategori', icon: Icon(Icons.search)),
+          NavigationDestination(label: 'Kategoriler', icon: Icon(Icons.search)),
           NavigationDestination(label: 'Harita', icon: Icon(Icons.place)),
           NavigationDestination(label: 'Hesabım', icon: Icon(Icons.person)),
         ],
@@ -91,7 +91,7 @@ class ScaffoldWithNavigationRail extends StatelessWidget {
                 icon: Icon(Icons.home),
               ),
               NavigationRailDestination(
-                label: Text('Kategori'),
+                label: Text('Kategoriler'),
                 icon: Icon(Icons.search),
               ),
               NavigationRailDestination(

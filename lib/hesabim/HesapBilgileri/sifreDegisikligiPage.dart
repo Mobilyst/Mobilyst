@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/textfield/testField.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -91,12 +92,9 @@ class _SifreDegisikligiPageState extends State<SifreDegisikligiPage> {
                     _currentPasswordController.clear();
                     _newPasswordController.clear();
                     _confirmNewPasswordController.clear();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HesapBilgileriPage(),
-                      ),
-                    ); // Hesap bilgileri sayfasına geri dön
+                    Navigator.of(context).pop();
+                    context.go(
+                        '/hesabim/hesapbilgi'); // Hesap bilgileri sayfasına geri dön
                   },
                 ),
               ],

@@ -17,18 +17,28 @@ class _SignUpPageState extends State<SignUpPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  bool isLoading = false;
 
-  Future<void> signUserUp() async {
-    // Yukleniyor
+  void showLoadingDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (context) {
-        return Center(
-          child: CircularProgressIndicator(),
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
         );
       },
     );
+  }
 
+  Future<void> signUserUp() async {
+    // Yukleniyor
+    setState(() {
+      isLoading = true;
+    });
     if (emailController.text.isEmpty ||
         passwordController.text.isEmpty ||
         confirmPasswordController.text.isEmpty) {
@@ -49,7 +59,10 @@ class _SignUpPageState extends State<SignUpPage> {
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  setState(() {
+                    isLoading = false;
+                  });
+
                   // yukleniyordan cikis
                   Navigator.pop(context);
                 },
@@ -66,8 +79,9 @@ class _SignUpPageState extends State<SignUpPage> {
       );
       return;
     }
-    // yukleniyordan cikis
-    Navigator.pop(context);
+    setState(() {
+      isLoading = false;
+    });
 
     if (passwordController.text == confirmPasswordController.text) {
       try {
@@ -81,13 +95,17 @@ class _SignUpPageState extends State<SignUpPage> {
         passwordController.clear();
         confirmPasswordController.clear();
         // Yukleniyordan çıkış
-        Navigator.pop(context);
+        setState(() {
+          isLoading = false;
+        });
 
         // Tabbar'a geçiş yap
         widget.tabController?.animateTo(0);
       } catch (error) {
         // Yukleniyordan çıkış
-        Navigator.pop(context);
+        setState(() {
+          isLoading = false;
+        });
 
         // Hata durumuna göre mesaj göster
         String errorMessage = 'Bilinmeyen bir hata oluştu.';
@@ -135,7 +153,10 @@ class _SignUpPageState extends State<SignUpPage> {
       }
     } else {
       // Yukleniyordan çıkış
-      Navigator.pop(context);
+      setState(() {
+        isLoading = false;
+      });
+
       // Şifreler uyuşmuyor diye hata mesajı göster
       showDialog(
         context: context,
