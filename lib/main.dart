@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:mobilyst/Anasayfa/AnaSayfa.dart';
 import 'package:mobilyst/GirisOlaylari/girisPage.dart';
+import 'package:mobilyst/NavBar/goRouter.dart';
 import 'package:mobilyst/NavBar/navigationBar.dart';
-import 'package:mobilyst/NavBar/routes.dart';
 import 'package:mobilyst/screens.onboarding/screen_one.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Hesabim/hesabimPage.dart';
@@ -18,11 +18,12 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences preferences = await SharedPreferences.getInstance();
-  var initScreen = await preferences.getInt('initScreen');
-  await preferences.setInt('initScreen', 1);
+ 
+  usePathUrlStrategy();
   runApp(ProviderScope(child: const MyApp()));
+}
+
+void usePathUrlStrategy() {
 }
 
 class MyApp extends StatelessWidget {
@@ -30,10 +31,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp.router(
+       routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.getnavbar(),
-      getPages: Routes.routes,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,

@@ -1,77 +1,116 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:line_icons/line_icons.dart';
-import 'package:mobilyst/Anasayfa/AnaSayfa.dart';
-import 'package:mobilyst/GirisOlaylari/girisPage.dart';
-import 'package:mobilyst/NavBar/navBarController.dart';
-import 'package:mobilyst/haritaPage.dart';
-import 'package:mobilyst/Hesabim/hesabimPage.dart';
-import '../food_comparison_screen/food_comparison_screen.dart';
-import '../oktay/kategoriler_ekrani/kategorilerSayfasi.dart';
+import 'package:go_router/go_router.dart';
 
-class NavigationBarPage extends StatefulWidget {
-  const NavigationBarPage({Key? key}) : super(key: key);
+class ScaffoldWithNestedNavigation extends StatelessWidget {
+  const ScaffoldWithNestedNavigation({
+    Key? key,
+    required this.navigationShell,
+  }) : super(
+            key: key ?? const ValueKey<String>('ScaffoldWithNestedNavigation'));
+  final StatefulNavigationShell navigationShell;
 
-  @override
-  State<NavigationBarPage> createState() => _NavigationBarPageState();
-}
-
-class _NavigationBarPageState extends State<NavigationBarPage> {
-  final controller = Get.put(NavBarController());
+  void _goBranch(int index) {
+    navigationShell.goBranch(
+      index,
+      initialLocation: index == navigationShell.currentIndex,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<NavBarController>(
-      builder: (context) {
-        return Scaffold(
-          body: IndexedStack(
-            index: controller.tabIndex,
-            children: const [
-              AnaSayfa(),
-              YemekKategorileriSayfasi(),
-              HaritaPage(),
-              GirisPage(),
+    return LayoutBuilder(builder: (context, constraints) {
+      if (constraints.maxWidth < 450) {
+        return ScaffoldWithNavigationBar(
+          body: navigationShell,
+          selectedIndex: navigationShell.currentIndex,
+          onDestinationSelected: _goBranch,
+        );
+      } else {
+        return ScaffoldWithNavigationRail(
+          body: navigationShell,
+          selectedIndex: navigationShell.currentIndex,
+          onDestinationSelected: _goBranch,
+        );
+      }
+    });
+  }
+}
+
+class ScaffoldWithNavigationBar extends StatelessWidget {
+  const ScaffoldWithNavigationBar({
+    super.key,
+    required this.body,
+    required this.selectedIndex,
+    required this.onDestinationSelected,
+  });
+  final Widget body;
+  final int selectedIndex;
+  final ValueChanged<int> onDestinationSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: body,
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: selectedIndex,
+        destinations: const [
+          NavigationDestination(label: 'Ana Sayfa', icon: Icon(Icons.home)),
+          NavigationDestination(label: 'Kategori', icon: Icon(Icons.search)),
+          NavigationDestination(label: 'Harita', icon: Icon(Icons.place)),
+          NavigationDestination(label: 'Hesabım', icon: Icon(Icons.person)),
+        ],
+        onDestinationSelected: onDestinationSelected,
+      ),
+    );
+  }
+}
+
+class ScaffoldWithNavigationRail extends StatelessWidget {
+  const ScaffoldWithNavigationRail({
+    super.key,
+    required this.body,
+    required this.selectedIndex,
+    required this.onDestinationSelected,
+  });
+  final Widget body;
+  final int selectedIndex;
+  final ValueChanged<int> onDestinationSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Row(
+        children: [
+          NavigationRail(
+            selectedIndex: selectedIndex,
+            onDestinationSelected: onDestinationSelected,
+            labelType: NavigationRailLabelType.all,
+            destinations: const <NavigationRailDestination>[
+              NavigationRailDestination(
+                label: Text('Ana Sayfa'),
+                icon: Icon(Icons.home),
+              ),
+              NavigationRailDestination(
+                label: Text('Kategori'),
+                icon: Icon(Icons.search),
+              ),
+              NavigationRailDestination(
+                label: Text('Harita'),
+                icon: Icon(Icons.place),
+              ),
+              NavigationRailDestination(
+                label: Text('Hesabım'),
+                icon: Icon(Icons.person),
+              ),
             ],
           ),
-          bottomNavigationBar: Container(
-            color: Colors.black,
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
-              child: GNav(
-                gap: 10,
-                backgroundColor: Colors.black,
-                color: Colors.white,
-                activeColor: Colors.white,
-                tabBackgroundColor: Colors.grey.shade800,
-                padding: EdgeInsets.all(20),
-                selectedIndex: controller.tabIndex,
-                onTabChange: controller.changeTabIndex,
-                tabs: const [
-                  GButton(
-                    icon: LineIcons.home,
-                    text: 'Anasayfa',
-                  ),
-                  GButton(
-                    icon: LineIcons.list,
-                    text: 'Kategoriler',
-                  ),
-                  GButton(
-                    icon: Icons.place,
-                    text: 'Harita',
-                  ),
-                  GButton(
-                    icon: LineIcons.user,
-                    text: 'Hesabım',
-                  ),
-                ],
-              ),
-            ),
+          const VerticalDivider(thickness: 1, width: 1),
+          // This is the main content.
+          Expanded(
+            child: body,
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }

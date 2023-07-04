@@ -5,7 +5,8 @@ import 'package:mobilyst/GirisOlaylari/tabs/secondSignUp.dart';
 import 'package:mobilyst/NavBar/navigationBar.dart';
 
 class GirisPage extends StatefulWidget {
-  const GirisPage({super.key});
+ 
+  const GirisPage({super.key, });
 
   @override
   State<GirisPage> createState() => _GirisPageState();
@@ -14,7 +15,7 @@ class GirisPage extends StatefulWidget {
 class _GirisPageState extends State<GirisPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
+ 
   @override
   void initState() {
     super.initState();
@@ -57,7 +58,9 @@ class _GirisPageState extends State<GirisPage>
           Expanded(
             child: TabBarView(controller: _tabController, children: [
               //sign in
-              SignInPage(tabController: _tabController),
+              SignInPage(
+                tabController: _tabController,
+              ),
 
               //sign up
               SignUpPage(tabController: _tabController),

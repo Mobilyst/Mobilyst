@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobilyst/Hesabim/hesabimPage.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/secondSignUp.dart';
@@ -21,7 +22,8 @@ class _SignInPageState extends State<SignInPage> {
   // text duzenleme kontrolleri
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
+ 
+ 
   //giris kulanici method
   Future<void> signUserIn() async {
     // yukleniyor
@@ -79,11 +81,7 @@ class _SignInPageState extends State<SignInPage> {
       // yukleniyordan cikis
       Navigator.pop(context);
       // Oturum açma başarılı olduğunda yönlendirme işlemini gerçekleştir
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const HesabimPage()),
-      );
+      context.go('/hesabim/giris');
     }).catchError((error) {
       // yukleniyordan cikis
       Navigator.pop(context);

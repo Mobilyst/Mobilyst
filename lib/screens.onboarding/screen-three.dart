@@ -129,7 +129,7 @@ class OnboardingScreenThree extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => AnaSayfa(),
+                            builder: (_) => AnaSayfa(detailsPath: '',detailPath2: '',),
                           ),
                         );
                       },

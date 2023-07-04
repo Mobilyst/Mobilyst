@@ -1,11 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/cesitlerEkrani.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/verilerRepository.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/yemekKategori.dart';
 
 class YemekKategorileriSayfasi extends StatefulWidget {
-  const YemekKategorileriSayfasi({Key? key}) : super(key: key);
+  final String detailsPath;
+  const YemekKategorileriSayfasi({Key? key, required this.detailsPath}) : super(key: key);
 
   @override
   _YemekKategorileriSayfasiState createState() =>
@@ -83,7 +83,7 @@ class _YemekKategorileriSayfasiState extends State<YemekKategorileriSayfasi> {
       ),
       body: Column(
         children: [
-           Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: const [
               Padding(

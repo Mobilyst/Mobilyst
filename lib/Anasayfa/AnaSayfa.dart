@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobilyst/Anasayfa/DetayliBilgiSayfasi.dart';
 import 'package:mobilyst/Anasayfa/KampanyalarSayfasi.dart';
-
-import '../NavBar/routes.dart';
 import '../food_comparison_screen/food_comparison_screen.dart';
 import 'KampanyaRepository.dart';
 
 class AnaSayfa extends ConsumerWidget {
-  const AnaSayfa({super.key});
+  final String detailsPath;
+  final String detailPath2;
+  const AnaSayfa({super.key, required this.detailsPath,required this.detailPath2});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -57,14 +58,16 @@ class AnaSayfa extends ConsumerWidget {
                     const Text("Öğünleri kıyasla", textAlign: TextAlign.start),
                     const SizedBox(width: 190),
                     TextButton(
-                        onPressed: () {
+                        onPressed: () => context.go(detailsPath),
+
+                        /*
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
                                     const YemekKiyasTumuPage()),
-                          );
-                        },
+                          );*/
+
                         style: TextButton.styleFrom(
                           primary: Colors.black, // Text Color
                         ),
