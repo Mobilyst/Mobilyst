@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/cesitlerEkrani.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/verilerRepository.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/yemekKategori.dart';
 
 class YemekKategorileriSayfasi extends StatefulWidget {
   final String detailsPath;
-  const YemekKategorileriSayfasi({Key? key, required this.detailsPath}) : super(key: key);
+
+  const YemekKategorileriSayfasi({Key? key, required this.detailsPath})
+      : super(key: key);
 
   @override
   _YemekKategorileriSayfasiState createState() =>
@@ -60,37 +63,72 @@ class _YemekKategorileriSayfasiState extends State<YemekKategorileriSayfasi> {
           backgroundColor: Colors.white,
           title: SizedBox(
             height: 60,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                onChanged: (text) {
-                  kategoriAra(text);
-                },
-                controller: editingController,
-                decoration: const InputDecoration(
-                  labelText: '',
-                  suffixIcon: Icon(
-                    Icons.search,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
+            child: Column(
+              children: [ const SizedBox(height: 6,),
+                TextField(
+                  onChanged: (text) {
+                    kategoriAra(text);
+                  },
+                  controller: editingController,
+                  decoration: InputDecoration(
+                    hintText: 'Ara...',
+                    suffixIcon: IconButton(
+                      color: AppColors.yedi,
+                      onPressed: () => setState(() {
+                        editingController.clear();
+
+                      }),
+                      icon: const Icon(Icons.clear),
+                    ),
+                    prefixIcon: IconButton(
+                      icon: const Icon(
+                        Icons.search,
+                        color: AppColors.yedi,
+                      ),
+                      onPressed: () {
+
+                        // Perform the search here
+                      },
+                    ),
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      borderSide: BorderSide(
+                        color: Colors.grey, // Normal durumda kenar çizgi rengi
+                        width: 1.0,
+                      ),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      borderSide: BorderSide(
+                        color:
+                            Colors.grey, // Tiklandiktan sonra kenar çizgi rengi
+                        width: 2.0,
+                      ),
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal:
+                        15),
                   ),
                 ),
-              ),
+              ],
             ),
           ),
         ),
       ),
       body: Column(
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
+            children: [
               Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   'Yemek Kategorileri',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               SizedBox(

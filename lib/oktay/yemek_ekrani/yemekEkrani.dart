@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobilyst/oktay/yemek_ekrani/yemekBilgileri.dart';
 
+import '../../ColorAndType/color.dart';
 
 class MyYemekKategoriPage extends StatefulWidget {
   const MyYemekKategoriPage({Key? key}) : super(key: key);
@@ -23,10 +24,14 @@ class _MyYemekKategoriPageState extends State<MyYemekKategoriPage> {
         'https://cdn-icons-png.flaticon.com/128/10614/10614469.png', false),
   ];
   late String seciliFiltre = filtreList[0];
-  List<String> filtreList = ['Tümü',
-    '20 TL - 100 TL','100 TL - 200 TL','200 TL - 300 TL'
+  List<String> filtreList = [
+    'Tümü',
+    '20 TL - 100 TL',
+    '100 TL - 200 TL',
+    '200 TL - 300 TL'
   ];
   SiralamaSecenekleri selectedSortOption = SiralamaSecenekleri.Sirala;
+
   @override
   void initState() {
     super.initState();
@@ -36,6 +41,7 @@ class _MyYemekKategoriPageState extends State<MyYemekKategoriPage> {
       filterMeals = veriler;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,23 +49,59 @@ class _MyYemekKategoriPageState extends State<MyYemekKategoriPage> {
         preferredSize: const Size.fromHeight(60),
         child: AppBar(
           backgroundColor: Colors.white,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back_outlined,
+                color: Colors.black,
+              )),
           title: SizedBox(
             height: 60,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(right: 10, top: 8),
               child: TextField(
                 onChanged: (text) {
                   yemekAra(text);
                 },
                 controller: editingController,
-                decoration: const InputDecoration(
-                  labelText: '',
-                  suffixIcon: Icon(
-                    Icons.search,
+                decoration: InputDecoration(
+                  hintText: 'Ara...',
+                  suffixIcon: IconButton(
+                    color: AppColors.yedi,
+                    onPressed: () => {
+                      setState(() {
+                        editingController.clear();
+                      }),
+                      // Perform the search here
+                    },
+                    icon: const Icon(Icons.clear),
                   ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(40)),
+                  prefixIcon: IconButton(
+                    icon: const Icon(
+                      Icons.search,
+                      color: AppColors.yedi,
+                    ),
+                    onPressed: () {},
                   ),
+                  border: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(
+                      color: Colors.grey, // Normal durumda kenar çizgi rengi
+                      width: 1.0,
+                    ),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(
+                      color:
+                          Colors.grey, // Tiklandiktan sonra kenar çizgi rengi
+                      width: 2.0,
+                    ),
+                  ),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 ),
               ),
             ),
@@ -113,56 +155,84 @@ class _MyYemekKategoriPageState extends State<MyYemekKategoriPage> {
                       child: Text("İndirimli Ürünler"),
                     ),
                   ],
-                  icon: const Icon(Icons.sort_rounded),
                 ),
-                InkWell(onTap: () {
-                  showDialog(context: context, builder:(context) {
-                    return StatefulBuilder(
-                      builder:(context, setState) =>  SimpleDialog(title: const Text('Filtrele'),
-                        children: [
-                          ListTile(title: Text(filtreList[0]),leading: Radio(value: filtreList[0], groupValue: seciliFiltre, onChanged: (value) => setState(() =>seciliFiltre=value.toString()),)),
-                          ListTile(title: Text(filtreList[1]),leading: Radio(value: filtreList[1], groupValue: seciliFiltre, onChanged: (value) => setState(() =>seciliFiltre=value.toString()),)),
-                          ListTile(title: Text(filtreList[2]),leading: Radio(value: filtreList[2], groupValue: seciliFiltre, onChanged: (value) => setState(() =>seciliFiltre=value.toString()),)),
-                          ListTile(title: Text(filtreList[3]),leading: Radio(value: filtreList[3], groupValue: seciliFiltre, onChanged: (value) => setState(() =>seciliFiltre=value.toString()),)),
-                        ],),
-                    );
-                  },).then((_) {
-                    if(seciliFiltre == filtreList[0]){
-                      filterMeals.clear();
-                      filterMeals.addAll(meals);
-                    }
-                    else if(seciliFiltre == filtreList[1]){
-                      filterMeals.clear();
-                      for(var i=0;i<meals.length;i++){
-                        if(meals[i].price>=20 &&meals[i].price<=100){
-                          filterMeals.add(meals[i]);
+                InkWell(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return StatefulBuilder(
+                            builder: (context, setState) => SimpleDialog(
+                              title: const Text('Filtrele'),
+                              children: [
+                                ListTile(
+                                    title: Text(filtreList[0]),
+                                    leading: Radio(
+                                      value: filtreList[0],
+                                      groupValue: seciliFiltre,
+                                      onChanged: (value) => setState(() =>
+                                          seciliFiltre = value.toString()),
+                                    )),
+                                ListTile(
+                                    title: Text(filtreList[1]),
+                                    leading: Radio(
+                                      value: filtreList[1],
+                                      groupValue: seciliFiltre,
+                                      onChanged: (value) => setState(() =>
+                                          seciliFiltre = value.toString()),
+                                    )),
+                                ListTile(
+                                    title: Text(filtreList[2]),
+                                    leading: Radio(
+                                      value: filtreList[2],
+                                      groupValue: seciliFiltre,
+                                      onChanged: (value) => setState(() =>
+                                          seciliFiltre = value.toString()),
+                                    )),
+                                ListTile(
+                                    title: Text(filtreList[3]),
+                                    leading: Radio(
+                                      value: filtreList[3],
+                                      groupValue: seciliFiltre,
+                                      onChanged: (value) => setState(() =>
+                                          seciliFiltre = value.toString()),
+                                    )),
+                              ],
+                            ),
+                          );
+                        },
+                      ).then((_) {
+                        if (seciliFiltre == filtreList[0]) {
+                          filterMeals.clear();
+                          filterMeals.addAll(meals);
+                        } else if (seciliFiltre == filtreList[1]) {
+                          filterMeals.clear();
+                          for (var i = 0; i < meals.length; i++) {
+                            if (meals[i].price >= 20 && meals[i].price <= 100) {
+                              filterMeals.add(meals[i]);
+                            }
+                          }
+                        } else if (seciliFiltre == filtreList[2]) {
+                          filterMeals.clear();
+                          for (var i = 0; i < meals.length; i++) {
+                            if (meals[i].price >= 100 &&
+                                meals[i].price <= 200) {
+                              filterMeals.add(meals[i]);
+                            }
+                          }
+                        } else if (seciliFiltre == filtreList[3]) {
+                          filterMeals.clear();
+                          for (var i = 0; i < meals.length; i++) {
+                            if (meals[i].price >= 200 &&
+                                meals[i].price <= 300) {
+                              filterMeals.add(meals[i]);
+                            }
+                          }
                         }
-                      }
-                    }
-                    else if(seciliFiltre == filtreList[2]){
-                      filterMeals.clear();
-                      for(var i=0;i<meals.length;i++){
-                        if(meals[i].price>=100 &&meals[i].price<=200){
-                          filterMeals.add(meals[i]);
-                        }
-                      }
-                    }
-                    else if(seciliFiltre == filtreList[3]){
-                      filterMeals.clear();
-                      for(var i=0;i<meals.length;i++){
-                        if(meals[i].price>=200 &&meals[i].price<=300){
-                          filterMeals.add(meals[i]);
-                        }
-                      }
-                    }
-                    setState(() {
-
-                    });
-                  });
-
-
-                },
-                    child:const Row(
+                        setState(() {});
+                      });
+                    },
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text('Fitrele'),
@@ -190,7 +260,8 @@ class _MyYemekKategoriPageState extends State<MyYemekKategoriPage> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
-                          filterMeals[index].isSelected = !filterMeals[index].isSelected;
+                          filterMeals[index].isSelected =
+                              !filterMeals[index].isSelected;
                         });
                       },
                       child: Row(
@@ -211,7 +282,8 @@ class _MyYemekKategoriPageState extends State<MyYemekKategoriPage> {
                       child: Image.network(filterMeals[index].resimUrl),
                     ),
                     Text(filterMeals[index].name),
-                    Text("Fiyat: ${filterMeals[index].price.toStringAsFixed(2)}"),
+                    Text(
+                        "Fiyat: ${filterMeals[index].price.toStringAsFixed(2)}"),
                     Text("Popülerlik: ${filterMeals[index].popularity}"),
                   ],
                 ),
@@ -224,7 +296,7 @@ class _MyYemekKategoriPageState extends State<MyYemekKategoriPage> {
     );
   }
 
-  void yemekAra(String text){
+  void yemekAra(String text) {
     if (text.isEmpty) {
       filterMeals.clear();
       meals.forEach((element) {
@@ -254,16 +326,16 @@ class _MyYemekKategoriPageState extends State<MyYemekKategoriPage> {
         filterMeals.sort((a, b) => b.popularity.compareTo(a.popularity));
         break;
       case SiralamaSecenekleri.Popular:
-      // Sıralama işlemleri
+        // Sıralama işlemleri
         break;
       case SiralamaSecenekleri.NewArrivals:
-      // Sıralama işlemleri
+        // Sıralama işlemleri
         break;
       case SiralamaSecenekleri.Discounted:
-      // Sıralama işlemleri
+        // Sıralama işlemleri
         break;
       case SiralamaSecenekleri.Sirala:
-      // Sıralama işlemleri
+        // Sıralama işlemleri
         break;
     }
   }
