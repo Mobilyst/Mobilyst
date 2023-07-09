@@ -1,14 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobilyst/Hesabim/hesabimPage.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
-import 'package:mobilyst/GirisOlaylari/tabs/secondSignUp.dart';
-import 'package:mobilyst/GirisOlaylari/tabs/sifreUnuttumPage.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/textfield/testField.dart';
-import 'package:mobilyst/NavBar/navigationBar.dart';
-import '../girisPage.dart';
+
 
 class SignInPage extends StatefulWidget {
   final TabController? tabController;

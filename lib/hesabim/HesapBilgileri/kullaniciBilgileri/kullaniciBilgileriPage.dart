@@ -5,8 +5,6 @@ import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/kullaniciB.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/kullaniciBilgileriRepositort.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/tarihSecimPage.dart';
-import 'package:mobilyst/hesabim/HesapBilgileri/hesapBilgilerimPage.dart';
-
 import '../../../GirisOlaylari/tabs/textfield/testField.dart';
 
 class KullaniciBilgileriPage extends StatefulWidget {

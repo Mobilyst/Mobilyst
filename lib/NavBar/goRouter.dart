@@ -7,26 +7,29 @@ import 'package:mobilyst/GirisOlaylari/tabs/sifreUnuttumPage.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/hesapBilgilerimPage.dart';
 import 'package:mobilyst/NavBar/navigationBar.dart';
 import 'package:mobilyst/food_comparison_screen/food_comparison_screen.dart';
-import 'package:mobilyst/haritaPage.dart';
 import 'package:mobilyst/hesabim/hesabimPage.dart';
-import 'package:mobilyst/oktay/kategoriler_ekrani/cesitlerEkrani.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/kategorilerSayfasi.dart';
+import 'package:mobilyst/screens.onboarding/screen_one.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorAnaSayfaKey =
     GlobalKey<NavigatorState>(debugLabel: 'AnaSayfashell');
 final _shellNavigatorKategoriSayfaKey =
     GlobalKey<NavigatorState>(debugLabel: 'KategoriSayfashell');
-final _shellNavigatorHaritaSayfaKey =
-    GlobalKey<NavigatorState>(debugLabel: 'HaritaSayfashell');
 final _shellNavigatorHesabimSayfaKey =
     GlobalKey<NavigatorState>(debugLabel: 'HesabimSayfashell');
 
 final goRouter = GoRouter(
-  initialLocation: '/a',
+  initialLocation: '/',
   navigatorKey: _rootNavigatorKey,
   debugLogDiagnostics: true,
   routes: [
+     GoRoute(
+              path: '/',
+              pageBuilder: (context, state) => NoTransitionPage(
+                child: OnboardingScreenOne(),
+              ),
+            ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return ScaffoldWithNestedNavigation(navigationShell: navigationShell);
@@ -64,17 +67,6 @@ final goRouter = GoRouter(
               path: '/b',
               pageBuilder: (context, state) => const NoTransitionPage(
                 child: YemekKategorileriSayfasi(detailsPath: '/b/cesit'),
-              ),
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          navigatorKey: _shellNavigatorHaritaSayfaKey,
-          routes: [
-            GoRoute(
-              path: '/harita',
-              pageBuilder: (context, state) => const NoTransitionPage(
-                child: HaritaPage(),
               ),
             ),
           ],

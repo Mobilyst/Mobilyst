@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mobilyst/NavBar/navigationBar.dart';
 import 'DetayliBilgiSayfasi.dart';
 import 'KampanyaRepository.dart';
 import 'Urun.dart';

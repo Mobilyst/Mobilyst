@@ -1,8 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttericon/font_awesome_icons.dart';
-import 'package:line_icons/line_icon.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:mobilyst/GirisOlaylari/girisPage.dart';
 import 'package:mobilyst/Hesabim/FavoriListelerimPage.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/hesapBilgilerimPage.dart';

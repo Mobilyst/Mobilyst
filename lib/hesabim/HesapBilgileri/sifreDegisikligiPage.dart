@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/textfield/testField.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mobilyst/Hesabim/HesapBilgileri/hesapBilgilerimPage.dart';
+
 
 class SifreDegisikligiPage extends StatefulWidget {
   SifreDegisikligiPage({super.key});

@@ -1,8 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/firstSignIn.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/secondSignUp.dart';
-import 'package:mobilyst/NavBar/navigationBar.dart';
+
 
 class GirisPage extends StatefulWidget {
   final String detailsPath;

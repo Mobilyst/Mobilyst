@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobilyst/Anasayfa/AnaSayfa.dart';
 import 'package:mobilyst/screens.onboarding/components/slanding_clipper.dart';
 import 'package:mobilyst/screens.onboarding/constant.dart';
@@ -125,14 +126,7 @@ class OnboardingScreenThree extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(right: appPadding),
                     child: FloatingActionButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => AnaSayfa(detailsPath: '',detailPath2: '',),
-                          ),
-                        );
-                      },
+                      onPressed: () => context.go('/a'),
                       backgroundColor: white,
                       child: Icon(
                         Icons.done_rounded,
