@@ -78,14 +78,14 @@ class AnaSayfa extends ConsumerWidget {
                         const SizedBox(width: 15),
                         Material(
                           elevation: 8,
-                          borderRadius: BorderRadius.circular(28),
+                          borderRadius: BorderRadius.circular(5),
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           child: InkWell(
                             splashColor: Colors.black26,
                             onTap: () {},
                             child: Column(
                               children: [
-                                const SizedBox(height: 6),
+                                const SizedBox(height: 10),
                                 Ink.image(
                                   image: const NetworkImage(
                                       'https://cdn.yeniakit.com.tr/images/news/940/hangi-sehirde-hangi-yemek-yenir-2h1580033203-e7124c.jpg'),
@@ -93,11 +93,11 @@ class AnaSayfa extends ConsumerWidget {
                                   width: 150,
                                   fit: BoxFit.cover,
                                 ),
-                                const SizedBox(height: 10),
+                                const SizedBox(height: 5),
                                 const Text(
                                   'All',
                                   style: TextStyle(
-                                      fontSize: 32, color: Colors.black),
+                                      fontSize: 18, color: Colors.black),
                                 )
                               ],
                             ),
@@ -106,7 +106,7 @@ class AnaSayfa extends ConsumerWidget {
                         const SizedBox(width: 15),
                         Material(
                           elevation: 8,
-                          borderRadius: BorderRadius.circular(28),
+                          borderRadius: BorderRadius.circular(5),
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           child: InkWell(
                             splashColor: Colors.black26,
@@ -134,7 +134,7 @@ class AnaSayfa extends ConsumerWidget {
                         const SizedBox(width: 15),
                         Material(
                           elevation: 8,
-                          borderRadius: BorderRadius.circular(28),
+                          borderRadius: BorderRadius.circular(5),
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           child: InkWell(
                             splashColor: Colors.black26,
@@ -162,7 +162,7 @@ class AnaSayfa extends ConsumerWidget {
                         const SizedBox(width: 15),
                         Material(
                           elevation: 8,
-                          borderRadius: BorderRadius.circular(28),
+                          borderRadius: BorderRadius.circular(5),
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           child: InkWell(
                             splashColor: Colors.black26,
@@ -190,7 +190,7 @@ class AnaSayfa extends ConsumerWidget {
                         const SizedBox(width: 15),
                         Material(
                           elevation: 8,
-                          borderRadius: BorderRadius.circular(28),
+                          borderRadius: BorderRadius.circular(5),
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           child: InkWell(
                             splashColor: Colors.black26,
@@ -217,7 +217,7 @@ class AnaSayfa extends ConsumerWidget {
                         ),
                       ])),
                   SizedBox(
-                    height: 60,
+                    height: 20,
                   ),
                   Row(
                     children: [
@@ -251,19 +251,19 @@ class AnaSayfa extends ConsumerWidget {
                         const SizedBox(width: 15),
                         Material(
                           elevation: 8,
-                          borderRadius: BorderRadius.circular(28),
+                          borderRadius: BorderRadius.circular(5),
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           child: InkWell(
                             splashColor: Colors.black26,
                             onTap: () {},
                             child: Column(
                               children: [
-                                const SizedBox(height: 6),
+                                const SizedBox(height: 10),
                                 Ink.image(
                                   image: NetworkImage(kampanyaRepository
                                       .urunler[0].urunFotoAddress),
-                                  height: 150,
-                                  width: 150,
+                                  height: 200,
+                                  width: 160,
                                   fit: BoxFit.cover,
                                 ),
                                 const SizedBox(height: 10),
@@ -289,19 +289,19 @@ class AnaSayfa extends ConsumerWidget {
                         const SizedBox(width: 15),
                         Material(
                           elevation: 8,
-                          borderRadius: BorderRadius.circular(28),
+                          borderRadius: BorderRadius.circular(5),
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           child: InkWell(
                             splashColor: Colors.black26,
                             onTap: () {},
                             child: Column(
                               children: [
-                                const SizedBox(height: 6),
+                                const SizedBox(height: 10),
                                 Ink.image(
                                   image: NetworkImage(
                                       "${kampanyaRepository.urunler[1].urunFotoAddress}"),
-                                  height: 150,
-                                  width: 150,
+                                  height: 200,
+                                  width: 160,
                                   fit: BoxFit.cover,
                                 ),
                                 const SizedBox(height: 10),
