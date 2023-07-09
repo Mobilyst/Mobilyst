@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/ozge/karsilastirma_ekrani/magazasayfasi.dart';
-
 
 class FoodComparisonScreen extends StatefulWidget {
   FoodComparisonScreen({Key? key}) : super(key: key);
@@ -76,13 +76,15 @@ class _FoodComparisonScreenState extends State<FoodComparisonScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
+                    height: 65,
+                    width: 200,
                     padding: const EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(8.0),
-                      border: Border.all(width: 2.0),
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: Colors.grey, width: 1),
                     ),
-                    child:  Column(
+                    child: Column(
                       children: const [
                         Text(
                           'Firma A',
@@ -112,6 +114,12 @@ class _FoodComparisonScreenState extends State<FoodComparisonScreen> {
                         ),
                       );
                     },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.dort,
+                      textStyle: const TextStyle(
+                        color: AppColors.bir,
+                      ), // Arka plan rengi
+                    ),
                     icon: const Icon(Icons.shopping_bag),
                     label: const Text('En ucuzuna git'),
                   ),
@@ -128,14 +136,45 @@ class _FoodComparisonScreenState extends State<FoodComparisonScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   child: Container(
                     decoration: BoxDecoration(
-                      border: Border.all(width: 2.0),
-                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(
+                        color: Colors.grey, // Kenar çizgisi rengi
+                        width: 00.5, // Kenar çizgisi kalınlığı
+                      ),
+                      borderRadius: BorderRadius.circular(5),
                     ),
                     child: ListTile(
-                      title: Text(storeName),
-                      subtitle: Text('Fiyat: $storePrice TL '),
+                      title: Text(
+                        storeName,
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
+                      ),
+                      subtitle: Text(
+                        'Fiyat: $storePrice TL ',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
+                      ),
                       trailing: ElevatedButton(
-                        child: const Text('Mağaza\'ya git'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.dort,
+                          textStyle: const TextStyle(
+                            color: AppColors.bir,
+                          ),
+                          // Arka plan rengi
+                        ),
+                        child: const Text(
+                          'Mağaza\'ya git',
+                          style: TextStyle(
+                            color: AppColors.bir,
+                          ),
+                        ),
                         onPressed: () {
                           Navigator.push(
                             context,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 import 'DetayliBilgiSayfasi.dart';
 import 'KampanyaRepository.dart';
 import 'Urun.dart';
@@ -16,12 +17,23 @@ class KampanyalarSayfasi extends ConsumerWidget {
     List<Urun> kampanyaliUrunler = kampanyaRepository.urunler;
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Kampanyalı Ürünler")),
+      appBar: AppBar(
+        title: const Text(
+          "Kampanyalı Ürünler",
+          style: TextStyle(
+            color: AppColors.bir,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        centerTitle: true,
+        backgroundColor: AppColors.uc,
+      ),
       body: SafeArea(
         child: Container(
           child: Column(
             children: [
               const SizedBox(height: 10),
+              /*
               TextField(
                 controller: searchController,
                 decoration: InputDecoration(
@@ -42,7 +54,7 @@ class KampanyalarSayfasi extends ConsumerWidget {
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                 ),
-              ),
+              ),*/
               const SizedBox(height: 10),
               Expanded(
                   child: Container(
@@ -62,26 +74,42 @@ class KampanyalarSayfasi extends ConsumerWidget {
                         Expanded(
                           child: Container(
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20)),
+                              border: Border.all(
+                                color: Colors.grey, // Kenar çizgisi rengi
+                                width: 1, // Kenar çizgisi kalınlığı
+                              ),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
                             child: Center(
                               child: Stack(
                                 children: [
                                   Material(
                                     elevation: 8,
-                                    borderRadius: BorderRadius.circular(28),
+                                    borderRadius: BorderRadius.circular(5),
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
                                     child: ListView(
                                         scrollDirection: Axis.vertical,
                                         shrinkWrap: true,
                                         children: [
-                                          Image.network(
-                                            kampanyaliUrunler[index]
-                                                .urunFotoAddress,
-                                            height: 150,
-                                            width: 150,
+                                          const SizedBox(
+                                            height: 10,
                                           ),
-                                          Text(
-                                              kampanyaliUrunler[index].urunAdi),
+                                          Image.network(
+                                              kampanyaliUrunler[index]
+                                                  .urunFotoAddress,
+                                              height: 200,
+                                              width: 160),
+                                          const SizedBox(height: 3),
+                                          Center(
+                                            child: Text(
+                                              kampanyaliUrunler[index].urunAdi,
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(height: 0.1),
                                           TextButton(
                                               onPressed: () {
                                                 Navigator.of(context).push(
@@ -92,8 +120,12 @@ class KampanyalarSayfasi extends ConsumerWidget {
                                                   ),
                                                 );
                                               },
-                                              child:
-                                                  const Text("Detaylı Bilgi >"))
+                                              child: const Text(
+                                                "Detaylı Bilgi >",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: AppColors.yedi),
+                                              )),
                                         ]),
                                   ),
                                 ],

@@ -62,6 +62,8 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
         onDestinationSelected: onDestinationSelected,
         backgroundColor: AppColors.uc,
         indicatorColor: AppColors.iki,
+        
+        
       ),
     );
   }
@@ -91,15 +93,31 @@ class ScaffoldWithNavigationRail extends StatelessWidget {
               NavigationRailDestination(
                 label: Text(
                   'Ana Sayfa',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.bir),
                 ),
                 icon: Icon(Icons.home),
               ),
               NavigationRailDestination(
-                label: Text('Kategoriler'),
+                label: Text(
+                  'Kategoriler',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.bir),
+                ),
                 icon: Icon(Icons.search),
               ),
               NavigationRailDestination(
-                label: Text('Hesabım'),
+                label: Text(
+                  'Hesabım',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.bir),
+                ),
                 icon: Icon(Icons.person),
               ),
             ],
