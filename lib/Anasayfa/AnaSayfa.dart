@@ -23,6 +23,9 @@ class AnaSayfa extends ConsumerWidget {
         appBar: AppBar(
           title: const Text(
             "Yemek Kılavuzu",
+            style: TextStyle(
+              color: AppColors.bir,
+            ),
             textAlign: TextAlign.center,
           ),
           centerTitle: true,
@@ -35,48 +38,50 @@ class AnaSayfa extends ConsumerWidget {
                 // Use a Material design search bar
                 children: <Widget>[
                   const SizedBox(height: 6),
-                  TextField(
-                    controller: searchController,
-                    decoration: InputDecoration(
-                      hintText: 'Ara...',
-                      // Add a clear button to the search bar
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          Icons.clear,
-                          color: AppColors.yedi,
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: Container(
+                      height: 50,
+                      child: TextField(
+                        controller: searchController,
+                        decoration: InputDecoration(
+                          hintText: 'Ara...',
+                          // Add a clear button to the search bar
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              Icons.clear,
+                              color: AppColors.yedi,
+                            ),
+                            onPressed: () => searchController.clear(),
+                          ),
+                          // Add a search icon or button to the search bar
+                          prefixIcon: IconButton(
+                            icon: Icon(
+                              Icons.search,
+                              color: AppColors.yedi,
+                            ),
+                            onPressed: () {
+                              // Perform the search here
+                            },
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            borderSide: BorderSide(
+                              color: Colors
+                                  .grey, // Normal durumda kenar çizgi rengi
+                              width: 1.0,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            borderSide: BorderSide(
+                              color: Colors
+                                  .grey, // Tiklandiktan sonra kenar çizgi rengi
+                              width: 2.0,
+                            ),
+                          ),
                         ),
-                        onPressed: () => searchController.clear(),
                       ),
-                      // Add a search icon or button to the search bar
-                      prefixIcon: IconButton(
-                        icon: Icon(
-                          Icons.search,
-                          color: AppColors.yedi,
-                        ),
-                        onPressed: () {
-                          // Perform the search here
-                        },
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        borderSide: BorderSide(
-                          color:
-                              Colors.grey, // Normal durumda kenar çizgi rengi
-                          width: 1.0,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        borderSide: BorderSide(
-                          color: Colors
-                              .grey, // Tiklandiktan sonra kenar çizgi rengi
-                          width: 2.0,
-                        ),
-                      ),
-                      contentPadding: EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal:
-                              15), // Boyutunu küçültmek için padding ayarı
                     ),
                   ),
                   Row(
