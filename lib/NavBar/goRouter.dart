@@ -41,10 +41,7 @@ final goRouter = GoRouter(
             GoRoute(
               path: '/a',
               pageBuilder: (context, state) => const NoTransitionPage(
-                child: AnaSayfa(
-                  detailsPath: '/a/yemek',
-                  detailPath2: '/a/kampanya',
-                ),
+                child: AnaSayfa (),
               ),
               routes: [
                 GoRoute(

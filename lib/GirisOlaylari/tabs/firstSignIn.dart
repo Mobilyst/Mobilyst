@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/textfield/testField.dart';
 
-
 class SignInPage extends StatefulWidget {
   final TabController? tabController;
 
@@ -165,7 +164,6 @@ class _SignInPageState extends State<SignInPage> {
             const SizedBox(
               height: 88,
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: const [

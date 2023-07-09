@@ -3,13 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobilyst/Anasayfa/DetayliBilgiSayfasi.dart';
 import 'package:mobilyst/Anasayfa/KampanyalarSayfasi.dart';
+import 'package:mobilyst/food_comparison_screen/food_comparison_screen.dart';
 import 'KampanyaRepository.dart';
 
 class AnaSayfa extends ConsumerWidget {
-  final String detailsPath;
-  final String detailPath2;
-  const AnaSayfa(
-      {super.key, required this.detailsPath, required this.detailPath2});
+  const AnaSayfa({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -58,16 +58,14 @@ class AnaSayfa extends ConsumerWidget {
                           textAlign: TextAlign.start),
                       const SizedBox(width: 190),
                       TextButton(
-                          onPressed: () => context.go(detailsPath),
-
-                          /*
+                          onPressed: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const YemekKiyasTumuPage()),
-                            );*/
-
+                            );
+                          },
                           style: TextButton.styleFrom(
                             primary: Colors.black, // Text Color
                           ),
@@ -218,6 +216,9 @@ class AnaSayfa extends ConsumerWidget {
                           ),
                         ),
                       ])),
+                  SizedBox(
+                    height: 60,
+                  ),
                   Row(
                     children: [
                       const SizedBox(width: 5),
@@ -240,6 +241,9 @@ class AnaSayfa extends ConsumerWidget {
                           ),
                           child: const Text("Tümü"))
                     ],
+                  ),
+                  SizedBox(
+                    height: 5,
                   ),
                   SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
