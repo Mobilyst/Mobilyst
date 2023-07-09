@@ -73,7 +73,7 @@ class _YemekKategorileriSayfasiState extends State<YemekKategorileriSayfasi> {
                     Icons.search,
                   ),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(40)),
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
                   ),
                 ),
               ),

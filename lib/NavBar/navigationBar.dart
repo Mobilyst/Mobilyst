@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 
 class ScaffoldWithNestedNavigation extends StatelessWidget {
   const ScaffoldWithNestedNavigation({
@@ -59,6 +60,8 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
           NavigationDestination(label: 'Hesabım', icon: Icon(Icons.person)),
         ],
         onDestinationSelected: onDestinationSelected,
+        backgroundColor: AppColors.uc,
+        indicatorColor: AppColors.iki,
       ),
     );
   }
@@ -86,7 +89,9 @@ class ScaffoldWithNavigationRail extends StatelessWidget {
             labelType: NavigationRailLabelType.all,
             destinations: const <NavigationRailDestination>[
               NavigationRailDestination(
-                label: Text('Ana Sayfa'),
+                label: Text(
+                  'Ana Sayfa',
+                ),
                 icon: Icon(Icons.home),
               ),
               NavigationRailDestination(

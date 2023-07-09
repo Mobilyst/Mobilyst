@@ -85,7 +85,7 @@ class _CesitlerEkraniState extends State<CesitlerEkrani> {
                     Icons.search,
                   ),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(40)),
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
                   ),
                 ),
               ),
@@ -107,16 +107,24 @@ class _CesitlerEkraniState extends State<CesitlerEkrani> {
           Expanded(
             child: ListView.builder(
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(newList[index].cesitAdi),
-                  trailing: const Icon(Icons.arrow_forward_ios),
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const MyYemekKategoriPage(),
-                      ),
-                    );
-                  },
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ListTile(
+                      title: Text(newList[index].cesitAdi),
+                      trailing: const Icon(Icons.arrow_forward_ios),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const MyYemekKategoriPage(),
+                          ),
+                        );
+                      },
+                    ),
+                    Divider(
+                      thickness: 2,
+                    )
+                  ],
                 );
               },
               itemCount: newList.length,

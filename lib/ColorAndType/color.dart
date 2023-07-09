@@ -1,20 +1,12 @@
-import 'dart:ui';
-import 'package:hexcolor/hexcolor.dart';
-import 'package:flutter/src/painting/text_style.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/material.dart';
 
-
-  Color bir = HexColor('FDEEDC');
-  Color iki = HexColor('FFD8A9');
-  Color uc = HexColor('F1A661');
-  Color dort = HexColor('E38B29');
-  Color bes = HexColor('BC1823');
-  Color alti = HexColor(' FF5757');
-  Color yedi = HexColor('F56D1C');
-  Color sekiz = HexColor('FFA500');
-
-
-TextStyle a =GoogleFonts.poppins(
-  fontSize: 18, fontWeight: FontWeight.w600, color: bir);
-TextStyle b =GoogleFonts.poppins(
-  fontSize: 18, fontWeight: FontWeight.w500, color: iki);
+class AppColors {
+  static const Color bir = Color.fromARGB(255, 248, 231, 220);
+  static const Color iki = Color.fromARGB(255, 237, 195, 169);
+  static const Color uc = Color.fromARGB(255, 246, 154, 97);
+  static const Color dort = Color.fromARGB(255, 225, 130, 41);
+  static const Color bes = Color.fromARGB(255, 212, 35, 35);
+  static const Color alti = Color.fromARGB(255, 252, 87, 87);
+  static const Color yedi = Color.fromARGB(255, 254, 115, 28);
+  static const Color sekiz = Color.fromARGB(255, 255, 149, 0);
+}

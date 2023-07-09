@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:mobilyst/Anasayfa/DetayliBilgiSayfasi.dart';
 import 'package:mobilyst/Anasayfa/KampanyalarSayfasi.dart';
 import 'package:mobilyst/food_comparison_screen/food_comparison_screen.dart';
+import 'package:mobilyst/screens.onboarding/constant.dart';
+import '../ColorAndType/color.dart';
 import 'KampanyaRepository.dart';
 
 class AnaSayfa extends ConsumerWidget {
@@ -19,7 +21,12 @@ class AnaSayfa extends ConsumerWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Ana Sayfa"),
+          title: const Text(
+            "Yemek Kılavuzu",
+            textAlign: TextAlign.center,
+          ),
+          centerTitle: true,
+          backgroundColor: AppColors.uc,
         ),
         body: SingleChildScrollView(
           child: Center(
@@ -34,19 +41,42 @@ class AnaSayfa extends ConsumerWidget {
                       hintText: 'Ara...',
                       // Add a clear button to the search bar
                       suffixIcon: IconButton(
-                        icon: Icon(Icons.clear),
+                        icon: Icon(
+                          Icons.clear,
+                          color: AppColors.yedi,
+                        ),
                         onPressed: () => searchController.clear(),
                       ),
                       // Add a search icon or button to the search bar
                       prefixIcon: IconButton(
-                        icon: Icon(Icons.search),
+                        icon: Icon(
+                          Icons.search,
+                          color: AppColors.yedi,
+                        ),
                         onPressed: () {
                           // Perform the search here
                         },
                       ),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        borderSide: BorderSide(
+                          color:
+                              Colors.grey, // Normal durumda kenar çizgi rengi
+                          width: 1.0,
+                        ),
                       ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        borderSide: BorderSide(
+                          color: Colors
+                              .grey, // Tiklandiktan sonra kenar çizgi rengi
+                          width: 2.0,
+                        ),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal:
+                              15), // Boyutunu küçültmek için padding ayarı
                     ),
                   ),
                   Row(
@@ -55,6 +85,10 @@ class AnaSayfa extends ConsumerWidget {
                       const Icon(Icons.fastfood),
                       const SizedBox(width: 5),
                       const Text("Öğünleri kıyasla",
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                          ),
                           textAlign: TextAlign.start),
                       const SizedBox(width: 190),
                       TextButton(
@@ -67,151 +101,220 @@ class AnaSayfa extends ConsumerWidget {
                             );
                           },
                           style: TextButton.styleFrom(
-                            primary: Colors.black, // Text Color
+                            foregroundColor: Colors.grey,
+                            textStyle: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                          child: const Text("Tümü"))
+                          child: const Text("Tümü")),
                     ],
+                  ),
+                  SizedBox(
+                    height: 1,
                   ),
                   SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(children: [
                         const SizedBox(width: 15),
-                        Material(
-                          elevation: 8,
-                          borderRadius: BorderRadius.circular(5),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: InkWell(
-                            splashColor: Colors.black26,
-                            onTap: () {},
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 10),
-                                Ink.image(
-                                  image: const NetworkImage(
-                                      'https://cdn.yeniakit.com.tr/images/news/940/hangi-sehirde-hangi-yemek-yenir-2h1580033203-e7124c.jpg'),
-                                  height: 150,
-                                  width: 150,
-                                  fit: BoxFit.cover,
-                                ),
-                                const SizedBox(height: 5),
-                                const Text(
-                                  'All',
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.black),
-                                )
-                              ],
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey, // Kenar çizgisi rengi
+                              width: 00.5, // Kenar çizgisi kalınlığı
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Material(
+                            elevation: 8,
+                            borderRadius: BorderRadius.circular(6),
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            child: InkWell(
+                              splashColor: AppColors.yedi,
+                              // splashColor: Colors.amber[900],
+                              onTap: () {},
+                              child: Column(
+                                children: [
+                                  const SizedBox(height: 15),
+                                  Ink.image(
+                                    image: const NetworkImage(
+                                        'https://cdn.yeniakit.com.tr/images/news/940/hangi-sehirde-hangi-yemek-yenir-2h1580033203-e7124c.jpg'),
+                                    height: 150,
+                                    width: 150,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  const SizedBox(height: 5),
+                                  const Text(
+                                    'All',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: Colors.black),
+                                  ),
+                                  const SizedBox(height: 5),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                         const SizedBox(width: 15),
-                        Material(
-                          elevation: 8,
-                          borderRadius: BorderRadius.circular(5),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: InkWell(
-                            splashColor: Colors.black26,
-                            onTap: () {},
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 6),
-                                Ink.image(
-                                  image: const NetworkImage(
-                                      'https://potatorolls.com/wp-content/uploads/Lumberjack-Breakfast3-686x640.jpg'),
-                                  height: 150,
-                                  width: 150,
-                                  fit: BoxFit.cover,
-                                ),
-                                const SizedBox(height: 10),
-                                const Text(
-                                  'Breakfast',
-                                  style: TextStyle(
-                                      fontSize: 32, color: Colors.black),
-                                )
-                              ],
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey, // Kenar çizgisi rengi
+                              width: 00.5, // Kenar çizgisi kalınlığı
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Material(
+                            elevation: 8,
+                            borderRadius: BorderRadius.circular(6),
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            child: InkWell(
+                              splashColor: AppColors.yedi,
+                              onTap: () {},
+                              child: Column(
+                                children: [
+                                  const SizedBox(height: 15),
+                                  Ink.image(
+                                    image: const NetworkImage(
+                                        'https://potatorolls.com/wp-content/uploads/Lumberjack-Breakfast3-686x640.jpg'),
+                                    height: 150,
+                                    width: 150,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  const SizedBox(height: 5),
+                                  const Text(
+                                    'Breakfast',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: Colors.black),
+                                  ),
+                                  const SizedBox(height: 5),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                         const SizedBox(width: 15),
-                        Material(
-                          elevation: 8,
-                          borderRadius: BorderRadius.circular(5),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: InkWell(
-                            splashColor: Colors.black26,
-                            onTap: () {},
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 6),
-                                Ink.image(
-                                  image: const NetworkImage(
-                                      'https://images.deliveryhero.io/image/fd-tr/LH/kowe-hero.jpg'),
-                                  height: 150,
-                                  width: 150,
-                                  fit: BoxFit.cover,
-                                ),
-                                const SizedBox(height: 10),
-                                const Text(
-                                  'Fast Food',
-                                  style: TextStyle(
-                                      fontSize: 32, color: Colors.black),
-                                )
-                              ],
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey, // Kenar çizgisi rengi
+                              width: 00.5, // Kenar çizgisi kalınlığı
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Material(
+                            elevation: 8,
+                            borderRadius: BorderRadius.circular(6),
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            child: InkWell(
+                              splashColor: AppColors.yedi,
+                              onTap: () {},
+                              child: Column(
+                                children: [
+                                  const SizedBox(height: 15),
+                                  Ink.image(
+                                    image: const NetworkImage(
+                                        'https://images.deliveryhero.io/image/fd-tr/LH/kowe-hero.jpg'),
+                                    height: 150,
+                                    width: 150,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  const SizedBox(height: 5),
+                                  const Text(
+                                    'Fast Food',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: Colors.black),
+                                  ),
+                                  const SizedBox(height: 5),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                         const SizedBox(width: 15),
-                        Material(
-                          elevation: 8,
-                          borderRadius: BorderRadius.circular(5),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: InkWell(
-                            splashColor: Colors.black26,
-                            onTap: () {},
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 6),
-                                Ink.image(
-                                  image: const NetworkImage(
-                                      'https://images.deliveryhero.io/image/fd-tr/LH/cx3m-hero.jpg'),
-                                  height: 150,
-                                  width: 150,
-                                  fit: BoxFit.cover,
-                                ),
-                                const SizedBox(height: 10),
-                                const Text(
-                                  'Traditional',
-                                  style: TextStyle(
-                                      fontSize: 32, color: Colors.black),
-                                )
-                              ],
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey, // Kenar çizgisi rengi
+                              width: 00.5, // Kenar çizgisi kalınlığı
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Material(
+                            elevation: 8,
+                            borderRadius: BorderRadius.circular(6),
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            child: InkWell(
+                              splashColor: AppColors.yedi,
+                              onTap: () {},
+                              child: Column(
+                                children: [
+                                  const SizedBox(height: 15),
+                                  Ink.image(
+                                    image: const NetworkImage(
+                                        'https://images.deliveryhero.io/image/fd-tr/LH/cx3m-hero.jpg'),
+                                    height: 150,
+                                    width: 150,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  const SizedBox(height: 5),
+                                  const Text(
+                                    'Traditional',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: Colors.black),
+                                  ),
+                                  const SizedBox(height: 5),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                         const SizedBox(width: 15),
-                        Material(
-                          elevation: 8,
-                          borderRadius: BorderRadius.circular(5),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: InkWell(
-                            splashColor: Colors.black26,
-                            onTap: () {},
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 10),
-                                Ink.image(
-                                  image: const NetworkImage(
-                                      'https://images.immediate.co.uk/production/volatile/sites/2/2021/11/Croquembouche-profiterole-tower-ceb1da8.jpg?quality=90&resize=556,505'),
-                                  height: 150,
-                                  width: 150,
-                                  fit: BoxFit.cover,
-                                ),
-                                const SizedBox(height: 10),
-                                const Text(
-                                  'Desserts',
-                                  style: TextStyle(
-                                      fontSize: 32, color: Colors.black),
-                                )
-                              ],
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey, // Kenar çizgisi rengi
+                              width: 00.5, // Kenar çizgisi kalınlığı
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Material(
+                            elevation: 8,
+                            borderRadius: BorderRadius.circular(6),
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            child: InkWell(
+                              splashColor: AppColors.yedi,
+                              onTap: () {},
+                              child: Column(
+                                children: [
+                                  const SizedBox(height: 15),
+                                  Ink.image(
+                                    image: const NetworkImage(
+                                        'https://images.immediate.co.uk/production/volatile/sites/2/2021/11/Croquembouche-profiterole-tower-ceb1da8.jpg?quality=90&resize=556,505'),
+                                    height: 150,
+                                    width: 150,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  const SizedBox(height: 5),
+                                  const Text(
+                                    'Desserts',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: Colors.black),
+                                  ),
+                                  const SizedBox(height: 5),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -225,31 +328,48 @@ class AnaSayfa extends ConsumerWidget {
                       const Icon(Icons.card_giftcard),
                       const SizedBox(width: 5),
                       const Text("Öne çıkan kampanyalar",
-                          textAlign: TextAlign.start),
-                      const SizedBox(width: 140),
-                      TextButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const KampanyalarSayfasi(),
-                              ),
-                            );
-                          },
-                          style: TextButton.styleFrom(
-                            primary: Colors.black, // Text Color
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
                           ),
-                          child: const Text("Tümü"))
+                          textAlign: TextAlign.start),
+                      const SizedBox(width: 130),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const KampanyalarSayfasi(),
+                            ),
+                          );
+                        },
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.grey,
+                          textStyle: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        child: const Text(
+                          "Tümü",
+                        ),
+                      ),
                     ],
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 1,
                   ),
                   SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(children: [
-                        const SizedBox(width: 15),
-                        Material(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(children: [
+                      const SizedBox(width: 15),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey, // Kenar çizgisi rengi
+                            width: 1, // Kenar çizgisi kalınlığı
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Material(
                           elevation: 8,
                           borderRadius: BorderRadius.circular(5),
                           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -266,10 +386,13 @@ class AnaSayfa extends ConsumerWidget {
                                   width: 160,
                                   fit: BoxFit.cover,
                                 ),
-                                const SizedBox(height: 10),
+                                const SizedBox(height: 5),
                                 Text(
                                   kampanyaRepository.urunler[0].urunAdi,
-                                  style: const TextStyle(color: Colors.black),
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                                 TextButton(
                                     onPressed: () {
@@ -280,51 +403,80 @@ class AnaSayfa extends ConsumerWidget {
                                         ),
                                       );
                                     },
-                                    child:
-                                        Text("Detaylı bilgi için tıklayınız"))
+                                    child: Text(
+                                      "Detaylı bilgi için tıklayınız",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.yedi),
+                                    )),
+                                const SizedBox(height: 5),
                               ],
                             ),
                           ),
                         ),
-                        const SizedBox(width: 15),
-                        Material(
-                          elevation: 8,
-                          borderRadius: BorderRadius.circular(5),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: InkWell(
-                            splashColor: Colors.black26,
-                            onTap: () {},
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 10),
-                                Ink.image(
-                                  image: NetworkImage(
-                                      "${kampanyaRepository.urunler[1].urunFotoAddress}"),
-                                  height: 200,
-                                  width: 160,
-                                  fit: BoxFit.cover,
+                      ),
+                      Row(
+                        children: [
+                          const SizedBox(width: 15),
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.grey, // Kenar çizgisi rengi
+                                width: 1, // Kenar çizgisi kalınlığı
+                              ),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Material(
+                              elevation: 8,
+                              borderRadius: BorderRadius.circular(5),
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              child: InkWell(
+                                splashColor: Colors.black26,
+                                onTap: () {},
+                                child: Column(
+                                  children: [
+                                    const SizedBox(height: 10),
+                                    Ink.image(
+                                      image: NetworkImage(
+                                          "${kampanyaRepository.urunler[1].urunFotoAddress}"),
+                                      height: 200,
+                                      width: 160,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Text(
+                                      kampanyaRepository.urunler[1].urunAdi,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const DetayliBilgiSayfasi(
+                                                      id: 1),
+                                            ),
+                                          );
+                                        },
+                                        child: Text(
+                                          "Detaylı bilgi için tıklayınız",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: AppColors.yedi),
+                                        )),
+                                    const SizedBox(height: 5),
+                                  ],
                                 ),
-                                const SizedBox(height: 10),
-                                Text(
-                                  kampanyaRepository.urunler[1].urunAdi,
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const DetayliBilgiSayfasi(id: 1),
-                                        ),
-                                      );
-                                    },
-                                    child:
-                                        Text("Detaylı bilgi için tıklayınız."))
-                              ],
+                              ),
                             ),
                           ),
-                        ),
-                      ])),
+                        ],
+                      ),
+                    ]),
+                  ),
                 ]),
           ),
         ));
