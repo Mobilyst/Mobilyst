@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/cesitlerEkrani.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/verilerRepository.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/yemekKategori.dart';
 
-class YemekKategorileriSayfasi extends StatefulWidget {
+class YemekKategorileriSayfasi extends ConsumerStatefulWidget {
   final String detailsPath;
 
-  const YemekKategorileriSayfasi({Key? key, required this.detailsPath})
-      : super(key: key);
+  const YemekKategorileriSayfasi({super.key, required this.detailsPath});
 
   @override
-  _YemekKategorileriSayfasiState createState() =>
-      _YemekKategorileriSayfasiState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>_YemekKategorileriSayfasiState();
 }
 
-class _YemekKategorileriSayfasiState extends State<YemekKategorileriSayfasi> {
+class _YemekKategorileriSayfasiState extends ConsumerState<YemekKategorileriSayfasi> {
   TextEditingController editingController = TextEditingController();
 
   List<YemekKategorisi> newList = [];
+  List<YemekKategorisi> kategoriler = [];
 
   @override
   void initState() {
     super.initState();
-    newList.addAll(VerilerRepository().kategoriler);
+    kategoriler = ref.read(verilerRepositoryProvider).kategorileriGetir();
+    newList.addAll(kategoriler);
   }
 
   @override
@@ -35,20 +36,19 @@ class _YemekKategorileriSayfasiState extends State<YemekKategorileriSayfasi> {
   void kategoriAra(String text) {
     if (text.isEmpty) {
       newList.clear();
-      VerilerRepository().kategoriler.forEach((element) {
+      kategoriler.forEach((element) {
         newList.add(element);
       });
       setState(() {});
       return;
     }
     newList.clear();
-    for (var i = 0; i < VerilerRepository().kategoriler.length; i++) {
-      if (VerilerRepository()
-          .kategoriler[i]
+    for (var i = 0; i < kategoriler.length; i++) {
+      if (kategoriler[i]
           .kategoriAdi
           .toLowerCase()
           .contains(text.toLowerCase())) {
-        newList.add(VerilerRepository().kategoriler[i]);
+        newList.add(kategoriler[i]);
       }
     }
     setState(() {});
