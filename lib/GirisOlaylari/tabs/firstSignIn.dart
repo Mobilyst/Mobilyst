@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/textfield/testField.dart';
 
@@ -48,9 +49,7 @@ class _SignInPageState extends State<SignInPage> {
           return AlertDialog(
             title: Text(
               'Hata',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
             ),
             content: Text(
               'Lütfen tüm alanları doldurun.',
@@ -68,6 +67,8 @@ class _SignInPageState extends State<SignInPage> {
                 child: Text(
                   "Tamam",
                   style: TextStyle(
+                    fontSize: 16,
+                    color: AppColors.uc,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -131,9 +132,7 @@ class _SignInPageState extends State<SignInPage> {
         builder: (context) => AlertDialog(
           title: Text(
             'Hata',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
           ),
           content: Text(errorMessage),
           actions: [
@@ -145,6 +144,8 @@ class _SignInPageState extends State<SignInPage> {
               child: Text(
                 "Tamam",
                 style: TextStyle(
+                  fontSize: 16,
+                  color: AppColors.uc,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -161,8 +162,22 @@ class _SignInPageState extends State<SignInPage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const SizedBox(
-              height: 88,
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'lib/images/logo.gif',
+                  fit: BoxFit.cover,
+                  width: 150,
+                  height: 150,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -173,7 +188,7 @@ class _SignInPageState extends State<SignInPage> {
                   child: Text(
                     'E-posta',
                     style: TextStyle(
-                      fontSize: 15, // Metin boyutunu 18 olarak ayarlar
+                      fontSize: 16, // Metin boyutunu 18 olarak ayarlar
                       fontWeight: FontWeight.normal, // Metni kalınlaştırır
                     ),
                   ),
@@ -205,7 +220,7 @@ class _SignInPageState extends State<SignInPage> {
                   child: Text(
                     'Şifre',
                     style: TextStyle(
-                      fontSize: 15, // Metin boyutunu 18 olarak ayarlar
+                      fontSize: 16, // Metin boyutunu 18 olarak ayarlar
                       fontWeight: FontWeight.normal, // Metni kalınlaştırır
                     ),
                   ),
@@ -244,7 +259,7 @@ class _SignInPageState extends State<SignInPage> {
                     child: const Text(
                       'Şifremi Unuttum',
                       style: TextStyle(
-                        color: Colors.blue,
+                        color: AppColors.iki,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -287,7 +302,7 @@ class _SignInPageState extends State<SignInPage> {
                   child: const Text(
                     'Üye ol',
                     style: TextStyle(
-                      color: Colors.blue,
+                      color: AppColors.iki,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

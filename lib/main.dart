@@ -2,23 +2,21 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/NavBar/goRouter.dart';
 import 'firebase_options.dart';
-
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
- 
+
   usePathUrlStrategy();
   runApp(ProviderScope(child: const MyApp()));
 }
 
-void usePathUrlStrategy() {
-}
+void usePathUrlStrategy() {}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -26,16 +24,30 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-       routerConfig: goRouter,
+      routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: GoogleFonts.montserratTextTheme(
           Theme.of(context).textTheme,
         ),
-        primarySwatch: Colors.blue,
+        primarySwatch: MaterialColor(
+          AppColors.iki.value, // AppColors.iki renginin değerini kullanın
+          <int, Color>{
+            50: AppColors.iki.withOpacity(0.1),
+            100: AppColors.iki.withOpacity(0.2),
+            200: AppColors.iki.withOpacity(0.3),
+            300: AppColors.iki.withOpacity(0.4),
+            400: AppColors.iki.withOpacity(0.5),
+            500: AppColors.iki.withOpacity(0.6),
+            600: AppColors.iki.withOpacity(0.7),
+            700: AppColors.iki.withOpacity(0.8),
+            800: AppColors.iki.withOpacity(0.9),
+            900: AppColors.iki.withOpacity(1),
+          },
+        ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-     // home: OnboardingScreenOne(),
+      // home: OnboardingScreenOne(),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 
 class MyTextField extends StatelessWidget {
   final controller; //??
@@ -23,14 +24,15 @@ class MyTextField extends StatelessWidget {
           obscureText: obscureText,
           decoration: InputDecoration(
             focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade900),
+              borderSide: BorderSide(color: AppColors.alti),
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade900),
+              borderSide: BorderSide(color: Colors.grey.shade500),
             ),
             fillColor: Colors.grey.shade200,
             filled: true,
             hintText: hintText,
+            
             hintStyle: TextStyle(color: Colors.grey[500]),
           ),
         ),
@@ -38,3 +40,4 @@ class MyTextField extends StatelessWidget {
     );
   }
 }
+

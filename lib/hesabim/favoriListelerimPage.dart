@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 
 class FavoriListPage extends StatelessWidget {
   const FavoriListPage({super.key});
@@ -7,12 +8,15 @@ class FavoriListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Favori Listelerim',
+        title: const Text(
+          "Favori Listelerim",
+          style: TextStyle(
+            color: AppColors.bir,
+          ),
           textAlign: TextAlign.center,
         ),
         centerTitle: true,
-        backgroundColor: Colors.black12,
+        backgroundColor: AppColors.uc,
       ),
     );
   }

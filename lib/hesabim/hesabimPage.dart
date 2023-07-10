@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/GirisOlaylari/girisPage.dart';
 import 'package:mobilyst/Hesabim/FavoriListelerimPage.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/hesapBilgilerimPage.dart';
@@ -44,11 +45,14 @@ class _HesabimPageState extends State<HesabimPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Hesabım ', //${_tabController.index + 1}
+          "Hesabım",
+          style: TextStyle(
+            color: AppColors.bir,
+          ),
           textAlign: TextAlign.center,
         ),
         centerTitle: true,
-        backgroundColor: Colors.black12,
+        backgroundColor: AppColors.uc,
       ),
       body: SafeArea(
         child: ListView(children: [

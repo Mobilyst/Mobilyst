@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/firstSignIn.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/secondSignUp.dart';
-
 
 class GirisPage extends StatefulWidget {
   final String detailsPath;
@@ -33,22 +33,27 @@ class _GirisPageState extends State<GirisPage>
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Hesabım ', //${_tabController.index + 1}
+          title: const Text(
+            "Hesabım",
+            style: TextStyle(
+              color: AppColors.bir,
+            ),
             textAlign: TextAlign.center,
           ),
           centerTitle: true,
-          backgroundColor: Colors.black12,
+          backgroundColor: AppColors.uc,
         ),
         body: Column(children: [
           //hata olursa buraya bak const ekledin
           TabBar(
               controller: _tabController,
-              labelColor: Colors.black, //secili olan tabin rengi
-              unselectedLabelColor: Colors.grey, // secili olmayan tabin rengi
+              labelColor: AppColors.yedi, //secili olan tabin rengi
+              unselectedLabelColor: AppColors.iki,// secili olmayan tabin rengi
+              indicatorColor: AppColors.alti, // secili cizgi
               tabs: const [
                 Tab(
                   text: 'Giriş Yap',
+                  
                 ),
                 Tab(
                   text: 'Üye Ol',

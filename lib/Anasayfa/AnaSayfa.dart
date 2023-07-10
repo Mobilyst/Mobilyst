@@ -375,6 +375,7 @@ class AnaSayfa extends ConsumerWidget {
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: Material(
+                          // color: AppColors.bir,
                           elevation: 8,
                           borderRadius: BorderRadius.circular(5),
                           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -432,6 +433,7 @@ class AnaSayfa extends ConsumerWidget {
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Material(
+                              //color: AppColors.bir,
                               elevation: 8,
                               borderRadius: BorderRadius.circular(5),
                               clipBehavior: Clip.antiAliasWithSaveLayer,

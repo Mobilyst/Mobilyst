@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/kullaniciBilgileriPage.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/sifreDegisikligiPage.dart';
 
@@ -9,12 +10,15 @@ class HesapBilgileriPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          ' Hesap Bilgilerim',
+        title: const Text(
+          "Hesap Bilgilerim",
+          style: TextStyle(
+            color: AppColors.bir,
+          ),
           textAlign: TextAlign.center,
         ),
         centerTitle: true,
-        backgroundColor: Colors.black12,
+        backgroundColor: AppColors.uc,
       ),
       body: SafeArea(
           child: ListView(
