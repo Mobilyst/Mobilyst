@@ -1,44 +1,38 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/yemekKategori.dart';
 
-class VerilerRepository extends ChangeNotifier{
-
+class VerilerRepository extends ChangeNotifier {
   List<YemekKategorisi> kategoriler = [
     YemekKategorisi(
         kategoriAdi: 'Pizza',
         kategoriResimUrl:
-        'https://cdn-icons-png.flaticon.com/128/1404/1404945.png'),
+            'https://cdn-icons-png.flaticon.com/128/1404/1404945.png'),
     YemekKategorisi(
         kategoriAdi: 'Hamburger',
         kategoriResimUrl:
-        'https://cdn-icons-png.flaticon.com/128/3075/3075929.png')
+            'https://cdn-icons-png.flaticon.com/128/3075/3075929.png')
   ];
 
-  List<YemekCesiti>cesitler=[
+  List<YemekCesiti> cesitler = [
     YemekCesiti(kategoriAdi: 'Pizza', cesitAdi: 'Salamlı Pizza'),
     YemekCesiti(kategoriAdi: 'Pizza', cesitAdi: 'Peynirli Pizza')
-
-
   ];
 
-  List<YemekCesiti> cesitleriGetir(){
+  List<YemekCesiti> cesitleriGetir() {
     List<YemekCesiti> result = [];
 
-    for(var cesit in cesitler){
+    for (var cesit in cesitler) {
       result.add(cesit);
     }
 
     return result;
   }
 
-  List<YemekKategorisi> kategorileriGetir(){
+  List<YemekKategorisi> kategorileriGetir() {
     List<YemekKategorisi> result = [];
 
-    for(var kategori in kategoriler){
+    for (var kategori in kategoriler) {
       result.add(kategori);
     }
 
@@ -46,4 +40,5 @@ class VerilerRepository extends ChangeNotifier{
   }
 }
 
-final verilerRepositoryProvider = ChangeNotifierProvider((ref) => VerilerRepository());
+final verilerRepositoryProvider =
+    ChangeNotifierProvider((ref) => VerilerRepository());
