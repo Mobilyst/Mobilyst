@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/textfield/testField.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 
 class SifreDegisikligiPage extends StatefulWidget {
   SifreDegisikligiPage({super.key});
@@ -46,9 +46,7 @@ class _SifreDegisikligiPageState extends State<SifreDegisikligiPage> {
             return AlertDialog(
               title: Text(
                 'Hata',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
               content: Text(
                 'Lütfen tüm alanları doldurun.',
@@ -62,6 +60,8 @@ class _SifreDegisikligiPageState extends State<SifreDegisikligiPage> {
                   child: Text(
                     "Tamam",
                     style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.uc,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -83,11 +83,21 @@ class _SifreDegisikligiPageState extends State<SifreDegisikligiPage> {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: Text('Şifre Değiştirildi'),
+              title: Text(
+                'Şifre Değiştirildi',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              ),
               content: Text('Şifreniz başarıyla değiştirildi.'),
               actions: [
                 TextButton(
-                  child: Text('Tamam'),
+                  child: Text(
+                    "Tamam",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.uc,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   onPressed: () {
                     _currentPasswordController.clear();
                     _newPasswordController.clear();
@@ -126,9 +136,7 @@ class _SifreDegisikligiPageState extends State<SifreDegisikligiPage> {
             builder: (context) => AlertDialog(
               title: Text(
                 'Hata',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
               content: Text(errorMessage),
               actions: [
@@ -140,6 +148,8 @@ class _SifreDegisikligiPageState extends State<SifreDegisikligiPage> {
                   child: Text(
                     "Tamam",
                     style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.uc,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -156,9 +166,7 @@ class _SifreDegisikligiPageState extends State<SifreDegisikligiPage> {
             return AlertDialog(
               title: Text(
                 'Hata',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
               content: Text(
                 "Şifreler aynı değil, lütfen kontrol ediniz.",
@@ -172,6 +180,8 @@ class _SifreDegisikligiPageState extends State<SifreDegisikligiPage> {
                   child: Text(
                     "Tamam",
                     style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.uc,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -188,12 +198,15 @@ class _SifreDegisikligiPageState extends State<SifreDegisikligiPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          ' Şifre Değişikliği',
+        title: const Text(
+          "Şifre Değişikliği",
+          style: TextStyle(
+            color: AppColors.bir,
+          ),
           textAlign: TextAlign.center,
         ),
         centerTitle: true,
-        backgroundColor: Colors.black12,
+        backgroundColor: AppColors.uc,
       ),
       body: SafeArea(
           child: SingleChildScrollView(
@@ -233,7 +246,7 @@ class _SifreDegisikligiPageState extends State<SifreDegisikligiPage> {
             ),
 
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
 
             Row(
@@ -264,7 +277,7 @@ class _SifreDegisikligiPageState extends State<SifreDegisikligiPage> {
             ),
 
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
 
             Row(
@@ -296,7 +309,7 @@ class _SifreDegisikligiPageState extends State<SifreDegisikligiPage> {
             ),
 
             const SizedBox(
-              height: 30,
+              height: 25,
             ),
 
             //kayit olma button

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 
 class TarihSelectPage extends StatefulWidget {
   final Function(DateTime)? onDateSelected;
@@ -97,15 +98,16 @@ class _TarihSelectPageState extends State<TarihSelectPage> {
               decoration: InputDecoration(
                 hintText: 'Tarih seçiniz',
                 focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey.shade900),
+                  borderSide: BorderSide(color: AppColors.alti),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey.shade900),
+                  borderSide: BorderSide(color: Colors.grey.shade500),
                 ),
                 fillColor: Colors.grey.shade200,
                 filled: true,
                 hintStyle: TextStyle(color: Colors.grey[500]),
-                prefixIcon: const Icon(Icons.calendar_today),
+                prefixIcon:
+                    const Icon(Icons.calendar_today, color: AppColors.dort),
               ),
               controller: TextEditingController(
                 text: DateFormat('dd-MM-yyyy').format(_selectedDateTime),

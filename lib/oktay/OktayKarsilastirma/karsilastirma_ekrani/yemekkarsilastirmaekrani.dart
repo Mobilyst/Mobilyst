@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobilyst/ColorAndType/color.dart';
-import 'package:mobilyst/ozge/karsilastirma_ekrani/magazaRepository.dart';
-import 'package:mobilyst/ozge/karsilastirma_ekrani/magazasayfasi.dart';
+import 'package:mobilyst/oktay/OktayKarsilastirma/karsilastirma_ekrani/magazaRepository.dart';
+import 'package:mobilyst/oktay/OktayKarsilastirma/karsilastirma_ekrani/magazasayfasi.dart';
 
 class FoodComparisonScreen extends ConsumerStatefulWidget {
   FoodComparisonScreen({Key? key}) : super(key: key);

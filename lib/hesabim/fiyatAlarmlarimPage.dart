@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 
 class FiyatAlarmPage extends StatelessWidget {
   const FiyatAlarmPage({super.key});
@@ -7,12 +8,15 @@ class FiyatAlarmPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Fiyat Alarmlarım',
+        title: const Text(
+          "Fiyat Alarmlarım",
+          style: TextStyle(
+            color: AppColors.bir,
+          ),
           textAlign: TextAlign.center,
         ),
         centerTitle: true,
-        backgroundColor: Colors.black12,
+        backgroundColor: AppColors.uc,
       ),
     );
   }

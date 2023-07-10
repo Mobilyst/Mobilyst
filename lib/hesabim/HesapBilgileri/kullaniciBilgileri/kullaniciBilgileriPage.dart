@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/kullaniciB.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/kullaniciBilgileriRepositort.dart';
@@ -62,9 +63,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
         return AlertDialog(
           title: Text(
             'Başarılı',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
           ),
           content: Text(
             'Değişiklik başarıyla kayıt edildi.',
@@ -76,12 +75,14 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
                 Navigator.pop(context);
                 context.go('/hesabim/hesapbilgi');
               },
-              child: Text(
-                'Tamam',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+               child: Text(
+                  "Tamam",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: AppColors.uc,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
             ),
           ],
         );
@@ -179,12 +180,15 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            ' Kullanıcı Bilgilerim',
+          title: const Text(
+            "Kullanıcı Bilgilerim",
+            style: TextStyle(
+              color: AppColors.bir,
+            ),
             textAlign: TextAlign.center,
           ),
           centerTitle: true,
-          backgroundColor: Colors.black12,
+          backgroundColor: AppColors.uc,
         ),
         body: SafeArea(
           child: SingleChildScrollView(
@@ -329,13 +333,17 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
                             child: const Text('Kadın'),
                           ),
                         ],
+                        itemHeight: 50, // Açılan menü öğelerinin yüksekliği
+                        isExpanded:
+                            true, // Açılan menünün alt tarafta genişlemesini sağlar
+
                         decoration: InputDecoration(
                           hintText: 'Cinsiyet seçiniz',
                           focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey.shade900),
+                            borderSide: BorderSide(color: AppColors.alti),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey.shade900),
+                            borderSide: BorderSide(color: Colors.grey.shade500),
                           ),
                           fillColor: Colors.grey.shade200,
                           filled: true,
@@ -433,12 +441,11 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
                           decoration: InputDecoration(
                             hintText: 'İl seçiniz',
                             focusedBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey.shade900),
+                              borderSide: BorderSide(color: AppColors.alti),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderSide:
-                                  BorderSide(color: Colors.grey.shade900),
+                                  BorderSide(color: Colors.grey.shade500),
                             ),
                             fillColor: Colors.grey.shade200,
                             filled: true,
@@ -484,10 +491,10 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
                     decoration: InputDecoration(
                       hintText: 'Adresinizi giriniz',
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey.shade900),
+                        borderSide: BorderSide(color: AppColors.alti),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey.shade900),
+                        borderSide: BorderSide(color: Colors.grey.shade500),
                       ),
                       fillColor: Colors.grey.shade200,
                       filled: true,

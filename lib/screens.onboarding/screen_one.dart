@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/screens.onboarding/components/slanding_clipper.dart';
 import 'package:mobilyst/screens.onboarding/constant.dart';
 import 'screen-three.dart';
@@ -28,7 +29,7 @@ class OnboardingScreenOne extends StatelessWidget {
                   clipper: SlandingClipper(),
                   child: Container(
                     height: size.height * 0.4,
-                    color: Colors.yellow,
+                    color: AppColors.uc,
                   ),
                 )
               ],

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:line_icons/line_icon.dart';
+import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/textfield/testField.dart';
 
@@ -30,9 +31,7 @@ class _MyForgetPasswordPageState extends State<MyForgetPasswordPage> {
           return AlertDialog(
             title: Text(
               'Hata',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
             ),
             content: Text(
               'Lütfen tüm alanları doldurun.',
@@ -46,6 +45,8 @@ class _MyForgetPasswordPageState extends State<MyForgetPasswordPage> {
                 child: Text(
                   "Tamam",
                   style: TextStyle(
+                    fontSize: 16,
+                    color: AppColors.uc,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -70,9 +71,7 @@ class _MyForgetPasswordPageState extends State<MyForgetPasswordPage> {
             icon: LineIcon(Icons.email_rounded),
             title: Text(
               "Şifre Yenileme",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
             content: Text(
                 " $email adresine şifre yenileme linkiniz gönderildi.",
@@ -80,12 +79,13 @@ class _MyForgetPasswordPageState extends State<MyForgetPasswordPage> {
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
                   context.go('/hesabim'); // İletişim kutusunu kapat
                 },
                 child: Text(
                   "Tamam",
                   style: TextStyle(
+                    fontSize: 16,
+                    color: AppColors.uc,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -115,9 +115,7 @@ class _MyForgetPasswordPageState extends State<MyForgetPasswordPage> {
         builder: (context) => AlertDialog(
           title: Text(
             'Hata',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
           ),
           content: Text(errorMessage),
           actions: [
@@ -129,6 +127,8 @@ class _MyForgetPasswordPageState extends State<MyForgetPasswordPage> {
               child: Text(
                 "Tamam",
                 style: TextStyle(
+                  fontSize: 16,
+                  color: AppColors.uc,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -143,12 +143,15 @@ class _MyForgetPasswordPageState extends State<MyForgetPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Şifremi Unuttum',
+        title: const Text(
+          "Şifremi Unuttum",
+          style: TextStyle(
+            color: AppColors.bir,
+          ),
           textAlign: TextAlign.center,
         ),
         centerTitle: true,
-        backgroundColor: Colors.black12,
+        backgroundColor: AppColors.uc,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -166,7 +169,7 @@ class _MyForgetPasswordPageState extends State<MyForgetPasswordPage> {
                   child: Text(
                     'E-posta',
                     style: TextStyle(
-                      fontSize: 15, // Metin boyutunu 18 olarak ayarlar
+                      fontSize: 16, // Metin boyutunu 18 olarak ayarlar
                       fontWeight: FontWeight.normal, // Metni kalınlaştırır
                     ),
                   ),
