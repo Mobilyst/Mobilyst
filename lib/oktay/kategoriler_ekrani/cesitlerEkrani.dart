@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/verilerRepository.dart';
 
 import 'package:mobilyst/oktay/kategoriler_ekrani/yemekKategori.dart';
@@ -6,16 +7,16 @@ import 'package:mobilyst/oktay/yemek_ekrani/yemekEkrani.dart';
 
 import '../../ColorAndType/color.dart';
 
-class CesitlerEkrani extends StatefulWidget {
+class CesitlerEkrani extends ConsumerStatefulWidget {
   const CesitlerEkrani({super.key, required this.kategori});
 
   final YemekKategorisi kategori;
 
   @override
-  State<CesitlerEkrani> createState() => _CesitlerEkraniState();
+  ConsumerState<CesitlerEkrani> createState() => _CesitlerEkraniState();
 }
 
-class _CesitlerEkraniState extends State<CesitlerEkrani> {
+class _CesitlerEkraniState extends ConsumerState<CesitlerEkrani> {
   List<YemekCesiti> newList = [];
   List<YemekCesiti> cesitler = [];
   TextEditingController editingController = TextEditingController();
@@ -24,13 +25,10 @@ class _CesitlerEkraniState extends State<CesitlerEkrani> {
   void initState() {
     super.initState();
 
-    for (var i = 0; i < VerilerRepository().cesitler.length; i++) {
-      if (VerilerRepository().cesitler[i].kategoriAdi ==
-          widget.kategori.kategoriAdi) {
-        cesitler.add(VerilerRepository().cesitler[i]);
-      }
-    }
-    newList.addAll(cesitler);
+    setState(() {
+      cesitler = ref.read(verilerRepositoryProvider).cesitleriGetir();
+      newList.addAll(cesitler);
+    });
   }
 
   void kategoriAra(String text) {
@@ -59,6 +57,7 @@ class _CesitlerEkraniState extends State<CesitlerEkrani> {
 
   @override
   Widget build(BuildContext context) {
+    //final verilerRepository = ref.watch(verilerRepositoryProvider);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),

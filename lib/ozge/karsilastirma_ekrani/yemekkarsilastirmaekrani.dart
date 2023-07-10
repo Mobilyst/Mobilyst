@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobilyst/ColorAndType/color.dart';
+import 'package:mobilyst/ozge/karsilastirma_ekrani/magazaRepository.dart';
 import 'package:mobilyst/ozge/karsilastirma_ekrani/magazasayfasi.dart';
 
-class FoodComparisonScreen extends StatefulWidget {
+class FoodComparisonScreen extends ConsumerStatefulWidget {
   FoodComparisonScreen({Key? key}) : super(key: key);
 
   @override
   _FoodComparisonScreenState createState() => _FoodComparisonScreenState();
 }
 
-class _FoodComparisonScreenState extends State<FoodComparisonScreen> {
+class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
   bool isFavorite = false;
 
   void toggleFavorite() {
@@ -20,6 +22,7 @@ class _FoodComparisonScreenState extends State<FoodComparisonScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final magazaRepository = ref.watch(magazaRepositoryProvider);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -106,7 +109,7 @@ class _FoodComparisonScreenState extends State<FoodComparisonScreen> {
                   const SizedBox(width: 10),
                   ElevatedButton.icon(
                     onPressed: () {
-                      final cheapestStoreName = getCheapestStoreName();
+                      final cheapestStoreName = ref.read(magazaRepositoryProvider).getCheapestStoreName();
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -130,8 +133,8 @@ class _FoodComparisonScreenState extends State<FoodComparisonScreen> {
             ListView(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              children: storeNames.map((storeName) {
-                final storePrice = storePrices[storeName];
+              children: magazaRepository.storeNames.map((storeName) {
+                final storePrice =magazaRepository.storePrices[storeName];
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   child: Container(

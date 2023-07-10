@@ -1,9 +1,12 @@
 
 
 
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/yemekKategori.dart';
 
-class VerilerRepository {
+class VerilerRepository extends ChangeNotifier{
+
   List<YemekKategorisi> kategoriler = [
     YemekKategorisi(
         kategoriAdi: 'Pizza',
@@ -22,4 +25,25 @@ class VerilerRepository {
 
   ];
 
+  List<YemekCesiti> cesitleriGetir(){
+    List<YemekCesiti> result = [];
+
+    for(var cesit in cesitler){
+      result.add(cesit);
+    }
+
+    return result;
+  }
+
+  List<YemekKategorisi> kategorileriGetir(){
+    List<YemekKategorisi> result = [];
+
+    for(var kategori in kategoriler){
+      result.add(kategori);
+    }
+
+    return result;
+  }
 }
+
+final verilerRepositoryProvider = ChangeNotifierProvider((ref) => VerilerRepository());

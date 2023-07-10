@@ -1,44 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobilyst/oktay/yemek_ekrani/yemekBilgileri.dart';
+import 'package:mobilyst/oktay/yemek_ekrani/yemekRepository.dart';
 
 import '../../ColorAndType/color.dart';
 
-class MyYemekKategoriPage extends StatefulWidget {
-  const MyYemekKategoriPage({Key? key}) : super(key: key);
+class MyYemekKategoriPage extends ConsumerStatefulWidget {
+  const MyYemekKategoriPage({super.key});
 
   @override
   _MyYemekKategoriPageState createState() => _MyYemekKategoriPageState();
 }
 
-class _MyYemekKategoriPageState extends State<MyYemekKategoriPage> {
+class _MyYemekKategoriPageState extends ConsumerState<MyYemekKategoriPage> {
   TextEditingController editingController = TextEditingController();
-  late List<Yemek> filterMeals;
-  List<Yemek> meals = [
-    Yemek("Hamburger", 25.99, 4,
-        'https://cdn-icons-png.flaticon.com/128/706/706918.png', false),
-    Yemek("Pizza", 12.99, 2,
-        'https://cdn-icons-png.flaticon.com/128/6127/6127889.png', false),
-    Yemek("Adana Kebap", 8.99, 5,
-        'https://cdn-icons-png.flaticon.com/128/10614/10614469.png', false),
-    Yemek("Lahmacun", 19.99, 3,
-        'https://cdn-icons-png.flaticon.com/128/10614/10614469.png', false),
-  ];
+  List<Yemek> filterMeals = [];
+  List<Yemek> meals = [];
+
   late String seciliFiltre = filtreList[0];
+
   List<String> filtreList = [
     'Tümü',
     '20 TL - 100 TL',
     '100 TL - 200 TL',
     '200 TL - 300 TL'
   ];
+
   SiralamaSecenekleri selectedSortOption = SiralamaSecenekleri.Sirala;
 
   @override
   void initState() {
     super.initState();
     setState(() {
-      List<Yemek> veriler = [];
-      veriler.addAll(meals);
-      filterMeals = veriler;
+      meals = ref.read(yemekRepositoryProvider).getMEals();
+      filterMeals.addAll(meals);
     });
   }
 
