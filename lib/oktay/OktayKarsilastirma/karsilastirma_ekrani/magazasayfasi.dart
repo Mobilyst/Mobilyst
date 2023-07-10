@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobilyst/ozge/karsilastirma_ekrani/magazaRepository.dart';
+import 'package:mobilyst/oktay/OktayKarsilastirma/karsilastirma_ekrani/magazaRepository.dart';
 
 class StorePage extends ConsumerStatefulWidget {
   final String storeName;

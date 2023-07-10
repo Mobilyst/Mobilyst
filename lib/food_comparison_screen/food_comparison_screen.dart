@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobilyst/ColorAndType/color.dart';
-import 'package:mobilyst/ozge/karsilastirma_ekrani/yemekkarsilastirmaekrani.dart';
+import 'package:mobilyst/oktay/OktayKarsilastirma/karsilastirma_ekrani/yemekkarsilastirmaekrani.dart';
 import 'food_bilgileri.dart';
 
 class YemekKiyasTumuPage extends StatefulWidget {
