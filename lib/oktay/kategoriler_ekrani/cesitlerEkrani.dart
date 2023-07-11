@@ -26,7 +26,7 @@ class _CesitlerEkraniState extends ConsumerState<CesitlerEkrani> {
     super.initState();
 
     setState(() {
-      cesitler = ref.read(verilerRepositoryProvider).cesitleriGetir();
+      cesitler = ref.read(verilerRepositoryProvider).cesitleriGetir(widget.kategori.kategoriAdi);
       newList.addAll(cesitler);
     });
   }
@@ -144,6 +144,9 @@ class _CesitlerEkraniState extends ConsumerState<CesitlerEkrani> {
           Expanded(
             child: ListView.builder(
               itemBuilder: (context, index) {
+                if(newList.isEmpty){
+                  return const Center(child: Text("Burada Çeşit bulunamadı"),) ;
+                }
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -153,7 +156,7 @@ class _CesitlerEkraniState extends ConsumerState<CesitlerEkrani> {
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const MyYemekKategoriPage(),
+                            builder: (context) => MyYemekKategoriPage(kategoriAdi: widget.kategori.kategoriAdi),
                           ),
                         );
                       },
@@ -164,7 +167,7 @@ class _CesitlerEkraniState extends ConsumerState<CesitlerEkrani> {
                   ],
                 );
               },
-              itemCount: newList.length,
+              itemCount: newList.length==0?1:newList.length,
             ),
           ),
         ],

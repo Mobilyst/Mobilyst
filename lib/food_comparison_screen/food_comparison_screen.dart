@@ -139,7 +139,7 @@ class _YemekKiyasTumuPageState extends State<YemekKiyasTumuPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => FoodComparisonScreen(),
+                        builder: (context) => FoodComparisonScreen(yemek: meals[index]),
                       ),
                     );
                   },

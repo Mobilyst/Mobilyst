@@ -6,7 +6,8 @@ import 'package:mobilyst/oktay/yemek_ekrani/yemekRepository.dart';
 import '../../ColorAndType/color.dart';
 
 class MyYemekKategoriPage extends ConsumerStatefulWidget {
-  const MyYemekKategoriPage({super.key});
+  final String kategoriAdi;
+  const MyYemekKategoriPage({super.key,required this.kategoriAdi});
 
   @override
   _MyYemekKategoriPageState createState() => _MyYemekKategoriPageState();
@@ -28,11 +29,12 @@ class _MyYemekKategoriPageState extends ConsumerState<MyYemekKategoriPage> {
 
   SiralamaSecenekleri selectedSortOption = SiralamaSecenekleri.Sirala;
 
+
   @override
   void initState() {
     super.initState();
     setState(() {
-      meals = ref.read(yemekRepositoryProvider).getMEals();
+      meals = ref.read(yemekRepositoryProvider).getMEals(widget.kategoriAdi);
       filterMeals.addAll(meals);
     });
   }
@@ -252,7 +254,7 @@ class _MyYemekKategoriPageState extends ConsumerState<MyYemekKategoriPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    GestureDetector(
+                    InkWell(
                       onTap: () {
                         setState(() {
                           filterMeals[index].isSelected =
@@ -290,6 +292,7 @@ class _MyYemekKategoriPageState extends ConsumerState<MyYemekKategoriPage> {
       ),
     );
   }
+
 
   void yemekAra(String text) {
     if (text.isEmpty) {

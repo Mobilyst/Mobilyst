@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/oktay/OktayKarsilastirma/karsilastirma_ekrani/magazaRepository.dart';
-import 'package:mobilyst/oktay/OktayKarsilastirma/karsilastirma_ekrani/magazasayfasi.dart';
+
+
+import '../../../food_comparison_screen/food_bilgileri.dart';
 
 class FoodComparisonScreen extends ConsumerStatefulWidget {
-  FoodComparisonScreen({Key? key}) : super(key: key);
+  final Yemek yemek;
+  FoodComparisonScreen({Key? key,required this.yemek}) : super(key: key);
 
   @override
   _FoodComparisonScreenState createState() => _FoodComparisonScreenState();
@@ -13,7 +16,8 @@ class FoodComparisonScreen extends ConsumerStatefulWidget {
 
 class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
   bool isFavorite = false;
-
+  late var cheapestStoreName1 = ref.read(magazaRepositoryProvider).getCheapestStoreName(widget.yemek.name);
+  late var cheapestStorePrice1 = ref.read(magazaRepositoryProvider).getCheapestPrice(widget.yemek.name);
   void toggleFavorite() {
     setState(() {
       isFavorite = !isFavorite;
@@ -24,53 +28,59 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
   Widget build(BuildContext context) {
     final magazaRepository = ref.watch(magazaRepositoryProvider);
     return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.white,elevation: 0,foregroundColor: Colors.black),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
+            Column(
               children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 24),
-                    child: SizedBox(
-                      height: 200,
-                      child: Image.network(
-                        'https://cdn-icons-png.flaticon.com/128/3075/3075977.png',
-                        width: 1000,
-                        height: 1000,
-                      ),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Column(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.notifications_outlined),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          toggleFavorite();
-                        },
-                        icon: Icon(
-                          isFavorite ? Icons.favorite : Icons.favorite_border,
-                          color: isFavorite ? Colors.red : null,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 24),
+                        child: SizedBox(
+                          height: 200,
+                          child: Image.network(
+                            widget.yemek.resimUrl,
+                            width: 1000,
+                            height: 1000,
+                          ),
                         ),
                       ),
-                      IconButton(
-                        onPressed: () {
-                          // Paylaş düğmesine tıklandığında yapılacak işlemler
-                        },
-                        icon: const Icon(Icons.share),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Column(
+                        children: [
+                          IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.notifications_outlined),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              toggleFavorite();
+                            },
+                            icon: Icon(
+                              isFavorite ? Icons.favorite : Icons.favorite_border,
+                              color: isFavorite ? Colors.red : null,
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              // Paylaş düğmesine tıklandığında yapılacak işlemler
+                            },
+                            icon: const Icon(Icons.share),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
+                Text(widget.yemek.name)
               ],
             ),
             Padding(
@@ -88,9 +98,9 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                       border: Border.all(color: Colors.grey, width: 1),
                     ),
                     child: Column(
-                      children: const [
+                      children:  [
                         Text(
-                          'Firma A',
+                          cheapestStoreName1,
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -98,7 +108,7 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                         ),
                         SizedBox(height: 8),
                         Text(
-                          'Fiyat: 10.0 TL',
+                          'Fiyat: ${cheapestStorePrice1.isInfinite?"-":cheapestStorePrice1} TL',
                           style: TextStyle(
                             fontSize: 14,
                           ),
@@ -109,13 +119,9 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                   const SizedBox(width: 10),
                   ElevatedButton.icon(
                     onPressed: () {
-                      final cheapestStoreName = ref.read(magazaRepositoryProvider).getCheapestStoreName();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => StorePage(cheapestStoreName),
-                        ),
-                      );
+                      final cheapestStoreName = ref.read(magazaRepositoryProvider).getCheapestStoreName(widget.yemek.name);
+                      final cheapestStorePrice = ref.read(magazaRepositoryProvider).getCheapestPrice(widget.yemek.name);
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${cheapestStoreName1}: ${cheapestStorePrice1} yönlendiriliyor...')));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.dort,
@@ -133,8 +139,9 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
             ListView(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              children: magazaRepository.storeNames.map((storeName) {
-                final storePrice =magazaRepository.storePrices[storeName];
+              children: ref.read(magazaRepositoryProvider).getStore(widget.yemek.name).map((store) {
+                double storePrice =double.parse(store["price"] ?? "0");
+                String storeName = store["storeName"] ?? "-";
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   child: Container(
@@ -179,12 +186,7 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => StorePage(storeName),
-                            ),
-                          );
+
                         },
                       ),
                     ),

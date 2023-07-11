@@ -15,11 +15,13 @@ class YemekRepository extends ChangeNotifier{
         'https://cdn-icons-png.flaticon.com/128/10614/10614469.png', false),
   ];
 
-  List<Yemek> getMEals(){
+  List<Yemek> getMEals(String kategoriAdi){
     List<Yemek> result = [];
 
     for(var meal in meals){
-      result.add(meal);
+      if(meal.name==kategoriAdi){
+        result.add(meal);
+      }
     }
 
     return result;

@@ -16,14 +16,17 @@ class VerilerRepository extends ChangeNotifier {
 
   List<YemekCesiti> cesitler = [
     YemekCesiti(kategoriAdi: 'Pizza', cesitAdi: 'Salamlı Pizza'),
-    YemekCesiti(kategoriAdi: 'Pizza', cesitAdi: 'Peynirli Pizza')
+    YemekCesiti(kategoriAdi: 'Pizza', cesitAdi: 'Peynirli Pizza'),
+    YemekCesiti(kategoriAdi: 'Hamburger', cesitAdi: 'Tavuk Burger'),
   ];
 
-  List<YemekCesiti> cesitleriGetir() {
+  List<YemekCesiti> cesitleriGetir(String kategoriAdi) {
     List<YemekCesiti> result = [];
 
     for (var cesit in cesitler) {
-      result.add(cesit);
+      if(cesit.kategoriAdi==kategoriAdi){
+        result.add(cesit);
+      }
     }
 
     return result;
