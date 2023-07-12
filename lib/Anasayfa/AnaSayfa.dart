@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobilyst/Anasayfa/DetayliBilgiSayfasi.dart';
 import 'package:mobilyst/Anasayfa/KampanyalarSayfasi.dart';
+import 'package:mobilyst/Anasayfa/Urun.dart';
 import 'package:mobilyst/food_comparison_screen/food_comparison_screen.dart';
 import '../ColorAndType/color.dart';
 import 'KampanyaRepository.dart';
@@ -14,8 +15,9 @@ class AnaSayfa extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final TextEditingController searchController = TextEditingController();
     var screenHeight = MediaQuery.of(context).size.height;
-    var kampanyaRepository = ref.watch(kampanyaProvider);
-
+    final kampanyaRepository = ref.watch(kampanyaProvider);
+    final List<List<kampanyalar>> kampanyaliUrunler =
+        kampanyaRepository.urunler;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -370,14 +372,20 @@ class AnaSayfa extends ConsumerWidget {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: kampanyaRepository.urunler.isNotEmpty
-                      ? kampanyaRepository.urunler[0].take(6).map((urun) {
-                          final index =
-                              kampanyaRepository.urunler[0].indexOf(urun);
+                  children: kampanyaliUrunler.isNotEmpty
+                      ? kampanyaliUrunler
+                          .expand((urunler) => urunler)
+                          .take(6)
+                          .toList()
+                          .asMap()
+                          .entries
+                          .map((entry) {
+                          final index = entry.key;
+                          final urun = entry.value;
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: SizedBox(
-                              width: 200,
+                              width: 180,
                               child: Material(
                                 elevation: 8,
                                 borderRadius: BorderRadius.circular(5),
@@ -387,7 +395,7 @@ class AnaSayfa extends ConsumerWidget {
                                   onTap: () {},
                                   child: Container(
                                     width: double.infinity,
-                                    height: 280,
+                                    height: 290,
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                         color: Colors.grey,
@@ -411,7 +419,7 @@ class AnaSayfa extends ConsumerWidget {
                                             fit: BoxFit.cover,
                                           ),
                                         ),
-                                        const SizedBox(height: 2),
+                                        const SizedBox(height: 0.5),
                                         Text(
                                           urun.Baslik,
                                           textAlign: TextAlign.center,
@@ -439,7 +447,7 @@ class AnaSayfa extends ConsumerWidget {
                                             ),
                                           ),
                                         ),
-                                        const SizedBox(height: 2),
+                                        const SizedBox(height: 0.5),
                                       ],
                                     ),
                                   ),
