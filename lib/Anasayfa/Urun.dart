@@ -1,6 +1,8 @@
-class Urun {
-  String urunAdi;
-  String urunFotoAddress;
+class kampanyalar {
+  String kampanyalarId;
+  String Baslik;
+  String ResimUrl;
+  String SayfaUrl;
 
-  Urun(this.urunAdi, this.urunFotoAddress);
+  kampanyalar(this.kampanyalarId, this.Baslik, this.ResimUrl, this.SayfaUrl);
 }
