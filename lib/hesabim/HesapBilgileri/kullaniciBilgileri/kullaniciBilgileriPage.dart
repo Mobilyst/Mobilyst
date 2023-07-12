@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobilyst/ColorAndType/color.dart';
+import 'package:mobilyst/GirisOlaylari/girisPage.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/kullaniciB.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/kullaniciBilgileri/kullaniciBilgileriRepositort.dart';
@@ -75,14 +76,14 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
                 Navigator.pop(context);
                 context.go('/hesabim/hesapbilgi');
               },
-               child: Text(
-                  "Tamam",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: AppColors.uc,
-                    fontWeight: FontWeight.bold,
-                  ),
+              child: Text(
+                "Tamam",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: AppColors.uc,
+                  fontWeight: FontWeight.bold,
                 ),
+              ),
             ),
           ],
         );
@@ -174,6 +175,126 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
     });
 
     _showSuccessDialog();
+  }
+
+  Future<void> _hesabimiSil(BuildContext context) async {
+    try {
+      // Giriş yapan kullanıcının kimlik bilgilerini alın
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        // Kullanıcıyı silmek istediğine dair onay alın
+        bool? silmeOnayi = await showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text(
+                'Hesabını Sil',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              ),
+              content: Text(
+                  textAlign: TextAlign.center,
+                  'Hesabınızı silmek istediğinize emin misiniz?'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(true); // Silme işlemini onayla
+                  },
+                  child: Text(
+                    'Evet',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.uc,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(false); // Silme işlemini iptal et
+                  },
+                  child: Text(
+                    'Hayır',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.uc,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+
+        if (silmeOnayi == true) {
+          // Kullanıcıyı sil
+          await user.delete();
+
+          // Kullanıcı başarıyla silindiğinde yapılacak işlemler
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(
+                  'Hesap Silindi',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                ),
+                content: Text(
+                  'Hesabınız başarıyla silindi.',
+                  textAlign: TextAlign.center,
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      context.go('/hesabim');
+                    },
+                    child: Text(
+                      'Tamam',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: AppColors.uc,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
+        }
+      }
+    } catch (e) {
+      // Kullanıcı silinirken bir hata oluştuğunda yapılacak işlemler
+      String e = 'Bir hata oluştu.';
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(
+            'Hata',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          ),
+          content: Text(e),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                // İletişim kutusunu kapat
+              },
+              child: Text(
+                "Tamam",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: AppColors.uc,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   @override
@@ -522,8 +643,8 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     GestureDetector(
-                      onTap:
-                          null, //?? cıkıs yaptıgında sıgn ın sayfasına donmelı
+                      onTap: () => _hesabimiSil(
+                          context), //?? cıkıs yaptıgında sıgn ın sayfasına donmelı
                       child: const Text(
                         ' Hesabımı Sil',
                         style: TextStyle(

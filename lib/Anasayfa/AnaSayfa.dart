@@ -367,81 +367,81 @@ class AnaSayfa extends ConsumerWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 1,
-              ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: kampanyaRepository.urunler.isNotEmpty
-                      ? kampanyaRepository.urunler[0].map((urun) {
+                      ? kampanyaRepository.urunler[0].take(6).map((urun) {
                           final index =
                               kampanyaRepository.urunler[0].indexOf(urun);
-                          return SizedBox(
-                            width: 160, //
-                            child: Material(
-                              elevation: 8,
-                              borderRadius: BorderRadius.circular(5),
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              child: InkWell(
-                                splashColor: Colors.black26,
-                                onTap: () {},
-                                child: Container(
-                                  width: double.infinity, //
-                                  height: 250, //
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.grey,
-                                      width: 1,
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SizedBox(
+                              width: 200,
+                              child: Material(
+                                elevation: 8,
+                                borderRadius: BorderRadius.circular(5),
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                child: InkWell(
+                                  splashColor: Colors.black26,
+                                  onTap: () {},
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 280,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      const SizedBox(height: 10),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          shape: BoxShape.rectangle,
-                                        ),
-                                        child: Ink.image(
-                                          image: NetworkImage(urun.ResimUrl),
-                                          height: 200,
-                                          width: 160,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 5),
-                                      Text(
-                                        urun.Baslik,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  DetayliBilgiSayfasi(
-                                                id: index,
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                        child: Text(
-                                          "Detaylı bilgi için tıklayınız",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.yedi,
+                                    child: Column(
+                                      children: [
+                                        const SizedBox(height: 3),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            shape: BoxShape.rectangle,
+                                          ),
+                                          child: Ink.image(
+                                            image: NetworkImage(urun.ResimUrl),
+                                            height: 200,
+                                            width: 170,
+                                            fit: BoxFit.cover,
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(height: 5),
-                                    ],
+                                        const SizedBox(height: 2),
+                                        Text(
+                                          urun.Baslik,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DetayliBilgiSayfasi(
+                                                  id: index,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          child: Text(
+                                            "Detaylı bilgi için tıklayınız",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: AppColors.yedi,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 2),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
