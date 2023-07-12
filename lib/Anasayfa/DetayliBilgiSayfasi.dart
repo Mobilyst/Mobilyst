@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../ColorAndType/color.dart';
 import 'KampanyaRepository.dart';
 import 'Urun.dart';
@@ -14,6 +15,10 @@ class DetayliBilgiSayfasi extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var kampanyaRepository = ref.watch(kampanyaProvider);
     final urun = kampanyaRepository.urunler.expand((list) => list).toList()[id];
+
+    void launchURL()  {
+         launch(urun.SayfaUrl);
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -45,7 +50,7 @@ class DetayliBilgiSayfasi extends ConsumerWidget {
             Container(
               margin: EdgeInsets.only(bottom: 20.0),
               child: FilledButton(
-                onPressed: () {},
+                onPressed: launchURL, // Güncellenen satır
                 style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all<Color>(AppColors.dort),
