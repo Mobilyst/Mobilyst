@@ -10,6 +10,7 @@ import 'package:mobilyst/food_comparison_screen/food_comparison_screen.dart';
 import 'package:mobilyst/hesabim/hesabimPage.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/kategorilerSayfasi.dart';
 import 'package:mobilyst/screens.onboarding/screen_one.dart';
+import 'package:mobilyst/splashScreen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorAnaSayfaKey =
@@ -20,16 +21,14 @@ final _shellNavigatorHesabimSayfaKey =
     GlobalKey<NavigatorState>(debugLabel: 'HesabimSayfashell');
 
 final goRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/onboard',
   navigatorKey: _rootNavigatorKey,
   debugLogDiagnostics: true,
   routes: [
-     GoRoute(
-              path: '/',
-              pageBuilder: (context, state) => NoTransitionPage(
-                child: OnboardingScreenOne(),
-              ),
-            ),
+    GoRoute(
+      path: '/onboard',
+      builder: (context, state) => OnboardingScreenOne(),
+    ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return ScaffoldWithNestedNavigation(navigationShell: navigationShell);
@@ -41,7 +40,7 @@ final goRouter = GoRouter(
             GoRoute(
               path: '/a',
               pageBuilder: (context, state) => const NoTransitionPage(
-                child: AnaSayfa (),
+                child: AnaSayfa(),
               ),
               routes: [
                 GoRoute(
@@ -59,7 +58,6 @@ final goRouter = GoRouter(
         StatefulShellBranch(
           navigatorKey: _shellNavigatorKategoriSayfaKey,
           routes: [
-            // Shopping Cart
             GoRoute(
               path: '/b',
               pageBuilder: (context, state) => const NoTransitionPage(
