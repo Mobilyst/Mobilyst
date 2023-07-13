@@ -12,13 +12,13 @@ class YemekKiyasTumuPage extends StatefulWidget {
 
 class _YemekKiyasTumuPageState extends State<YemekKiyasTumuPage> {
   List<Yemek> meals = [
-    Yemek("Hamburger", 25.99, 4,
+    Yemek("Hamburger", 25.99,
         'https://cdn-icons-png.flaticon.com/128/706/706918.png', false),
-    Yemek("Pizza", 12.99, 2,
+    Yemek("Pizza", 12.99,
         'https://cdn-icons-png.flaticon.com/128/6127/6127889.png', false),
-    Yemek("Adana Kebap", 8.99, 5,
+    Yemek("Adana Kebap", 8.99,
         'https://cdn-icons-png.flaticon.com/128/10614/10614469.png', false),
-    Yemek("Lahmacun", 19.99, 3,
+    Yemek("Lahmacun", 19.99,
         'https://cdn-icons-png.flaticon.com/128/10614/10614469.png', false),
   ];
 
@@ -31,9 +31,6 @@ class _YemekKiyasTumuPageState extends State<YemekKiyasTumuPage> {
         break;
       case SiralamaSecenekleri.PriceAscending:
         meals.sort((a, b) => a.price.compareTo(b.price));
-        break;
-      case SiralamaSecenekleri.MostPopular:
-        meals.sort((a, b) => b.popularity.compareTo(a.popularity));
         break;
       case SiralamaSecenekleri.Popular:
         // Sıralama işlemleri
@@ -169,15 +166,6 @@ class _YemekKiyasTumuPageState extends State<YemekKiyasTumuPage> {
                             ),
                             Text(
                               "Fiyat: ${meals[index].price.toStringAsFixed(2)}",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Text(
-                              "Popülerlik: ${meals[index].popularity}",
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
