@@ -5,44 +5,21 @@ import 'package:mobilyst/oktay/OktayKarsilastirma/karsilastirma_ekrani/yemekkars
 import 'UrunRepository.dart';
 import 'food_bilgileri.dart';
 
-class YemekKiyasTumuPage extends ConsumerWidget{
+class YemekKiyasTumuPage extends ConsumerWidget {
   const YemekKiyasTumuPage({Key? key}) : super(key: key);
-
-
-
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final urunRepository = ref.watch(urunProvider);
-    final List<List<products>> meals =
-        urunRepository.urunler;
+    final List<List<products>> meals = urunRepository.urunler;
+    final bool isFetching = urunRepository.isFetching;
 
-
-    SiralamaSecenekleri selectedSortOption = SiralamaSecenekleri.Sirala;
-
-  /*  void sortMeals() {
-      switch (selectedSortOption) {
-        case SiralamaSecenekleri.PriceDescending:
-          meals.sort((a, b) => b.price.compareTo(a.price));
-          break;
-        case SiralamaSecenekleri.PriceAscending:
-          meals.sort((a, b) => a.price.compareTo(b.price));
-          break;
-        case SiralamaSecenekleri.Popular:
-        // Sıralama işlemleri
-          break;
-        case SiralamaSecenekleri.NewArrivals:
-        // Sıralama işlemleri
-          break;
-        case SiralamaSecenekleri.Discounted:
-        // Sıralama işlemleri
-          break;
-        case SiralamaSecenekleri.Sirala:
-        // Sıralama işlemleri
-          break;
-      }
+    if (isFetching) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
     }
-*/
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -55,67 +32,22 @@ class YemekKiyasTumuPage extends ConsumerWidget{
         centerTitle: true,
         backgroundColor: AppColors.uc,
       ),
-      body: ListView(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                child: DropdownButton<SiralamaSecenekleri>(
-                  value: selectedSortOption,
-                  onChanged: (SiralamaSecenekleri? newValue) {
-                    if (newValue != null) {
-                        selectedSortOption = newValue;
-
-                    }
-                   // sortMeals();
-                  },
-                  items: const [
-                    DropdownMenuItem(
-                      value: SiralamaSecenekleri.Sirala,
-                      child: Text("Önerilen Sıralama"),
-                    ),
-                    DropdownMenuItem(
-                      value: SiralamaSecenekleri.PriceDescending,
-                      child: Text("Fiyata Göre Azalan"),
-                    ),
-                    DropdownMenuItem(
-                      value: SiralamaSecenekleri.PriceAscending,
-                      child: Text("Fiyata Göre Artan"),
-                    ),
-                    DropdownMenuItem(
-                      value: SiralamaSecenekleri.MostPopular,
-                      child: Text("En Çok Değerlendirilen"),
-                    ),
-                    DropdownMenuItem(
-                      value: SiralamaSecenekleri.Popular,
-                      child: Text("Popüler Olan"),
-                    ),
-                    DropdownMenuItem(
-                      value: SiralamaSecenekleri.NewArrivals,
-                      child: Text("Yeni Ürünler"),
-                    ),
-                    DropdownMenuItem(
-                      value: SiralamaSecenekleri.Discounted,
-                      child: Text("İndirimli Ürünler"),
-                    ),
-                  ],
-                  // icon: const Icon(Icons.sort_rounded),
-                ),
-              ),
-            ],
-          ),
-          GridView.builder(
+      body: ListView.builder(
+        itemCount: meals.length,
+        itemBuilder: (BuildContext context, int index) {
+          final mealList = meals[index];
+          return GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              mainAxisSpacing: 20.0,
-              crossAxisSpacing: 20.0,
-              childAspectRatio: 0.7, // Oranı ayarlayabilirsiniz
+              mainAxisSpacing: 5,
+              crossAxisSpacing: 15,
+              childAspectRatio: 0.62,
             ),
-            itemBuilder: (BuildContext context, int index) {
+            itemBuilder: (BuildContext context, int mealIndex) {
+              // İndeks ismini mealIndex olarak değiştirin
+              final urun = mealList[mealIndex]; // Doğru indeksi kullanın
               return Card(
                 shape: RoundedRectangleBorder(
                   side: BorderSide(
@@ -124,83 +56,76 @@ class YemekKiyasTumuPage extends ConsumerWidget{
                   ),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                child: ListView(
-                  children: meals[index]
-                    .map((urun) =>
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => FoodComparisonScreen(yemek: urun),
-                          ),
-                        );
-                      },
-                      child: Stack(
-                        children: [
-                          Center(
-                            // Yeni eklenen Center widget'ı
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  height: 150,
-                                  width: 100,
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Image.network(urun.image_url),
-                                  ),
-                                ),
-                                Text(
-                                  urun.name,
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                Text(
-                                  "Fiyat: ${urun.price}",
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Positioned(
-                            top: 8.0,
-                            right: 8.0,
-                            child: GestureDetector(
-                              onTap: () {
-                                //  urun.isSelected =
-                                  //    !meals[index].isSelected;
-
-                              },
-    /* child: Icon(
-                                Icons.notifications,
-                                color: meals[index].isSelected
-                                    ? AppColors.bes
-                                    : AppColors.uc,
-                              ), */
-                            ),
-                          ),
-                        ],
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FoodComparisonScreen(yemek: urun),
                       ),
-                    )
-                          ).toList()
-                  ,
-                )
+                    );
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 280,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 5),
+                          child: SizedBox(
+                            child: Image.network(
+                              urun.image_url,
+                              fit: BoxFit.cover,
+                              height: 200,
+                              width: 170,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 1,
+                        ),
+                        Text(
+                          urun.name,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 1,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Fiyat: ${urun.price}",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: AppColors.bes,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               );
-
             },
-            itemCount: meals.length,
-          ),
-        ],
+            itemCount: mealList.length,
+          );
+        },
       ),
     );
   }

@@ -53,6 +53,8 @@ class KampanyalarSayfasi extends ConsumerWidget {
                             );
                           },
                           child: Container(
+                            width: double.infinity,
+                            height: 295,
                             decoration: BoxDecoration(
                               border: Border.all(
                                 color: Colors.grey,
@@ -65,7 +67,9 @@ class KampanyalarSayfasi extends ConsumerWidget {
                                 SizedBox(
                                   child: Image.network(
                                     urun.ResimUrl,
-                                    fit: BoxFit.contain,
+                                    height: 190,
+                                    width: 180,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
                                 Center(
@@ -78,22 +82,26 @@ class KampanyalarSayfasi extends ConsumerWidget {
                                     ),
                                   ),
                                 ),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            DetayliBilgiSayfasi(
-                                          id: index,
+                                const Spacer(),
+                                Container(
+                                  margin: EdgeInsets.only(bottom: 0.1),
+                                  child: TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              DetayliBilgiSayfasi(
+                                            id: index,
+                                          ),
                                         ),
+                                      );
+                                    },
+                                    child: const Text(
+                                      "Detaylı Bilgi >",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.normal,
+                                        color: AppColors.yedi,
                                       ),
-                                    );
-                                  },
-                                  child: const Text(
-                                    "Detaylı Bilgi >",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.normal,
-                                      color: AppColors.yedi,
                                     ),
                                   ),
                                 )
