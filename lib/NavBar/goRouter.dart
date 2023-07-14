@@ -10,7 +10,7 @@ import 'package:mobilyst/food_comparison_screen/food_comparison_screen.dart';
 import 'package:mobilyst/hesabim/hesabimPage.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/kategorilerSayfasi.dart';
 import 'package:mobilyst/screens.onboarding/screen_one.dart';
-import 'package:mobilyst/splashScreen.dart';
+
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorAnaSayfaKey =

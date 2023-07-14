@@ -136,6 +136,46 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
   }
 
   Future<void> _onSaveButtonPressed() async {
+    // Kontrolr
+    if (adiController.text.isEmpty ||
+        soyadiController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        _selectedCinsiyet == null ||
+        _selectedDateTime == null ||
+        _selectedIl == null ||
+        adresController.text.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              'Hata',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            ),
+            content: Text(
+              'Lütfen tüm alanları doldurun.',
+              textAlign: TextAlign.start,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  'Tamam',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: AppColors.uc,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
     // yukleniyor
     setState(() {
       isLoading = true;
@@ -150,7 +190,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
     String? il = _selectedIl;
     String adres = adresController.text;
 
-    // Verileri Firebase Firestore'a ekleyin
+    // Verileri Firebase Firestre ekle
     KullaniciBilgileriService kullaniciBilgileriService =
         KullaniciBilgileriService();
     KullaniciBilgileri? kullaniciBilgileri =
@@ -179,7 +219,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
 
   Future<void> _hesabimiSil(BuildContext context) async {
     try {
-      // Giriş yapan kullanıcının kimlik bilgilerini alın
+      // Giriş yapan kullanıcının kimlik bilgilerini al
       User? user = FirebaseAuth.instance.currentUser;
 
       if (user != null) {
@@ -193,7 +233,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
               content: Text(
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.start,
                   'Hesabınızı silmek istediğinize emin misiniz?'),
               actions: [
                 TextButton(
@@ -242,7 +282,7 @@ class _KullaniciBilgileriPageState extends State<KullaniciBilgileriPage> {
                 ),
                 content: Text(
                   'Hesabınız başarıyla silindi.',
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.start,
                 ),
                 actions: [
                   TextButton(

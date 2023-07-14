@@ -20,8 +20,6 @@ class _SignInPageState extends State<SignInPage> {
   final passwordController = TextEditingController();
   bool isLoading = false;
 
-  
-
   void showLoadingDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -93,6 +91,8 @@ class _SignInPageState extends State<SignInPage> {
       });
       // Oturum açma başarılı olduğunda yönlendirme işlemini gerçekleştir
       context.go('/hesabim/signin');
+      emailController.clear();
+      passwordController.clear();
     }).catchError((error) {
       setState(() {
         isLoading = false;

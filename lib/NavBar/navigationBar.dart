@@ -55,15 +55,29 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
       bottomNavigationBar: NavigationBar(
         selectedIndex: selectedIndex,
         destinations: const [
-          NavigationDestination(label: 'Ana Sayfa', icon: Icon(Icons.home)),
-          NavigationDestination(label: 'Kategoriler', icon: Icon(Icons.search)),
-          NavigationDestination(label: 'Hesabım', icon: Icon(Icons.person)),
+          NavigationDestination(
+            label: 'Ana Sayfa',
+            icon: Icon(
+              Icons.home,
+              color: AppColors.bir,
+            ),
+          ),
+          NavigationDestination(
+              label: 'Kategoriler',
+              icon: Icon(
+                Icons.search,
+                color: AppColors.bir,
+              )),
+          NavigationDestination(
+              label: 'Hesabım',
+              icon: Icon(
+                Icons.person,
+                color: AppColors.bir,
+              )),
         ],
         onDestinationSelected: onDestinationSelected,
         backgroundColor: AppColors.uc,
-        indicatorColor: AppColors.iki,
-        
-        
+        indicatorColor: AppColors.dort,
       ),
     );
   }
