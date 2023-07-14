@@ -434,7 +434,7 @@ class AnaSayfa extends ConsumerWidget {
                                               MaterialPageRoute(
                                                 builder: (context) =>
                                                     DetayliBilgiSayfasi(
-                                                  id: index,
+                                                  id: index, 
                                                 ),
                                               ),
                                             );

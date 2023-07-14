@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/button/girisButton.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/textfield/testField.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInPage extends StatefulWidget {
   final TabController? tabController;
@@ -15,7 +16,6 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  // text duzenleme kontrolleri
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool isLoading = false;
@@ -35,9 +35,7 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  //giris kulanici method
   Future<void> signUserIn() async {
-    // yukleniyor
     setState(() {
       isLoading = true;
     });
@@ -80,53 +78,51 @@ class _SignInPageState extends State<SignInPage> {
       return;
     }
 
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(
-      email: emailController.text,
-      password: passwordController.text,
-    )
-        .then((userCredential) {
+    try {
+     // showLoadingDialog(context);
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
       setState(() {
         isLoading = false;
       });
+      // Yükleme iletişim kutusunu kapat
+
       // Oturum açma başarılı olduğunda yönlendirme işlemini gerçekleştir
       context.go('/hesabim/signin');
       emailController.clear();
       passwordController.clear();
-    }).catchError((error) {
+    } on FirebaseAuthException catch (error) {
       setState(() {
         isLoading = false;
       });
+    // Yükleme iletişim kutusunu kapat
 
-      // Hata durumuna göre mesaj göster
       String errorMessage = 'Bir hata oluştu.';
 
-      if (error is FirebaseAuthException) {
-        switch (error.code) {
-          case 'wrong-password':
-            errorMessage = 'Yanlış şifre.';
-            break;
-          case 'user-not-found':
-            errorMessage = 'E-posta yanlış.';
-            break;
-          case 'invalid-email':
-            errorMessage = 'Geçersiz e-posta formatı.';
-            break;
-          case 'user-not-found':
-            errorMessage = 'Kullanıcı bulunamadı.';
-            break;
-          case 'user-disabled':
-            errorMessage = 'Kullanıcı hesabı devre dışı bırakıldı.';
-            break;
-          case 'too-many-requests':
-            errorMessage =
-                'Çok fazla istek yapıldı. Lütfen daha sonra tekrar deneyin.';
-            break;
-          case 'operation-not-allowed':
-            errorMessage = 'Bu işlem izin verilmiyor.';
-            break;
-          // Diğer hata durumlarına göre gerekirse eklemeler yapabilirsiniz.
-        }
+      switch (error.code) {
+        case 'wrong-password':
+          errorMessage = 'Yanlış şifre.';
+          break;
+        case 'user-not-found':
+          errorMessage = 'E-posta yanlış.';
+          break;
+        case 'invalid-email':
+          errorMessage = 'Geçersiz e-posta formatı.';
+          break;
+        case 'user-disabled':
+          errorMessage = 'Kullanıcı hesabı devre dışı bırakıldı.';
+          break;
+        case 'too-many-requests':
+          errorMessage =
+              'Çok fazla istek yapıldı. Lütfen daha sonra tekrar deneyin.';
+          break;
+        case 'operation-not-allowed':
+          errorMessage = 'Bu işlem izin verilmiyor.';
+          break;
+        // Diğer hata durumlarına göre gerekirse eklemeler yapabilirsiniz.
       }
 
       showDialog(
@@ -141,7 +137,6 @@ class _SignInPageState extends State<SignInPage> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                // İletişim kutusunu kapat
               },
               child: Text(
                 "Tamam",
@@ -155,7 +150,7 @@ class _SignInPageState extends State<SignInPage> {
           ],
         ),
       );
-    });
+    }
   }
 
   @override
