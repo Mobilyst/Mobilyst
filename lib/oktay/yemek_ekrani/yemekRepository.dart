@@ -5,13 +5,13 @@ import 'package:mobilyst/oktay/yemek_ekrani/yemekBilgileri.dart';
 
 class YemekRepository extends ChangeNotifier{
   List<Yemek> meals = [
-    Yemek("Hamburger", 25.99, 4,
+    Yemek("Hamburger", 25.99,
         'https://cdn-icons-png.flaticon.com/128/706/706918.png', false),
-    Yemek("Pizza", 12.99, 2,
+    Yemek("Pizza", 12.99,
         'https://cdn-icons-png.flaticon.com/128/6127/6127889.png', false),
-    Yemek("Adana Kebap", 8.99, 5,
+    Yemek("Adana Kebap", 8.99,
         'https://cdn-icons-png.flaticon.com/128/10614/10614469.png', false),
-    Yemek("Lahmacun", 19.99, 3,
+    Yemek("Lahmacun", 19.99,
         'https://cdn-icons-png.flaticon.com/128/10614/10614469.png', false),
   ];
 

@@ -7,7 +7,7 @@ import 'package:mobilyst/oktay/OktayKarsilastirma/karsilastirma_ekrani/magazaRep
 import '../../../food_comparison_screen/food_bilgileri.dart';
 
 class FoodComparisonScreen extends ConsumerStatefulWidget {
-  final Yemek yemek;
+  final products yemek;
   FoodComparisonScreen({Key? key,required this.yemek}) : super(key: key);
 
   @override
@@ -45,7 +45,7 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                         child: SizedBox(
                           height: 200,
                           child: Image.network(
-                            widget.yemek.resimUrl,
+                            widget.yemek.image_url,
                             width: 1000,
                             height: 1000,
                           ),

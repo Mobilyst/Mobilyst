@@ -1,54 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/oktay/OktayKarsilastirma/karsilastirma_ekrani/yemekkarsilastirmaekrani.dart';
+import 'UrunRepository.dart';
 import 'food_bilgileri.dart';
 
-class YemekKiyasTumuPage extends StatefulWidget {
+class YemekKiyasTumuPage extends ConsumerWidget{
   const YemekKiyasTumuPage({Key? key}) : super(key: key);
 
+
+
+
   @override
-  _YemekKiyasTumuPageState createState() => _YemekKiyasTumuPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final urunRepository = ref.watch(urunProvider);
+    final List<List<products>> meals =
+        urunRepository.urunler;
 
-class _YemekKiyasTumuPageState extends State<YemekKiyasTumuPage> {
-  List<Yemek> meals = [
-    Yemek("Hamburger", 25.99,
-        'https://cdn-icons-png.flaticon.com/128/706/706918.png', false),
-    Yemek("Pizza", 12.99,
-        'https://cdn-icons-png.flaticon.com/128/6127/6127889.png', false),
-    Yemek("Adana Kebap", 8.99,
-        'https://cdn-icons-png.flaticon.com/128/10614/10614469.png', false),
-    Yemek("Lahmacun", 19.99,
-        'https://cdn-icons-png.flaticon.com/128/10614/10614469.png', false),
-  ];
 
-  SiralamaSecenekleri selectedSortOption = SiralamaSecenekleri.Sirala;
+    SiralamaSecenekleri selectedSortOption = SiralamaSecenekleri.Sirala;
 
-  void sortMeals() {
-    switch (selectedSortOption) {
-      case SiralamaSecenekleri.PriceDescending:
-        meals.sort((a, b) => b.price.compareTo(a.price));
-        break;
-      case SiralamaSecenekleri.PriceAscending:
-        meals.sort((a, b) => a.price.compareTo(b.price));
-        break;
-      case SiralamaSecenekleri.Popular:
+  /*  void sortMeals() {
+      switch (selectedSortOption) {
+        case SiralamaSecenekleri.PriceDescending:
+          meals.sort((a, b) => b.price.compareTo(a.price));
+          break;
+        case SiralamaSecenekleri.PriceAscending:
+          meals.sort((a, b) => a.price.compareTo(b.price));
+          break;
+        case SiralamaSecenekleri.Popular:
         // Sıralama işlemleri
-        break;
-      case SiralamaSecenekleri.NewArrivals:
+          break;
+        case SiralamaSecenekleri.NewArrivals:
         // Sıralama işlemleri
-        break;
-      case SiralamaSecenekleri.Discounted:
+          break;
+        case SiralamaSecenekleri.Discounted:
         // Sıralama işlemleri
-        break;
-      case SiralamaSecenekleri.Sirala:
+          break;
+        case SiralamaSecenekleri.Sirala:
         // Sıralama işlemleri
-        break;
+          break;
+      }
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
+*/
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -72,11 +66,10 @@ class _YemekKiyasTumuPageState extends State<YemekKiyasTumuPage> {
                   value: selectedSortOption,
                   onChanged: (SiralamaSecenekleri? newValue) {
                     if (newValue != null) {
-                      setState(() {
                         selectedSortOption = newValue;
-                      });
+
                     }
-                    sortMeals();
+                   // sortMeals();
                   },
                   items: const [
                     DropdownMenuItem(
@@ -131,73 +124,79 @@ class _YemekKiyasTumuPageState extends State<YemekKiyasTumuPage> {
                   ),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => FoodComparisonScreen(yemek: meals[index]),
-                      ),
-                    );
-                  },
-                  child: Stack(
-                    children: [
-                      Center(
-                        // Yeni eklenen Center widget'ı
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: 150,
-                              width: 100,
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Image.network(meals[index].resimUrl),
-                              ),
-                            ),
-                            Text(
-                              meals[index].name,
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Text(
-                              "Fiyat: ${meals[index].price.toStringAsFixed(2)}",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Positioned(
-                        top: 8.0,
-                        right: 8.0,
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              meals[index].isSelected =
-                                  !meals[index].isSelected;
-                            });
-                          },
-                          child: Icon(
-                            Icons.notifications,
-                            color: meals[index].isSelected
-                                ? AppColors.bes
-                                : AppColors.uc,
+                child: ListView(
+                  children: meals[index]
+                    .map((urun) =>
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FoodComparisonScreen(yemek: urun),
                           ),
-                        ),
+                        );
+                      },
+                      child: Stack(
+                        children: [
+                          Center(
+                            // Yeni eklenen Center widget'ı
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height: 150,
+                                  width: 100,
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Image.network(urun.image_url),
+                                  ),
+                                ),
+                                Text(
+                                  urun.name,
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                Text(
+                                  "Fiyat: ${urun.price}",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Positioned(
+                            top: 8.0,
+                            right: 8.0,
+                            child: GestureDetector(
+                              onTap: () {
+                                //  urun.isSelected =
+                                  //    !meals[index].isSelected;
+
+                              },
+    /* child: Icon(
+                                Icons.notifications,
+                                color: meals[index].isSelected
+                                    ? AppColors.bes
+                                    : AppColors.uc,
+                              ), */
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
+                    )
+                          ).toList()
+                  ,
+                )
               );
+
             },
             itemCount: meals.length,
           ),

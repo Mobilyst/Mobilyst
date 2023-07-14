@@ -281,7 +281,7 @@ class _MyYemekKategoriPageState extends ConsumerState<MyYemekKategoriPage> {
                     Text(filterMeals[index].name),
                     Text(
                         "Fiyat: ${filterMeals[index].price.toStringAsFixed(2)}"),
-                    Text("Popülerlik: ${filterMeals[index].popularity}"),
+
                   ],
                 ),
               );
@@ -319,9 +319,6 @@ class _MyYemekKategoriPageState extends ConsumerState<MyYemekKategoriPage> {
         break;
       case SiralamaSecenekleri.PriceAscending:
         filterMeals.sort((a, b) => a.price.compareTo(b.price));
-        break;
-      case SiralamaSecenekleri.MostPopular:
-        filterMeals.sort((a, b) => b.popularity.compareTo(a.popularity));
         break;
       case SiralamaSecenekleri.Popular:
         // Sıralama işlemleri

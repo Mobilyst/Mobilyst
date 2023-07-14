@@ -2,11 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../oktay/yemek_ekrani/yemekBilgileri.dart';
+import 'food_bilgileri.dart';
+
 
 
 class UrunRepository extends ChangeNotifier {
-  List<List<Yemek>> urunler = [];
+  List<List<products>> urunler = [];
 
   UrunRepository() {
     _fetchUrunler();
@@ -14,17 +15,17 @@ class UrunRepository extends ChangeNotifier {
 
   Future<void> _fetchUrunler() async {
     final snapshot = await FirebaseFirestore.instance.collection('products').get();
-    final groupedUrunler = Map<String, List<Yemek>>();
+    final groupedUrunler = Map<String, List<products>>();
 
     snapshot.docs.forEach((doc) {
       final data = doc.data();
       final id = doc.id;
-      final yemekler = Yemek(
+      final yemekler = products(
         id,
-        data['Baslik'],
-        data['ResimUrl'],
-        data['SayfaUrl'],
-        data['Popularity'],
+        data['image_url'],
+        data['name'],
+        data['price'],
+        data['product_url']
       );
 
       if (groupedUrunler.containsKey(id)) {
