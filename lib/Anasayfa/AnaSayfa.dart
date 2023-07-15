@@ -392,7 +392,16 @@ class AnaSayfa extends ConsumerWidget {
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
                                 child: InkWell(
                                   splashColor: Colors.black26,
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            DetayliBilgiSayfasi(
+                                          id: index,
+                                        ),
+                                      ),
+                                    );
+                                  },
                                   child: Container(
                                     width: double.infinity,
                                     height: 290,
@@ -434,7 +443,7 @@ class AnaSayfa extends ConsumerWidget {
                                               MaterialPageRoute(
                                                 builder: (context) =>
                                                     DetayliBilgiSayfasi(
-                                                  id: index, 
+                                                  id: index,
                                                 ),
                                               ),
                                             );
