@@ -30,7 +30,7 @@ class OnboardingScreenTwo extends StatelessWidget {
                   width: size.width,
                   height: size.height * 0.6,
                   fit: BoxFit.cover,
-                  image: AssetImage('assets/images/onboard2.png'),
+                  image: AssetImage('assets/onboarding2.png.gif'),
                 ),
               ],
             ),
@@ -43,7 +43,7 @@ class OnboardingScreenTwo extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'PURCHASE',
+                      'Hemen Kaydol!',
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -55,7 +55,7 @@ class OnboardingScreenTwo extends StatelessWidget {
                       height: size.height * 0.02,
                     ),
                     Text(
-                      'Lorem Ipsum is simply dummy \ntext of the printing and typesetting industry.',
+                      'Kaydol ve sana özel fırsatları kullanmaya başla.. Zaten hesabın var ise hemen giriş yap:) ',
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         fontSize: 18,

@@ -21,7 +21,7 @@ class OnboardingScreenThree extends StatelessWidget {
                   width: size.width,
                   height: size.height * 0.6,
                   fit: BoxFit.cover,
-                  image: AssetImage('assets/images/onboard3.png'),
+                  image: AssetImage('assets/onboarding3.png.gif'),
                 ),
                 Transform(
                   alignment: Alignment.center,
@@ -45,19 +45,19 @@ class OnboardingScreenThree extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'DELIVERY',
+                      'Ve Yemek Klavuzuna Hazırsınız..',
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: white,
-                        fontSize: 30,
+                        fontSize: 27,
                       ),
                     ),
                     SizedBox(
                       height: size.height * 0.02,
                     ),
                     Text(
-                      'Lorem Ipsum is simply dummy \ntext of the printing and typesetting industry.',
+                      'En sevdiğiniz yemekleri keşfedin, karşılaştırın ve ilgili mağazaya yönlendirilerek siparişinizi oluşturun.        Afiyet olsun.',
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         fontSize: 18,

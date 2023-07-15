@@ -23,13 +23,13 @@ class OnboardingScreenOne extends StatelessWidget {
                   width: size.width,
                   height: size.height * 0.6,
                   fit: BoxFit.cover,
-                  image: AssetImage('assets/images/onboard1.png'),
+                  image: AssetImage('assets/onboarding1.png.gif'),
                 ),
                 ClipPath(
                   clipper: SlandingClipper(),
                   child: Container(
                     height: size.height * 0.4,
-                    color: Colors.yellow,
+                    color: Color.fromARGB(255, 254, 115, 28),
                   ),
                 )
               ],
@@ -43,19 +43,19 @@ class OnboardingScreenOne extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      'SELECT ITEMS',
+                      'Yemek Klavuzuna Hoşgeldiniz!',
                       textAlign: TextAlign.end,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: white,
-                        fontSize: 30,
+                        fontSize: 29,
                       ),
                     ),
                     SizedBox(
                       height: size.height * 0.02,
                     ),
                     Text(
-                      'Lorem Ipsum is simply dummy \ntext of the printing and typesetting industry.',
+                      'Platformumuzda birbirinden farklı restoranların menülerini karşılaştırabilir ve en uygun yemek seçeneklerini bulabilirsiniz. ',
                       textAlign: TextAlign.end,
                       style: TextStyle(
                         fontSize: 18,
