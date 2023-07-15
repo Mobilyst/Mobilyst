@@ -4,7 +4,8 @@ class products {
   String name;
   dynamic price;
   String product_url;
-  products(this.productsId, this.image_url, this.name, this.price, this.product_url);
+  products(
+      this.productsId, this.image_url, this.name, this.price, this.product_url);
 }
 
 enum SiralamaSecenekleri {

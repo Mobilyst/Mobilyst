@@ -3,12 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/oktay/OktayKarsilastirma/karsilastirma_ekrani/magazaRepository.dart';
 
-
 import '../../../food_comparison_screen/food_bilgileri.dart';
 
 class FoodComparisonScreen extends ConsumerStatefulWidget {
   final products yemek;
-  FoodComparisonScreen({Key? key,required this.yemek}) : super(key: key);
+  FoodComparisonScreen({Key? key, required this.yemek}) : super(key: key);
 
   @override
   _FoodComparisonScreenState createState() => _FoodComparisonScreenState();
@@ -16,8 +15,11 @@ class FoodComparisonScreen extends ConsumerStatefulWidget {
 
 class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
   bool isFavorite = false;
-  late var cheapestStoreName1 = ref.read(magazaRepositoryProvider).getCheapestStoreName(widget.yemek.name);
-  late var cheapestStorePrice1 = ref.read(magazaRepositoryProvider).getCheapestPrice(widget.yemek.name);
+  late var cheapestStoreName1 = ref
+      .read(magazaRepositoryProvider)
+      .getCheapestStoreName(widget.yemek.name);
+  late var cheapestStorePrice1 =
+      ref.read(magazaRepositoryProvider).getCheapestPrice(widget.yemek.name);
   void toggleFavorite() {
     setState(() {
       isFavorite = !isFavorite;
@@ -28,7 +30,10 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
   Widget build(BuildContext context) {
     final magazaRepository = ref.watch(magazaRepositoryProvider);
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white,elevation: 0,foregroundColor: Colors.black),
+      appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          foregroundColor: Colors.black),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -46,50 +51,67 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                           height: 200,
                           child: Image.network(
                             widget.yemek.image_url,
-                            width: 1000,
-                            height: 1000,
+                            height: 200,
+                            width: 170,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Column(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.notifications_outlined),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              toggleFavorite();
-                            },
-                            icon: Icon(
-                              isFavorite ? Icons.favorite : Icons.favorite_border,
-                              color: isFavorite ? Colors.red : null,
+                    Container(
+                      margin: EdgeInsets.only(top: 0.1),
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Column(
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.notifications_outlined),
                             ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              // Paylaş düğmesine tıklandığında yapılacak işlemler
-                            },
-                            icon: const Icon(Icons.share),
-                          ),
-                        ],
+                            IconButton(
+                              onPressed: () {
+                                toggleFavorite();
+                              },
+                              icon: Icon(
+                                isFavorite
+                                    ? Icons.favorite
+                                    : Icons.favorite_border,
+                                color: isFavorite ? Colors.red : null,
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                // Paylaş düğmesine tıklandığında yapılacak işlemler
+                              },
+                              icon: const Icon(Icons.share),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
                 ),
-                Text(widget.yemek.name)
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  widget.yemek.name,
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: 19,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
+                )
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 100),
+              padding: const EdgeInsets.only(top: 40),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    height: 65,
+                    height: 50,
                     width: 200,
                     padding: const EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
@@ -98,19 +120,22 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                       border: Border.all(color: Colors.grey, width: 1),
                     ),
                     child: Column(
-                      children:  [
+                      children: [
+                        /*
                         Text(
                           cheapestStoreName1,
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
-                        ),
-                        SizedBox(height: 8),
+                        ),*/
                         Text(
-                          'Fiyat: ${cheapestStorePrice1.isInfinite?"-":cheapestStorePrice1} TL',
+                          'Fiyat: ${cheapestStorePrice1.isInfinite ? "-" : cheapestStorePrice1} TL',
+                          textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 19,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ],
@@ -119,9 +144,15 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                   const SizedBox(width: 10),
                   ElevatedButton.icon(
                     onPressed: () {
-                      final cheapestStoreName = ref.read(magazaRepositoryProvider).getCheapestStoreName(widget.yemek.name);
-                      final cheapestStorePrice = ref.read(magazaRepositoryProvider).getCheapestPrice(widget.yemek.name);
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${cheapestStoreName1}: ${cheapestStorePrice1} yönlendiriliyor...')));
+                      final cheapestStoreName = ref
+                          .read(magazaRepositoryProvider)
+                          .getCheapestStoreName(widget.yemek.name);
+                      final cheapestStorePrice = ref
+                          .read(magazaRepositoryProvider)
+                          .getCheapestPrice(widget.yemek.name);
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(
+                              '${cheapestStoreName1}: ${cheapestStorePrice1} yönlendiriliyor...')));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.dort,
@@ -139,8 +170,11 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
             ListView(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              children: ref.read(magazaRepositoryProvider).getStore(widget.yemek.name).map((store) {
-                double storePrice =double.parse(store["price"] ?? "0");
+              children: ref
+                  .read(magazaRepositoryProvider)
+                  .getStore(widget.yemek.name)
+                  .map((store) {
+                double storePrice = double.parse(store["price"] ?? "0");
                 String storeName = store["storeName"] ?? "-";
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 15),
@@ -185,9 +219,7 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                             color: AppColors.bir,
                           ),
                         ),
-                        onPressed: () {
-
-                        },
+                        onPressed: () {},
                       ),
                     ),
                   ),

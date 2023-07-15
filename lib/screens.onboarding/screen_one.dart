@@ -20,7 +20,7 @@ class OnboardingScreenOne extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Image.asset(
-                  'lib/images/1.jpg',
+                  'lib/images/onboarding1.png.gif',
                   width: size.width,
                   height: size.height * 0.6,
                   fit: BoxFit.cover,
@@ -29,13 +29,13 @@ class OnboardingScreenOne extends StatelessWidget {
                   clipper: SlandingClipper(),
                   child: Container(
                     height: size.height * 0.4,
-                    color: AppColors.uc,
+                    color: AppColors.yedi,
                   ),
                 )
               ],
             ),
             Positioned(
-              top: size.height * 0.65,
+              top: size.height * 0.66,
               child: Container(
                 width: size.width,
                 padding: EdgeInsets.all(appPadding),
@@ -43,19 +43,19 @@ class OnboardingScreenOne extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      'SELECT ITEMS',
+                      'Yemek Kılavuzuna Hoşgeldiniz!',
                       textAlign: TextAlign.end,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: white,
-                        fontSize: 30,
+                        fontSize: 29,
                       ),
                     ),
                     SizedBox(
                       height: size.height * 0.02,
                     ),
                     Text(
-                      'Lorem Ipsum is simply dummy \ntext of the printing and typesetting industry.',
+                      'Platformumuzda birbirinden farklı restoranların menülerini karşılaştırabilir ve en uygun yemek seçeneklerini bulabilirsiniz. ',
                       textAlign: TextAlign.end,
                       style: TextStyle(
                         fontSize: 18,
