@@ -114,7 +114,7 @@ class YemekKiyasTumuPage extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Fiyat: ${urun.price}",
+                                "Fiyat: ${urun.price} TL",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
