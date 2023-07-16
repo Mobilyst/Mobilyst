@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/food_comparison_screen/UrunRepository.dart';
 import 'package:mobilyst/oktay/OktayKarsilastirma/karsilastirma_ekrani/magazaRepository.dart';
@@ -140,14 +142,14 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
             urun.category.toLowerCase() == widget.yemek.category.toLowerCase())
         .toList();
 
-
-    filteredMeals.sort((a,b) => a.price.compareTo(b.price));
-    
-    void uruneGit() async {
-        await launch(widget.yemek.product_url);
+    filteredMeals.sort((a, b) => a.price.compareTo(b.price));
 
     void uruneGit() async {
       await launch(widget.yemek.product_url);
+
+      void uruneGit() async {
+        await launch(widget.yemek.product_url);
+      }
     }
 
     return Scaffold(
