@@ -6,8 +6,8 @@ import 'package:mobilyst/food_comparison_screen/food_bilgileri.dart';
 
 import '../oktay/OktayKarsilastirma/karsilastirma_ekrani/yemekkarsilastirmaekrani.dart';
 
-class TatliTumuPage extends ConsumerWidget {
-  const TatliTumuPage({Key? key}) : super(key: key);
+class TavukTumuPage extends ConsumerWidget {
+  const TavukTumuPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,7 +29,7 @@ class TatliTumuPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Tavuklu Çeşitler",
+          "Tavuklu Yemekler",
           style: TextStyle(
             color: AppColors.bir,
           ),

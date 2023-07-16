@@ -1,8 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:mobilyst/ColorAndType/color.dart';
+import 'package:mobilyst/food_comparison_screen/UrunRepository.dart';
 import 'package:mobilyst/oktay/OktayKarsilastirma/karsilastirma_ekrani/magazaRepository.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../../../Anasayfa/KampanyaRepository.dart';
 import '../../../food_comparison_screen/food_bilgileri.dart';
 
 class FoodComparisonScreen extends ConsumerStatefulWidget {
@@ -28,7 +36,67 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final magazaRepository = ref.watch(magazaRepositoryProvider);
+    final urunRepository = ref.watch(urunProvider);
+    final List<List<products>> meals = urunRepository.urunler;
+    final bool isFetching = urunRepository.isFetching;
+
+    final List<products> filteredMeals = meals
+        .expand((mealList) => mealList)
+        .where((urun) =>
+            urun.category.toLowerCase() == widget.yemek.category.toLowerCase())
+        .toList();
+    
+    void uruneGit() async {
+      if (FirebaseAuth.instance.currentUser != null) {
+        // Kullanıcı girişi yapıldıysa direkt olarak web sitesine yönlendir.
+        await launch(widget.yemek.product_url);
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text(
+                "Uyarı",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              ),
+              content: Text(
+                  textAlign: TextAlign.start,
+                  "Fırsata gitmek için giriş yapmanız gerekiyor. Lütfen giriş yapınız."),
+              actions: <Widget>[
+                TextButton(
+                  child: Text(
+                    "Giriş Yap",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.uc,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onPressed: () {
+                    context.go('/hesabim');
+                    Navigator.of(context).pop();
+                  },
+                ),
+                TextButton(
+                  child: Text(
+                    "İptal",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.uc,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.white,
@@ -121,16 +189,8 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                     ),
                     child: Column(
                       children: [
-                        /*
                         Text(
-                          cheapestStoreName1,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),*/
-                        Text(
-                          'Fiyat: ${cheapestStorePrice1.isInfinite ? "-" : cheapestStorePrice1} TL',
+                          'Fiyat: ${widget.yemek.price} TL',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 19,
@@ -143,17 +203,16 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                   ),
                   const SizedBox(width: 10),
                   ElevatedButton.icon(
-                    onPressed: () {
-                      final cheapestStoreName = ref
-                          .read(magazaRepositoryProvider)
-                          .getCheapestStoreName(widget.yemek.name);
+                    onPressed: uruneGit,
+                    /*() {
+                      print(filteredMeals);
                       final cheapestStorePrice = ref
                           .read(magazaRepositoryProvider)
                           .getCheapestPrice(widget.yemek.name);
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text(
-                              '${cheapestStoreName1}: ${cheapestStorePrice1} yönlendiriliyor...')));
-                    },
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text('Ürüne git!')));
+                    
+                    },*/
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.dort,
                       textStyle: const TextStyle(
@@ -161,70 +220,40 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                       ), // Arka plan rengi
                     ),
                     icon: const Icon(Icons.shopping_bag),
-                    label: const Text('En ucuzuna git'),
+                    label: const Text('Ürüne git!'),
                   ),
                   const SizedBox(width: 10),
                 ],
               ),
             ),
-            ListView(
+            ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              children: ref
-                  .read(magazaRepositoryProvider)
-                  .getStore(widget.yemek.name)
-                  .map((store) {
-                double storePrice = double.parse(store["price"] ?? "0");
-                String storeName = store["storeName"] ?? "-";
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey, // Kenar çizgisi rengi
-                        width: 00.5, // Kenar çizgisi kalınlığı
-                      ),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: ListTile(
-                      title: Text(
-                        storeName,
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      ),
-                      subtitle: Text(
-                        'Fiyat: $storePrice TL ',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      ),
-                      trailing: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.dort,
-                          textStyle: const TextStyle(
-                            color: AppColors.bir,
-                          ),
-                          // Arka plan rengi
-                        ),
-                        child: const Text(
-                          'Mağaza\'ya git',
-                          style: TextStyle(
-                            color: AppColors.bir,
-                          ),
-                        ),
-                        onPressed: () {},
-                      ),
+              itemCount: filteredMeals.length,
+              itemBuilder: (context, index) {
+                final urun = filteredMeals[index];
+                return ListTile(
+                  leading: Icon(CupertinoIcons.arrow_right_circle),
+                  title: Text(
+                    urun.name + " " + " Fiyat: " + "${urun.price}" + "TL",
+                    textAlign: TextAlign.right,
+                    maxLines: 4,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      color: Colors.black,
                     ),
                   ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FoodComparisonScreen(yemek: urun),
+                      ),
+                    );
+                  },
                 );
-              }).toList(),
+              },
             ),
           ],
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobilyst/Anasayfa/AnaSayfa.dart';
+import 'package:mobilyst/Anasayfa/DetayliBilgiSayfasi.dart';
 import 'package:mobilyst/Anasayfa/KampanyalarSayfasi.dart';
 import 'package:mobilyst/GirisOlaylari/girisPage.dart';
 import 'package:mobilyst/GirisOlaylari/tabs/sifreUnuttumPage.dart';
@@ -8,9 +9,10 @@ import 'package:mobilyst/Hesabim/HesapBilgileri/hesapBilgilerimPage.dart';
 import 'package:mobilyst/NavBar/navigationBar.dart';
 import 'package:mobilyst/food_comparison_screen/food_comparison_screen.dart';
 import 'package:mobilyst/hesabim/hesabimPage.dart';
+import 'package:mobilyst/oktay/kategoriler_ekrani/cesitlerEkrani.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/kategorilerSayfasi.dart';
+import 'package:mobilyst/oktay/yemek_ekrani/yemekEkrani.dart';
 import 'package:mobilyst/screens.onboarding/screen_one.dart';
-
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorAnaSayfaKey =
@@ -40,7 +42,9 @@ final goRouter = GoRouter(
             GoRoute(
               path: '/a',
               pageBuilder: (context, state) => const NoTransitionPage(
-                child: AnaSayfa(),
+                child: AnaSayfa(
+                  detailsPath: '/a/yemek',
+                ),
               ),
               routes: [
                 GoRoute(
@@ -63,6 +67,14 @@ final goRouter = GoRouter(
               pageBuilder: (context, state) => const NoTransitionPage(
                 child: YemekKategorileriSayfasi(detailsPath: '/b/cesit'),
               ),
+              routes: [
+                GoRoute(
+                  path: 'cesit',
+                  builder: (context, state) => MyYemekKategoriPage(
+                    kategoriAdi: '',
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -73,7 +85,7 @@ final goRouter = GoRouter(
             GoRoute(
               path: '/hesabim',
               pageBuilder: (context, state) => const NoTransitionPage(
-                child: GirisPage(detailsPath: '/hesabim/sifre'),
+                child: GirisPage(detailsPath: '/hesabim'),
               ),
               routes: [
                 GoRoute(
