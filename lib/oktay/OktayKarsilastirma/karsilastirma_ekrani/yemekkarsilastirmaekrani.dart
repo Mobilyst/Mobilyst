@@ -1,12 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/food_comparison_screen/UrunRepository.dart';
 import 'package:mobilyst/oktay/OktayKarsilastirma/karsilastirma_ekrani/magazaRepository.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../../../Anasayfa/KampanyaRepository.dart';
 import '../../../food_comparison_screen/food_bilgileri.dart';
 
 class FoodComparisonScreen extends ConsumerStatefulWidget {
@@ -18,8 +22,6 @@ class FoodComparisonScreen extends ConsumerStatefulWidget {
 }
 
 class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
-
-
   bool isFavorite = false;
   late var cheapestStoreName1 = ref
       .read(magazaRepositoryProvider)
@@ -38,11 +40,63 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
     final List<List<products>> meals = urunRepository.urunler;
     final bool isFetching = urunRepository.isFetching;
 
-
     final List<products> filteredMeals = meals
         .expand((mealList) => mealList)
-        .where((urun) => urun.category.toLowerCase() == widget.yemek.category.toLowerCase())
+        .where((urun) =>
+            urun.category.toLowerCase() == widget.yemek.category.toLowerCase())
         .toList();
+    
+    void uruneGit() async {
+      if (FirebaseAuth.instance.currentUser != null) {
+        // Kullanıcı girişi yapıldıysa direkt olarak web sitesine yönlendir.
+        await launch(widget.yemek.product_url);
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text(
+                "Uyarı",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              ),
+              content: Text(
+                  textAlign: TextAlign.start,
+                  "Fırsata gitmek için giriş yapmanız gerekiyor. Lütfen giriş yapınız."),
+              actions: <Widget>[
+                TextButton(
+                  child: Text(
+                    "Giriş Yap",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.uc,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onPressed: () {
+                    context.go('/hesabim');
+                    Navigator.of(context).pop();
+                  },
+                ),
+                TextButton(
+                  child: Text(
+                    "İptal",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.uc,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.white,
@@ -149,15 +203,16 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                   ),
                   const SizedBox(width: 10),
                   ElevatedButton.icon(
-                    onPressed: () {
+                    onPressed: uruneGit,
+                    /*() {
                       print(filteredMeals);
                       final cheapestStorePrice = ref
                           .read(magazaRepositoryProvider)
                           .getCheapestPrice(widget.yemek.name);
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text(
-                              'Ürüne git!')));
-                    },
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text('Ürüne git!')));
+                    
+                    },*/
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.dort,
                       textStyle: const TextStyle(
@@ -174,26 +229,32 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-                    itemCount: filteredMeals.length,
-                    itemBuilder: (context, index) {
-                      final urun = filteredMeals[index];
-                      return ListTile(
-                        leading: Icon(CupertinoIcons.arrow_right_circle),
-                        title: Text(urun.name+" "+" fiyat: "+"${urun.price}"+"TL"),
-                        onTap:() {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  FoodComparisonScreen(yemek: urun),
-                            ),
-                          );
-                        },
-
-                      );
-                    },
-
-              ),
+              itemCount: filteredMeals.length,
+              itemBuilder: (context, index) {
+                final urun = filteredMeals[index];
+                return ListTile(
+                  leading: Icon(CupertinoIcons.arrow_right_circle),
+                  title: Text(
+                    urun.name + " " + " Fiyat: " + "${urun.price}" + "TL",
+                    textAlign: TextAlign.right,
+                    maxLines: 4,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FoodComparisonScreen(yemek: urun),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
           ],
         ),
       ),

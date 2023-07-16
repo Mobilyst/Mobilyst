@@ -21,7 +21,8 @@ import '../ColorAndType/color.dart';
 import 'KampanyaRepository.dart';
 
 class AnaSayfa extends ConsumerWidget {
-  const AnaSayfa({Key? key}) : super(key: key);
+  final String detailsPath;
+  const AnaSayfa({Key? key, required this.detailsPath}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
