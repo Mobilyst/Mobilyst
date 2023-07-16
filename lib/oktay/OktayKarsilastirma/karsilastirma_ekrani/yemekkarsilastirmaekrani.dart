@@ -1,16 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:line_icons/line_icon.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/food_comparison_screen/UrunRepository.dart';
 import 'package:mobilyst/oktay/OktayKarsilastirma/karsilastirma_ekrani/magazaRepository.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../../../Anasayfa/KampanyaRepository.dart';
 import '../../../food_comparison_screen/food_bilgileri.dart';
 
 class FoodComparisonScreen extends ConsumerStatefulWidget {
@@ -45,6 +39,8 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
         .where((urun) =>
             urun.category.toLowerCase() == widget.yemek.category.toLowerCase())
         .toList();
+
+    filteredMeals.sort((a,b) => a.price.compareTo(b.price));
     
     void uruneGit() async {
         await launch(widget.yemek.product_url);
@@ -146,7 +142,7 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                         Text(
                           'Fiyat: ${widget.yemek.price} TL',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 19,
                             color: Colors.black,
                             fontWeight: FontWeight.w500,

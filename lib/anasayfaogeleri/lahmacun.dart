@@ -8,7 +8,6 @@ import '../oktay/OktayKarsilastirma/karsilastirma_ekrani/yemekkarsilastirmaekran
 
 class LahmacunTumuPage extends ConsumerWidget {
   const LahmacunTumuPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final urunRepository = ref.watch(urunProvider);
@@ -40,32 +39,7 @@ class LahmacunTumuPage extends ConsumerWidget {
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: DropdownButton<SiralamaSecenekleri>(
-              onChanged: (SiralamaSecenekleri? newValue) {
-                if (newValue == SiralamaSecenekleri.PriceDescending) {
-                  filteredMeals.sort((a, b) => a.price.compareTo(b.price));
-                } else if (newValue == SiralamaSecenekleri.PriceAscending) {
-                  filteredMeals.sort((a, b) => b.price.compareTo(a.price));
-                }
-              },
-              items: const [
-                DropdownMenuItem(
-                  value: SiralamaSecenekleri.Sirala,
-                  child: Text("Önerilen Sıralama"),
-                ),
-                DropdownMenuItem(
-                  value: SiralamaSecenekleri.PriceDescending,
-                  child: Text("Fiyata Göre Azalan"),
-                ),
-                DropdownMenuItem(
-                  value: SiralamaSecenekleri.PriceAscending,
-                  child: Text("Fiyata Göre Artan"),
-                ),
-              ],
-            ),
-          ),
+
           Expanded(
             child: GridView.builder(
               shrinkWrap: true,
