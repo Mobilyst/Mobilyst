@@ -1,8 +1,6 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'food_bilgileri.dart';
 
 class UrunRepository with ChangeNotifier {
@@ -27,12 +25,15 @@ class UrunRepository with ChangeNotifier {
         final id = doc.id;
         final yemekler = products(
           id,
-          data['image_url'],
-          data['name'],
-          data['price'],
-          data['product_url'],
+          data['category'] ??
+              '', 
+          data['image_url'] ??
+              '', 
+          data['name'] ?? '',
+          data['price'] ?? 0, 
+          data['product_url'] ??
+              '', 
         );
-
         if (groupedUrunler.containsKey(id)) {
           groupedUrunler[id]!.add(yemekler);
         } else {

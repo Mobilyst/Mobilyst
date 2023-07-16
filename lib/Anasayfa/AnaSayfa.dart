@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mobilyst/Anasayfa/DetayliBilgiSayfasi.dart';
 import 'package:mobilyst/Anasayfa/KampanyalarSayfasi.dart';
 import 'package:mobilyst/Anasayfa/Urun.dart';
+import 'package:mobilyst/anasayfaogeleri/icecek.dart';
 import 'package:mobilyst/food_comparison_screen/food_comparison_screen.dart';
 import '../ColorAndType/color.dart';
 import 'KampanyaRepository.dart';
@@ -132,7 +133,16 @@ class AnaSayfa extends ConsumerWidget {
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         child: InkWell(
                           splashColor: AppColors.yedi,
-                          onTap: () {},
+                          onTap: () {
+                             
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>  const IcecekTumuPage(),
+                            ),
+                          );
+                        
+                          },
                           child: Column(
                             children: [
                               const SizedBox(height: 15),
@@ -146,7 +156,7 @@ class AnaSayfa extends ConsumerWidget {
                               ),
                               const SizedBox(height: 5),
                               const Text(
-                                'All',
+                                'İçecek',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -392,7 +402,16 @@ class AnaSayfa extends ConsumerWidget {
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
                                 child: InkWell(
                                   splashColor: Colors.black26,
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            DetayliBilgiSayfasi(
+                                          id: index,
+                                        ),
+                                      ),
+                                    );
+                                  },
                                   child: Container(
                                     width: double.infinity,
                                     height: 290,
