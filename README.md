@@ -175,13 +175,14 @@ https://github.com/Mobilyst/mobilyst/assets/135759215/842b64de-bef9-40a4-a0bc-c8
 
 
 
- * Sprint Review: Uygulamanın eksik sayfaları tasarlanmış,python ile web sitesinden veri çekilmiş firebase veri gönderilmiş ve geri çekilmiştir.Eksik durumlar konuşulmuş ve sprint sonuna kadar bitirilmeye karar verilmiştir.
+ * Sprint Review: Uygulamanın eksik sayfaları tasarlanmış,python ile web sitesinden veri çekilmiş firebase veri gönderilmiş ve geri çekilmiştir.Eksik durumlar konuşulmuş ve sprint sonuna kadar bitirilmeye karar verilmiştir.Uygulamamızı buraya kadar taşıdığımız için tüm takım arkadaşlarıma teşekkür ediyorum. Uykusuz kalınan geceler için de özür diliyorum.
 
 
 * Sprint Retrospective
     * Takım üyelerinin 3.sprint haftasında birlikte çalışılmasına karar verilmiştir.
     * Takım üyelerinden biri hata aldığında ertelenmeyip anında takımca çözülmesi gerektiği vurgulanmıştır.
     * Takım üyelerinin gelecek sprintlerde aktif olması gerektiğine vurgu yapılmıştır.
+    * Herkese verdiği emekler için teşekkür edilmiştir.
       
 
 ---  
