@@ -6,8 +6,8 @@ import 'package:mobilyst/food_comparison_screen/food_bilgileri.dart';
 
 import '../oktay/OktayKarsilastirma/karsilastirma_ekrani/yemekkarsilastirmaekrani.dart';
 
-class TatliTumuPage extends ConsumerWidget {
-  const TatliTumuPage({Key? key}) : super(key: key);
+class LahmacunTumuPage extends ConsumerWidget {
+  const LahmacunTumuPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

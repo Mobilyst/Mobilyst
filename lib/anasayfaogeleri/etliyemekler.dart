@@ -6,8 +6,8 @@ import 'package:mobilyst/food_comparison_screen/food_bilgileri.dart';
 
 import '../oktay/OktayKarsilastirma/karsilastirma_ekrani/yemekkarsilastirmaekrani.dart';
 
-class TatliTumuPage extends ConsumerWidget {
-  const TatliTumuPage({Key? key}) : super(key: key);
+class EtliYemekTumuPage extends ConsumerWidget {
+  const EtliYemekTumuPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -69,7 +69,7 @@ class TatliTumuPage extends ConsumerWidget {
           Expanded(
             child: GridView.builder(
               shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 5,
                 crossAxisSpacing: 15,
@@ -80,7 +80,7 @@ class TatliTumuPage extends ConsumerWidget {
                 final urun = filteredMeals[index];
                 return Card(
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(
+                    side: const BorderSide(
                       color: Colors.grey,
                       width: 1.0,
                     ),
@@ -109,39 +109,41 @@ class TatliTumuPage extends ConsumerWidget {
                       child: Column(
                         children: [
                           Container(
-                            margin: EdgeInsets.only(top: 5),
+                            margin: const EdgeInsets.only(top: 5),
                             child: SizedBox(
-                              child: Image.network(
-                                urun.image_url,
-                                fit: BoxFit.cover,
-                                height: 200,
-                                width: 170,
-                              ),
+                              child: urun.image_url != null
+                                  ? Image.network(
+                                      urun.image_url!,
+                                      fit: BoxFit.cover,
+                                      height: 200,
+                                      width: 170,
+                                    )
+                                  : const Placeholder(), // Varsayılan bir görüntü göstermek için Placeholder widget'ı kullanılabilir
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 1,
                           ),
                           Text(
                             urun.name,
                             maxLines: 2,
                             textAlign: TextAlign.start,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 16,
                               color: Colors.black,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 1,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Fiyat: ${urun.price} TL",
+                                "Fiyat: ${urun.price.toString()} TL",
                                 textAlign: TextAlign.start,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16,
                                   color: AppColors.bes,

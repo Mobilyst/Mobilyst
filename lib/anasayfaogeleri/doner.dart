@@ -6,8 +6,8 @@ import 'package:mobilyst/food_comparison_screen/food_bilgileri.dart';
 
 import '../oktay/OktayKarsilastirma/karsilastirma_ekrani/yemekkarsilastirmaekrani.dart';
 
-class HamburgerTumuPage extends ConsumerWidget {
-  const HamburgerTumuPage({Key? key}) : super(key: key);
+class DonerTumuPage extends ConsumerWidget {
+  const DonerTumuPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,13 +23,13 @@ class HamburgerTumuPage extends ConsumerWidget {
 
     final List<products> filteredMeals = meals
         .expand((mealList) => mealList)
-        .where((urun) => urun.category.toLowerCase() == "hamburger")
+        .where((urun) => urun.category.toLowerCase() == "döner")
         .toList();
 
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Hamburgerler",
+          "Dönerler",
           style: TextStyle(
             color: AppColors.bir,
           ),

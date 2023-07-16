@@ -4,7 +4,18 @@ import 'package:go_router/go_router.dart';
 import 'package:mobilyst/Anasayfa/DetayliBilgiSayfasi.dart';
 import 'package:mobilyst/Anasayfa/KampanyalarSayfasi.dart';
 import 'package:mobilyst/Anasayfa/Urun.dart';
+import 'package:mobilyst/anasayfaogeleri/cigkofte.dart';
+import 'package:mobilyst/anasayfaogeleri/doner.dart';
+import 'package:mobilyst/anasayfaogeleri/etliyemekler.dart';
+import 'package:mobilyst/anasayfaogeleri/hamburger.dart';
 import 'package:mobilyst/anasayfaogeleri/icecek.dart';
+import 'package:mobilyst/anasayfaogeleri/lahmacun.dart';
+import 'package:mobilyst/anasayfaogeleri/patateskizartmasi.dart';
+import 'package:mobilyst/anasayfaogeleri/pizza.dart';
+import 'package:mobilyst/anasayfaogeleri/salata.dart';
+import 'package:mobilyst/anasayfaogeleri/sandiwic.dart';
+import 'package:mobilyst/anasayfaogeleri/tatli.dart';
+import 'package:mobilyst/anasayfaogeleri/tavuk.dart';
 import 'package:mobilyst/food_comparison_screen/food_comparison_screen.dart';
 import '../ColorAndType/color.dart';
 import 'KampanyaRepository.dart';
@@ -134,22 +145,556 @@ class AnaSayfa extends ConsumerWidget {
                         child: InkWell(
                           splashColor: AppColors.yedi,
                           onTap: () {
-                             
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>  const IcecekTumuPage(),
-                            ),
-                          );
-                        
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const PizzaTumuPage(),
+                              ),
+                            );
                           },
                           child: Column(
                             children: [
                               const SizedBox(height: 15),
                               Ink.image(
                                 image: const NetworkImage(
-                                  'https://cdn.yeniakit.com.tr/images/news/940/hangi-sehirde-hangi-yemek-yenir-2h1580033203-e7124c.jpg',
+                                    'https://images.deliveryhero.io/image/fd-tr/LH/m6n3-listing.jpg'),
+                                height: 150,
+                                width: 150,
+                                fit: BoxFit.cover,
+                              ),
+                              const SizedBox(height: 5),
+                              const Text(
+                                'Pizza',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.black,
                                 ),
+                              ),
+                              const SizedBox(height: 5),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 0.5,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Material(
+                        elevation: 8,
+                        borderRadius: BorderRadius.circular(6),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: InkWell(
+                          splashColor: AppColors.yedi,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SandiwichTumuPage(),
+                              ),
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 15),
+                              Ink.image(
+                                image: const NetworkImage(
+                                    'https://images.deliveryhero.io/image/fd-tr/LH/sx5y-hero.jpg'),
+                                height: 150,
+                                width: 150,
+                                fit: BoxFit.cover,
+                              ),
+                              const SizedBox(height: 5),
+                              const Text(
+                                'Sandwich',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 0.5,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Material(
+                        elevation: 8,
+                        borderRadius: BorderRadius.circular(6),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: InkWell(
+                          splashColor: AppColors.yedi,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const LahmacunTumuPage(),
+                              ),
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 15),
+                              Ink.image(
+                                image: const NetworkImage(
+                                  'https://i4.hurimg.com/i/hurriyet/75/750x422/5f71d3117af50732b4b9d1ed.jpg',
+                                ),
+                                height: 150,
+                                width: 150,
+                                fit: BoxFit.cover,
+                              ),
+                              const SizedBox(height: 5),
+                              const Text(
+                                'Lahmacun',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 0.5,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Material(
+                        elevation: 8,
+                        borderRadius: BorderRadius.circular(6),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: InkWell(
+                          splashColor: AppColors.yedi,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HamburgerTumuPage(),
+                              ),
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 15),
+                              Ink.image(
+                                image: const NetworkImage(
+                                  'https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/w_1000,h_684,c_limit/the-ultimate-hamburger.jpg',
+                                ),
+                                height: 150,
+                                width: 150,
+                                fit: BoxFit.cover,
+                              ),
+                              const SizedBox(height: 5),
+                              const Text(
+                                'Hamburger',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 0.5,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Material(
+                        elevation: 8,
+                        borderRadius: BorderRadius.circular(6),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: InkWell(
+                          splashColor: AppColors.yedi,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const DonerTumuPage(),
+                              ),
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 15),
+                              Ink.image(
+                                image: const NetworkImage(
+                                  'https://images.deliveryhero.io/image/fd-tr/LH/ig4d-hero.jpg',
+                                ),
+                                height: 150,
+                                width: 150,
+                                fit: BoxFit.cover,
+                              ),
+                              const SizedBox(height: 5),
+                              const Text(
+                                'Döner',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 0.5,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Material(
+                        elevation: 8,
+                        borderRadius: BorderRadius.circular(6),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: InkWell(
+                          splashColor: AppColors.yedi,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const PatatesKizartmasiTumuPage(),
+                              ),
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 15),
+                              Ink.image(
+                                image: const NetworkImage(
+                                  'https://sanpagida.com.tr/wp-content/uploads/2021/09/patates-nasil-kizartilir-930x620.png',
+                                ),
+                                height: 150,
+                                width: 150,
+                                fit: BoxFit.cover,
+                              ),
+                              const SizedBox(height: 5),
+                              const Text(
+                                'Kızartma',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 0.5,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Material(
+                        elevation: 8,
+                        borderRadius: BorderRadius.circular(6),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: InkWell(
+                          splashColor: AppColors.yedi,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const TatliTumuPage(),
+                              ),
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 15),
+                              Ink.image(
+                                image: const NetworkImage(
+                                  'https://images.deliveryhero.io/image/fd-tr/LH/xicd-hero.jpg',
+                                ),
+                                height: 150,
+                                width: 150,
+                                fit: BoxFit.cover,
+                              ),
+                              const SizedBox(height: 5),
+                              const Text(
+                                'Tatlı',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 0.5,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Material(
+                        elevation: 8,
+                        borderRadius: BorderRadius.circular(6),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: InkWell(
+                          splashColor: AppColors.yedi,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const EtliYemekTumuPage(),
+                              ),
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 15),
+                              Ink.image(
+                                image: const NetworkImage(
+                                  'https://iasbh.tmgrup.com.tr/51e3b7/752/395/0/92/1177/711?u=https://isbh.tmgrup.com.tr/sbh/2020/03/12/kusbasi-etli-turlu-tarifi-turlu-nasil-yapilir-1584004774381.jpg',
+                                ),
+                                height: 150,
+                                width: 150,
+                                fit: BoxFit.cover,
+                              ),
+                              const SizedBox(height: 5),
+                              const Text(
+                                'Kebap ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 0.5,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Material(
+                        elevation: 8,
+                        borderRadius: BorderRadius.circular(6),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: InkWell(
+                          splashColor: AppColors.yedi,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const TavukTumuPage(),
+                              ),
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 15),
+                              Ink.image(
+                                image: const NetworkImage(
+                                    'https://www.yemektarifi.com/wp-content/uploads/2017/06/baharatli-tavuk-kanat.jpg'),
+                                height: 150,
+                                width: 150,
+                                fit: BoxFit.cover,
+                              ),
+                              const SizedBox(height: 5),
+                              const Text(
+                                'Tavuk',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 0.5,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Material(
+                        elevation: 8,
+                        borderRadius: BorderRadius.circular(6),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: InkWell(
+                          splashColor: AppColors.yedi,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const CigKofteTumuPage(),
+                              ),
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 15),
+                              Ink.image(
+                                image: const NetworkImage(
+                                    'https://images.deliveryhero.io/image/fd-tr/LH/p5eb-hero.jpg'),
+                                height: 150,
+                                width: 150,
+                                fit: BoxFit.cover,
+                              ),
+                              const SizedBox(height: 5),
+                              const Text(
+                                'Çiğ Köfte',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 0.5,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Material(
+                        elevation: 8,
+                        borderRadius: BorderRadius.circular(6),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: InkWell(
+                          splashColor: AppColors.yedi,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SalataTumuPage(),
+                              ),
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 15),
+                              Ink.image(
+                                image: const NetworkImage(
+                                    'https://i4.hurimg.com/i/hurriyet/75/750x422/5cb07cc1c03c0e53e4ce9cf5.jpg'),
+                                height: 150,
+                                width: 150,
+                                fit: BoxFit.cover,
+                              ),
+                              const SizedBox(height: 5),
+                              const Text(
+                                'Salata',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 0.5,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Material(
+                        elevation: 8,
+                        borderRadius: BorderRadius.circular(6),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: InkWell(
+                          splashColor: AppColors.yedi,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const IcecekTumuPage(),
+                              ),
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 15),
+                              Ink.image(
+                                image: const NetworkImage(
+                                    'https://www.hattena.com.tr/uploads/m_Yemekler/detay/hattena-gazli-icecekler-698.png'),
                                 height: 150,
                                 width: 150,
                                 fit: BoxFit.cover,
@@ -157,176 +702,6 @@ class AnaSayfa extends ConsumerWidget {
                               const SizedBox(height: 5),
                               const Text(
                                 'İçecek',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              const SizedBox(height: 5),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 15),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Material(
-                        elevation: 8,
-                        borderRadius: BorderRadius.circular(6),
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        child: InkWell(
-                          splashColor: AppColors.yedi,
-                          onTap: () {},
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 15),
-                              Ink.image(
-                                image: const NetworkImage(
-                                  'https://potatorolls.com/wp-content/uploads/Lumberjack-Breakfast3-686x640.jpg',
-                                ),
-                                height: 150,
-                                width: 150,
-                                fit: BoxFit.cover,
-                              ),
-                              const SizedBox(height: 5),
-                              const Text(
-                                'Breakfast',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              const SizedBox(height: 5),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 15),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Material(
-                        elevation: 8,
-                        borderRadius: BorderRadius.circular(6),
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        child: InkWell(
-                          splashColor: AppColors.yedi,
-                          onTap: () {},
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 15),
-                              Ink.image(
-                                image: const NetworkImage(
-                                  'https://images.deliveryhero.io/image/fd-tr/LH/kowe-hero.jpg',
-                                ),
-                                height: 150,
-                                width: 150,
-                                fit: BoxFit.cover,
-                              ),
-                              const SizedBox(height: 5),
-                              const Text(
-                                'Fast Food',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              const SizedBox(height: 5),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 15),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Material(
-                        elevation: 8,
-                        borderRadius: BorderRadius.circular(6),
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        child: InkWell(
-                          splashColor: AppColors.yedi,
-                          onTap: () {},
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 15),
-                              Ink.image(
-                                image: const NetworkImage(
-                                  'https://images.deliveryhero.io/image/fd-tr/LH/cx3m-hero.jpg',
-                                ),
-                                height: 150,
-                                width: 150,
-                                fit: BoxFit.cover,
-                              ),
-                              const SizedBox(height: 5),
-                              const Text(
-                                'Traditional',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              const SizedBox(height: 5),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 15),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Material(
-                        elevation: 8,
-                        borderRadius: BorderRadius.circular(6),
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        child: InkWell(
-                          splashColor: AppColors.yedi,
-                          onTap: () {},
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 15),
-                              Ink.image(
-                                image: const NetworkImage(
-                                  'https://images.immediate.co.uk/production/volatile/sites/2/2021/11/Croquembouche-profiterole-tower-ceb1da8.jpg?quality=90&resize=556,505',
-                                ),
-                                height: 150,
-                                width: 150,
-                                fit: BoxFit.cover,
-                              ),
-                              const SizedBox(height: 5),
-                              const Text(
-                                'Desserts',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
