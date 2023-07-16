@@ -7,6 +7,7 @@ import 'package:mobilyst/food_comparison_screen/food_bilgileri.dart';
 import '../oktay/OktayKarsilastirma/karsilastirma_ekrani/yemekkarsilastirmaekrani.dart';
 
 class CigKofteTumuPage extends ConsumerWidget {
+
   const CigKofteTumuPage({Key? key}) : super(key: key);
 
   @override

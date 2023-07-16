@@ -47,54 +47,8 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
         .toList();
     
     void uruneGit() async {
-      if (FirebaseAuth.instance.currentUser != null) {
-        // Kullanıcı girişi yapıldıysa direkt olarak web sitesine yönlendir.
         await launch(widget.yemek.product_url);
-      } else {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text(
-                "Uyarı",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-              ),
-              content: Text(
-                  textAlign: TextAlign.start,
-                  "Fırsata gitmek için giriş yapmanız gerekiyor. Lütfen giriş yapınız."),
-              actions: <Widget>[
-                TextButton(
-                  child: Text(
-                    "Giriş Yap",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: AppColors.uc,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  onPressed: () {
-                    context.go('/hesabim');
-                    Navigator.of(context).pop();
-                  },
-                ),
-                TextButton(
-                  child: Text(
-                    "İptal",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: AppColors.uc,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            );
-          },
-        );
-      }
+
     }
 
     return Scaffold(

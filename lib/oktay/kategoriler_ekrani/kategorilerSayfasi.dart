@@ -23,7 +23,7 @@ class _YemekKategorileriSayfasiState extends ConsumerState<YemekKategorileriSayf
   @override
   void initState() {
     super.initState();
-    kategoriler = ref.read(verilerRepositoryProvider).kategorileriGetir();
+    kategoriler=ref.read(verilerRepositoryProvider).kategorileriGetir();
     newList.addAll(kategoriler);
   }
 
@@ -138,6 +138,7 @@ class _YemekKategorileriSayfasiState extends ConsumerState<YemekKategorileriSayf
           ),
           Expanded(
             child: ListView.builder(
+              itemCount: newList.length,
               itemBuilder: (context, index) => Column(
                 children: [
                   ListTile(
@@ -153,9 +154,7 @@ class _YemekKategorileriSayfasiState extends ConsumerState<YemekKategorileriSayf
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CesitlerEkrani(
-                            kategori: newList[index],
-                          ),
+                          builder: (context) => newList[index].kategoriPath,
                         ),
                       );
                     },
@@ -163,9 +162,10 @@ class _YemekKategorileriSayfasiState extends ConsumerState<YemekKategorileriSayf
                   const Divider(
                     thickness: 2,
                   ),
+
                 ],
               ),
-              itemCount: newList.length,
+
             ),
           ),
         ],

@@ -26,7 +26,7 @@ class _CesitlerEkraniState extends ConsumerState<CesitlerEkrani> {
     super.initState();
 
     setState(() {
-      cesitler = ref.read(verilerRepositoryProvider).cesitleriGetir(widget.kategori.kategoriAdi);
+
       newList.addAll(cesitler);
     });
   }

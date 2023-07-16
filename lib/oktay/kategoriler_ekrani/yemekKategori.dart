@@ -2,7 +2,8 @@ class YemekKategorisi{
 
   String kategoriAdi;
   String kategoriResimUrl;
-  YemekKategorisi( {  required this.kategoriAdi, required this.kategoriResimUrl} );
+  dynamic kategoriPath;
+  YemekKategorisi( {  required this.kategoriAdi, required this.kategoriResimUrl, required this.kategoriPath} );
 
 }
 
