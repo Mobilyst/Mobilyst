@@ -5,7 +5,7 @@ Mobilyst
 
 ## Takim Elemanları
 * Derya Telli: Developer/Scrum Master
-* Özge Nur Çalış: Developer
+* Özge Nur Çalış: Aktif Olmayan Üye 
 * Emel Acar: Developer
 * Oktay Tultar: Developer/Product Owner
 * Hakan Ayaz: Developer
@@ -26,15 +26,14 @@ Yemek Kılavuzu
 
 
 ## Ürün Açıklaması
-Yemek Kılavuzu, Online yemek uygulamalarındaki yemeklerin türlerine göre fiyatlarının sıralanmasını sağlar. Bu uygulama bir çok öğrenciye ve ekonomik sıkıntılar çeken insanlara fiyat bakımından yardımcı olacak , uygun yemek ararken fazladan zaman ayırmasına gerek kalmayacak  ve birbirlerinin yemekler hakkındaki yorumlarını görmelerini sağlayacaktır. Uygulamanın diğer güzel bir özelliği ise kullanıcının telefonunda olmayan online uygulamaların yemek kampanyalarını görebilecek ve ilgili online uygulamaya yönlendirecek olmasıdır. Bu durum kampanyaları takip eden ve ekonomik sıkıntılar çeken insanlara çok yardımcı olacaktır. Kullanıcılar giriş yapmadan da bu özellikleri kullanabilecek, ek olarak eğer favori yemeklerini eklemek ve fiyatı düşen ürünlerden haberdar olmak istiyorlarsa kullanıcıların uygulamaya giriş yapmaları gerekmektedir.
+Yemek Kılavuzu, Online yemek uygulamalarındaki yemeklerin türlerine göre fiyatlarının sıralanmasını sağlar. Bu uygulama bir çok öğrenciye ve ekonomik sıkıntılar çeken insanlara fiyat bakımından yardımcı olacak , uygun yemek ararken fazladan zaman ayırmasına gerek kalmayacaktır. Uygulamanın diğer güzel bir özelliği ise kullanıcının takip etmediği web sitelerindeki yemek kampanyalarını görebilecek ve ilgili web sitesine yönlendirecek olmasıdır. Bu durum kampanyaları takip eden ve ekonomik sıkıntılar çeken insanlara çok yardımcı olacaktır. Kullanıcılar giriş yapmadan kampanyaların web sitesine erişemeyecektir.En uygun yemeğin web sitesine erişebileceklerdir.Ek olarak eğer favori yemeklerini eklemek ve fiyatı düşen ürünlerden haberdar olmak istiyorlarsa kullanıcıların uygulamaya giriş yapmaları gerekmektedir.
 
 
 
 ## Ürün Özellikleri
-* Kullanıcılar online yemek uygulamalarındaki yemeklerin kıyaslanmasını görebilecekler ve ilgili online uygulamaya iletileceklerdir.
-* Kullanıcılar giriş yapmadan kıyaslamaları görebilecek fakat giriş yapmadan favori yemeklerini ekleyemeyecek yada fiyat alarmlarını kullanamayacaklardır.
-* Kullanıcılar diğer kullanıcıların yorumlarını ve değerlendirmelerini görebileceklerdir.
-* Kullanıcıların edinmediği online yemek uygulamalarındaki kampanyaları görebilecek ve ilgili online uygulamaya iletilecekler.
+* Kullanıcılar web sitelerindeki yemeklerin kıyaslanmasını görebilecekler ve ilgili online uygulamaya iletileceklerdir.
+* Kullanıcılar giriş yapmadan kıyaslamaları görebilecek fakat giriş yapmadan kampanyaların ilgili web sitesine gidemeyecek, favori yemeklerini ekleyemeyecek yada fiyat alarmlarını kullanamayacaklardır.
+* Kullanıcıların takip etmediği online web sitelerindeki yemekleri ve kampanyaları görebilecek ve ilgili web sitesine iletilecekler.
 
 
 ## Hedef Kitle
@@ -58,7 +57,9 @@ Yemek Kılavuzu, Online yemek uygulamalarındaki yemeklerin türlerine göre fiy
 
 * Puan tamamlama mantığı: Toplamda proje boyunca tamamlanması gereken 340 puanlık backlog bulunmaktadır. 3 sprint'e bölündüğünde ilk sprint'in en azından 100 ile başlaması gerektiğine karar verildi.
 
-* Daily Scrum: Daily Scrum toplantıları sınav haftasından dolayı  takım arkadaşlarımın kararları ile trello üzerinden gerçekleştirilmiştir.
+* Daily Scrum: Daily Scrum toplantıları 1.sprintin ilk haftasında discord üzerinden ikinci haftası ise sınav haftamız olduğundan dolayı takım arkadaşlarımın kararları ile trello ve whatsapp üzerinden gerçekleştirilmiştir.
+ [Mobilyst Team Daily](https://www.canva.com/design/DAFozmHEUb4/WWsxOO1VRcrn6AStgPjFmw/edit?utm_content=DAFozmHEUb4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton )
+  
 * Sprint board update:
 ![image](https://github.com/Mobilyst/mobilyst/assets/135759215/3540f0d8-be8b-4f04-acaa-6de4171ac518)
 
@@ -153,7 +154,39 @@ https://github.com/Mobilyst/mobilyst/assets/135759215/842b64de-bef9-40a4-a0bc-c8
     * Takım üyelerinden biri hata aldığında ertelenmeyip anında takımca çözülmesi gerektiği vurgulanmıştır.
     * Takım üyelerinin gelecek sprintlerde aktif olması gerektiğine vurgu yapılmıştır.
 
----      
+--- 
+## Product Backlog URL
+[Mobilyst Team Trello Backlog Board](https://trello.com/invite/b/Sh9PuDYd/ATTI8af1d6ea1c2c7563f293d3b2dee2f80eA84B97E7/f1flutterteam)
+
+## Juriye Not 
+?? 
+
+---
+## Sprint 3 
+* Sprint Notları: User story etiketi mavi ve task etiketi mor olarak karar verilmiştir. User Story'ler product backlog'ların içine yazılmıştır.
+* Sprint içinde tamamlanması tahmin edilen puan: 120 Puan
+* Daily Scrum: Daily Scrum toplantıları genel olarak discord üzerinden ve bazı zamanlar whatsapp arama ve mesajlaşma olarak yapılmıştır.
+ [Mobilyst Team Daily](https://www.canva.com/design/DAFozlu1XDk/eL8PuyS3Ccul0J3lcVKEDw/edit?utm_content=DAFozlu1XDk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+   
+* Sprint board update:
+![image](https://github.com/Mobilyst/mobilyst/assets/135759215/7e460bc8-767e-462d-9098-ab91516adf12)
+
+* Ürün Durumu:
+
+
+
+ * Sprint Review: Uygulamanın eksik sayfaları tasarlanmış,python ile web sitesinden veri çekilmiş firebase veri gönderilmiş ve geri çekilmiştir.Eksik durumlar konuşulmuş ve sprint sonuna kadar bitirilmeye karar verilmiştir.
+
+
+* Sprint Retrospective
+    * Takım üyelerinin 3.sprint haftasında birlikte çalışılmasına karar verilmiştir.
+    * Takım üyelerinden biri hata aldığında ertelenmeyip anında takımca çözülmesi gerektiği vurgulanmıştır.
+    * Takım üyelerinin gelecek sprintlerde aktif olması gerektiğine vurgu yapılmıştır.
+      
+
+---  
+
+
 
 
 
