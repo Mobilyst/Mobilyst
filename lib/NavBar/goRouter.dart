@@ -8,7 +8,7 @@ import 'package:mobilyst/GirisOlaylari/tabs/sifreUnuttumPage.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/hesapBilgilerimPage.dart';
 import 'package:mobilyst/NavBar/navigationBar.dart';
 import 'package:mobilyst/food_comparison_screen/food_comparison_screen.dart';
-import 'package:mobilyst/hesabim/hesabimPage.dart';
+import 'package:mobilyst/Hesabim/hesabimPage.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/cesitlerEkrani.dart';
 import 'package:mobilyst/oktay/kategoriler_ekrani/kategorilerSayfasi.dart';
 import 'package:mobilyst/oktay/yemek_ekrani/yemekEkrani.dart';

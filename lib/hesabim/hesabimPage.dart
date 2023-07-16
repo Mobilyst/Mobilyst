@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/GirisOlaylari/girisPage.dart';
-import 'package:mobilyst/Hesabim/FavoriListelerimPage.dart';
+import 'package:mobilyst/Hesabim/HesapBilgileri/favoriListelerimPage.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/hesapBilgilerimPage.dart';
 import 'package:mobilyst/Hesabim/fiyatAlarmlarimPage.dart';
 
@@ -102,9 +102,8 @@ class _HesabimPageState extends State<HesabimPage> {
             leading: Icon(Icons.favorite_border),
             contentPadding: EdgeInsets.all(10),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => FavoriListPage()),
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => FavorilerSayfasi()),
               );
             },
           ),
