@@ -48,48 +48,7 @@ class AnaSayfa extends ConsumerWidget {
           child: Column(
             children: <Widget>[
               const SizedBox(height: 6),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                child: Container(
-                  height: 50,
-                  child: TextField(
-                    controller: searchController,
-                    decoration: InputDecoration(
-                      hintText: 'Ara...',
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          Icons.clear,
-                          color: AppColors.yedi,
-                        ),
-                        onPressed: () => searchController.clear(),
-                      ),
-                      prefixIcon: IconButton(
-                        icon: Icon(
-                          Icons.search,
-                          color: AppColors.yedi,
-                        ),
-                        onPressed: () {
-                          // Perform the search here
-                        },
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 1.0,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 2.0,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+
               Row(
                 children: [
                   const SizedBox(width: 5),
