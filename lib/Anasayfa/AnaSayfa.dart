@@ -47,8 +47,7 @@ class AnaSayfa extends ConsumerWidget {
         child: Center(
           child: Column(
             children: <Widget>[
-              const SizedBox(height: 6),
-
+              const SizedBox(height: 15),
               Row(
                 children: [
                   const SizedBox(width: 5),
@@ -678,7 +677,7 @@ class AnaSayfa extends ConsumerWidget {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 50,
               ),
               Row(
                 children: [

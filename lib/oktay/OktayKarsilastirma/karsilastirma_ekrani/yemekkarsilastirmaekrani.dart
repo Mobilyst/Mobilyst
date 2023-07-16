@@ -9,9 +9,10 @@ import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/food_comparison_screen/UrunRepository.dart';
 import 'package:mobilyst/oktay/OktayKarsilastirma/karsilastirma_ekrani/magazaRepository.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../../Anasayfa/KampanyaRepository.dart';
 import '../../../food_comparison_screen/food_bilgileri.dart';
+import '../favoriRepository.dart';
+import 'favoriModel.dart';
 
 class FoodComparisonScreen extends ConsumerStatefulWidget {
   final products yemek;
@@ -22,16 +23,113 @@ class FoodComparisonScreen extends ConsumerStatefulWidget {
 }
 
 class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
+  bool isProductInFavorites = false;
   bool isFavorite = false;
+  late FavoriteRepository _favoriteRepository;
   late var cheapestStoreName1 = ref
       .read(magazaRepositoryProvider)
       .getCheapestStoreName(widget.yemek.name);
   late var cheapestStorePrice1 =
       ref.read(magazaRepositoryProvider).getCheapestPrice(widget.yemek.name);
-  void toggleFavorite() {
-    setState(() {
-      isFavorite = !isFavorite;
-    });
+
+  @override
+  void initState() {
+    super.initState();
+    _favoriteRepository = FavoriteRepository();
+    checkIsProductInFavorites();
+  }
+
+  void checkIsProductInFavorites() async {
+    final isUserLoggedIn = FirebaseAuth.instance.currentUser != null;
+    if (isUserLoggedIn) {
+      final currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser != null) {
+        final productInFavorites =
+            await _favoriteRepository.isProductInFavorites(widget.yemek.name);
+        setState(() {
+          isProductInFavorites = productInFavorites;
+        });
+      }
+    }
+  }
+
+  void toggleFavorite() async {
+    final isUserLoggedIn = FirebaseAuth.instance.currentUser != null;
+    if (isUserLoggedIn) {
+      setState(() {
+        isProductInFavorites = !isProductInFavorites;
+      });
+
+      if (isProductInFavorites) {
+        final favoriteProduct = FavoriteProduct(
+          productName: widget.yemek.name,
+          productImageUrl: widget.yemek.image_url,
+          productPrice: widget.yemek.price,
+          productPageUrl: widget.yemek.product_url,
+          productCategory: widget.yemek.category,
+          userId: FirebaseAuth.instance.currentUser!.uid,
+          productId: '',
+        );
+        await _favoriteRepository.addProductToFavorites(favoriteProduct);
+      } else {
+        final currentUser = FirebaseAuth.instance.currentUser;
+        if (currentUser != null) {
+          final querySnapshot = await _favoriteRepository.favoritesCollection
+              .where('productName', isEqualTo: widget.yemek.name)
+              .where('userId', isEqualTo: currentUser.uid)
+              .get();
+
+          if (querySnapshot.docs.isNotEmpty) {
+            final docId = querySnapshot.docs.first.id;
+            await _favoriteRepository.removeProductFromFavorites(docId);
+          }
+        }
+      }
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              "Uyarı",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            ),
+            content: Text(
+                textAlign: TextAlign.start,
+                "Fırsata gitmek için giriş yapmanız gerekiyor. Lütfen giriş yapınız."),
+            actions: <Widget>[
+              TextButton(
+                child: Text(
+                  "Giriş Yap",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: AppColors.uc,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onPressed: () {
+                  context.go('/hesabim');
+                  Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                child: Text(
+                  "İptal",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: AppColors.uc,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -45,10 +143,9 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
         .where((urun) =>
             urun.category.toLowerCase() == widget.yemek.category.toLowerCase())
         .toList();
-    
-    void uruneGit() async {
-        await launch(widget.yemek.product_url);
 
+    void uruneGit() async {
+      await launch(widget.yemek.product_url);
     }
 
     return Scaffold(
@@ -95,10 +192,11 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                                 toggleFavorite();
                               },
                               icon: Icon(
-                                isFavorite
+                                isProductInFavorites
                                     ? Icons.favorite
                                     : Icons.favorite_border,
-                                color: isFavorite ? Colors.red : null,
+                                color:
+                                    isProductInFavorites ? AppColors.bes : null,
                               ),
                             ),
                             IconButton(
