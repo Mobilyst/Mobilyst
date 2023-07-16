@@ -165,6 +165,7 @@ https://github.com/Mobilyst/mobilyst/assets/135759215/842b64de-bef9-40a4-a0bc-c8
 ## Sprint 3 
 * Sprint Notları: User story etiketi mavi ve task etiketi mor olarak karar verilmiştir. User Story'ler product backlog'ların içine yazılmıştır.
 * Sprint içinde tamamlanması tahmin edilen puan: 120 Puan
+* Puan tamamlama mantığı: Toplamda proje boyunca tamamlanması gereken 340 puanlık backlog bulunmaktadır.İlk iki sprint de 220 puan tamamlandı.Son sprint 120 olması gerektiğine karar verildi.
 * Daily Scrum: Daily Scrum toplantıları genel olarak discord üzerinden ve bazı zamanlar whatsapp arama ve mesajlaşma olarak yapılmıştır.
  [Mobilyst Team Daily](https://www.canva.com/design/DAFozlu1XDk/eL8PuyS3Ccul0J3lcVKEDw/edit?utm_content=DAFozlu1XDk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
    
