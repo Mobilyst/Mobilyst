@@ -32,7 +32,7 @@ Yemek Kılavuzu, Online yemek uygulamalarındaki yemeklerin türlerine göre fiy
 
 ## Ürün Özellikleri
 * Kullanıcılar web sitelerindeki yemeklerin kıyaslanmasını görebilecekler ve ilgili online uygulamaya iletileceklerdir.
-* Kullanıcılar giriş yapmadan kıyaslamaları görebilecek fakat giriş yapmadan kampanyaların ilgili web sitesine gidemeyecek, favori yemeklerini ekleyemeyecek yada fiyat alarmlarını kullanamayacaklardır.
+* Kullanıcılar giriş yapmadan kıyaslamaları görebilecek fakat giriş yapmadan kampanyaların ilgili web sitesine gidemeyecek, favori yemeklerini ekleyemeyeceklerdir.
 * Kullanıcıların takip etmediği online web sitelerindeki yemekleri ve kampanyaları görebilecek ve ilgili web sitesine iletilecekler.
 
 
@@ -43,9 +43,8 @@ Yemek Kılavuzu, Online yemek uygulamalarındaki yemeklerin türlerine göre fiy
 * Online yemek uygulamaları
 * Zamandan tasarruf etmek isteyenler
 
-
-
-
+## Juriye Not 
+[Mobilyst Team Pythonla Veri Çekme Kodları](https://github.com/Mobilyst/PythonlaVeriCekme)
 
 ---
 
