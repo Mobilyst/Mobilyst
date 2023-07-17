@@ -94,7 +94,7 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
             ),
             content: Text(
                 textAlign: TextAlign.start,
-                "Fırsata gitmek için giriş yapmanız gerekiyor. Lütfen giriş yapınız."),
+                "Favorilere eklemek için giriş yapmanız gerekiyor. Lütfen giriş yapınız."),
             actions: <Widget>[
               TextButton(
                 child: Text(
@@ -205,7 +205,17 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                             ),
                             IconButton(
                               onPressed: () {
-                                // Paylaş düğmesine tıklandığında yapılacak işlemler
+                                final String phoneNumber =
+                                    "05462272186"; // Telefon numarasını burada belirleyin
+                                final String message =
+                                    "yemek"; // Mesaj içeriğini burada belirleyin
+
+                                // Telefon rehberine link gönderme
+                                //launch('sms:$phoneNumber?body=$message');
+
+                                // WhatsApp'a link gönderme
+                                launch(
+                                    'https://wa.me/$phoneNumber?text=$message');
                               },
                               icon: const Icon(Icons.share),
                             ),
