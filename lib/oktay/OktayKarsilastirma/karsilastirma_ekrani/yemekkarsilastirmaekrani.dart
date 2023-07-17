@@ -205,17 +205,7 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                             ),
                             IconButton(
                               onPressed: () {
-                                final String phoneNumber =
-                                    "05462272186"; // Telefon numarasını burada belirleyin
-                                final String message =
-                                    "yemek"; // Mesaj içeriğini burada belirleyin
-
-                                // Telefon rehberine link gönderme
-                                //launch('sms:$phoneNumber?body=$message');
-
-                                // WhatsApp'a link gönderme
-                                launch(
-                                    'https://wa.me/$phoneNumber?text=$message');
+                                // Paylaş düğmesine tıklandığında yapılacak işlemler
                               },
                               icon: const Icon(Icons.share),
                             ),
