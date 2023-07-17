@@ -13,9 +13,8 @@ class YemekKiyasTumuPage extends ConsumerStatefulWidget {
 }
 
 class _YemekKiyasTumuPageState extends ConsumerState<YemekKiyasTumuPage> {
-
   @override
-  initState(){
+  initState() {
     final urunRepository = ref.read(urunProvider);
     final List<List<products>> meals = urunRepository.urunler;
     for (var mealList in meals) {
@@ -87,7 +86,7 @@ class _YemekKiyasTumuPageState extends ConsumerState<YemekKiyasTumuPage> {
                         },
                         child: Container(
                           width: double.infinity,
-                          height: 280,
+                          height: 295,
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: Colors.grey,
@@ -126,8 +125,9 @@ class _YemekKiyasTumuPageState extends ConsumerState<YemekKiyasTumuPage> {
                               ),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
-                                children: [const SizedBox(),
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const SizedBox(),
                                   Text(
                                     "Fiyat: ${urun.price} TL",
                                     textAlign: TextAlign.start,
