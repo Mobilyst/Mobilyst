@@ -163,13 +163,31 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
           children: [
             Column(
               children: [
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Column(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          toggleFavorite();
+                        },
+                        icon: Icon(
+                          isProductInFavorites
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: isProductInFavorites ? AppColors.bes : null,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 24),
+                        padding: const EdgeInsets.only(left: 24, right: 24),
                         child: SizedBox(
                           height: 200,
                           child: Image.network(
@@ -178,38 +196,6 @@ class _FoodComparisonScreenState extends ConsumerState<FoodComparisonScreen> {
                             width: 170,
                             fit: BoxFit.cover,
                           ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 0.1),
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Column(
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.notifications_outlined),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                toggleFavorite();
-                              },
-                              icon: Icon(
-                                isProductInFavorites
-                                    ? Icons.favorite
-                                    : Icons.favorite_border,
-                                color:
-                                    isProductInFavorites ? AppColors.bes : null,
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                // Paylaş düğmesine tıklandığında yapılacak işlemler
-                              },
-                              icon: const Icon(Icons.share),
-                            ),
-                          ],
                         ),
                       ),
                     ),

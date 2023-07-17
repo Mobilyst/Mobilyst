@@ -4,7 +4,6 @@ import 'package:mobilyst/ColorAndType/color.dart';
 import 'package:mobilyst/GirisOlaylari/girisPage.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/favoriListelerimPage.dart';
 import 'package:mobilyst/Hesabim/HesapBilgileri/hesapBilgilerimPage.dart';
-import 'package:mobilyst/Hesabim/fiyatAlarmlarimPage.dart';
 
 class HesabimPage extends StatefulWidget {
   const HesabimPage({Key? key}) : super(key: key);
@@ -76,18 +75,6 @@ class _HesabimPageState extends State<HesabimPage> {
           SizedBox(
             height: 50,
           ),
-          ListTile(
-            title: Text('Fiyat Alarmlarım'),
-            trailing: Icon(Icons.arrow_forward_ios),
-            leading: Icon(Icons.notifications_outlined),
-            contentPadding: EdgeInsets.all(10),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => FiyatAlarmPage()),
-              );
-            },
-          ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 19),
             child: Divider(
@@ -126,6 +113,14 @@ class _HesabimPageState extends State<HesabimPage> {
                 MaterialPageRoute(builder: (context) => HesapBilgileriPage()),
               );
             },
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 19),
+            child: Divider(
+              height: 5,
+              thickness: 1,
+              color: Colors.grey.shade300,
+            ),
           ),
           SizedBox(
             height: 180,
