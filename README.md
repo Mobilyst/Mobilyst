@@ -159,7 +159,7 @@ https://github.com/Mobilyst/mobilyst/assets/135759215/842b64de-bef9-40a4-a0bc-c8
 [Mobilyst Team Trello Backlog Board](https://trello.com/invite/b/Sh9PuDYd/ATTI8af1d6ea1c2c7563f293d3b2dee2f80eA84B97E7/f1flutterteam)
 
 ## Juriye Not 
-?? 
+Favorilere ekleme kısmını oluşturduk ama  favori sayfasından kaldırma işlemini yaparken çıkıp geri girmemiz gerekmektedir favori sayfasına bilgi yetersizliği yüzünden yapılamamıştır.
 
 ---
 ## Sprint 3 
@@ -173,6 +173,24 @@ https://github.com/Mobilyst/mobilyst/assets/135759215/842b64de-bef9-40a4-a0bc-c8
 ![image](https://github.com/Mobilyst/mobilyst/assets/135759215/7e460bc8-767e-462d-9098-ab91516adf12)
 
 * Ürün Durumu:
+
+  
+![Ekran görüntüsü 2023-07-17 034910](https://github.com/Mobilyst/mobilyst/assets/135759215/489fb1ef-cc0c-4815-8ebb-ec39f4f80e53)
+
+
+
+
+![Ekran görüntüsü 2023-07-17 034841](https://github.com/Mobilyst/mobilyst/assets/135759215/e483343d-afd4-421f-bc9c-4f56cf055866)
+
+
+
+
+![Ekran görüntüsü 2023-07-17 034627](https://github.com/Mobilyst/mobilyst/assets/135759215/1887de43-0d8a-4966-8e7d-e09079ac4175)
+
+
+
+
+![Ekran görüntüsü 2023-07-17 034551](https://github.com/Mobilyst/mobilyst/assets/135759215/90dfd54a-3e85-48eb-9f22-ba0149a3246e)
 
 
 
